@@ -1,17 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:side_project/model/ProfileModel.dart';
-import 'package:side_project/controller/ApiController.dart';
+import '../repository/OtherProfilesRepository.dart';
 
 class OtherProfilesBloc extends Bloc<OtherProfilesEvent, OtherProfilesState> {
-  late ApiController apiController;
+  late final OtherProfilesRepository repository;
+
   OtherProfilesBloc() : super(InitOtherProfilesState()) {
     on<LoadOtherProfilesEvent>((event, emit) async {
-      apiController = new ApiController<LoadOtherProfilesEvent>(id: event.id);
-      emit(LoadingOtherProfilesState());
+      repository = new OtherProfilesRepository(id: event.id);
       try {
-        final data = await apiController.apiCategorize();
-        emit(LoadedOtherProfilesState(data: ProfileModel.fromJson(data.data)));
+        emit(LoadingOtherProfilesState());
+        await repository.getData();
+        emit(LoadedOtherProfilesState(repository: repository));
       } catch (e) {
         print(e);
         emit(ErrorOtherProfilesState());
@@ -33,9 +34,9 @@ class LoadOtherProfilesEvent extends OtherProfilesEvent {
 
 //state
 abstract class OtherProfilesState extends Equatable {
-  final ProfileModel? data;
+  final OtherProfilesRepository? repository;
 
-  const OtherProfilesState({required this.data});
+  const OtherProfilesState({required this.repository});
 
   @override
   // TODO: implement props
@@ -43,17 +44,17 @@ abstract class OtherProfilesState extends Equatable {
 }
 
 class InitOtherProfilesState extends OtherProfilesState {
-  InitOtherProfilesState() : super(data: null);
+  InitOtherProfilesState() : super(repository: null);
 }
 
 class LoadingOtherProfilesState extends OtherProfilesState {
-  LoadingOtherProfilesState() : super(data: null);
+  LoadingOtherProfilesState() : super(repository: null);
 }
 
 class LoadedOtherProfilesState extends OtherProfilesState {
-  LoadedOtherProfilesState({required super.data});
+  LoadedOtherProfilesState({required super.repository});
 }
 
 class ErrorOtherProfilesState extends OtherProfilesState {
-  ErrorOtherProfilesState() : super(data: null);
+  ErrorOtherProfilesState() : super(repository: null);
 }

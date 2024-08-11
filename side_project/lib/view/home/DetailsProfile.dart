@@ -36,7 +36,7 @@ class DetailsProfile extends StatelessWidget {
                 padding:
                     EdgeInsets.symmetric(horizontal: 7.6.w, vertical: 1.1.h),
                 child: ProfileAppbar(
-                  text: state.data!.nickname,
+                  text: state.repository!.data.nickname,
                 ),
               ),
             ),
@@ -193,7 +193,7 @@ class DetailsProfile extends StatelessWidget {
                             ),
                             SizedBox(height: 1.8.h),
                             DesignComponent_DetailsProfile(
-                              data: state.data!,
+                              data: state.repository!.data,
                             ),
                             SizedBox(
                               height: 50.h,
@@ -276,7 +276,7 @@ class DetailsProfile extends StatelessWidget {
                             onTap: () {
                               context
                                   .read<MessageProfileCubit>()
-                                  .updateState_Pr(state!.data!);
+                                  .updateState_Pr(state.repository!.data);
                               //내 연락처 등록하기
                               getx.Get.to(() => RegistrationPhoneNumberPage1(),
                                   transition: getx.Transition.noTransition);

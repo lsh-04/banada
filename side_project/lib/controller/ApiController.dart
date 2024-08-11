@@ -5,9 +5,12 @@ import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
 import 'package:side_project/bloc/OtherProfilesBloc.dart';
 import 'package:side_project/bloc/ReceivedMessageBloc.dart';
 import 'package:dio/dio.dart';
+import 'package:side_project/bloc/event/MyProfileEvent.dart';
+import 'package:side_project/bloc/event/ReceivedMessageEvent.dart';
+import 'package:side_project/bloc/event/SentMessageEvent.dart';
 import 'package:side_project/dto/MessageSentDto.dart';
 import 'package:side_project/dto/MessageUpdateDto.dart';
-import 'package:side_project/bloc/MyProfilesBloc.dart';
+import 'package:side_project/bloc/MyProfileBloc.dart';
 import 'package:side_project/bloc/SentMessageBloc.dart';
 
 class ApiController<T> extends Request_Api {
@@ -42,11 +45,12 @@ class ApiController<T> extends Request_Api {
         _response = await get_Request_Include_param(_profile, id!);
         return _response;
 
+      /**
       case RegistrationPhoneNumberEvent:
         //폰 등록 여부 조회
         _response = await get_Request(_registrationPhoneNumber);
         return _response;
-
+    */
       case SentMessageLoadEvent:
         //보낸 메세지
         _response = await get_Request(_messageSent);

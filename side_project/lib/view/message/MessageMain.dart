@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:side_project/bloc/ReceivedMessageBloc.dart';
+import 'package:side_project/bloc/state/ReceivedMessageState.dart';
 import 'package:side_project/cubit/MessageProfileCubit.dart';
 import 'package:side_project/view/loading/Loading.dart';
 import 'package:side_project/view/message/MessageEmpty.dart';
@@ -34,9 +35,9 @@ class MessageMain extends StatelessWidget {
           child: BlocBuilder<ReceivedMessageBloc, ReceivedMessageState>(
             builder: (context, state) {
               if (state is LoadedReceivedMessageState) {
-                if (state.receive_message.length > 0) {
+                if (state.repository!.receive_message.length > 0) {
                   return ListView.builder(
-                    itemCount: state.receive_message.length,
+                    itemCount: state.repository!.receive_message.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: index == 0
@@ -54,12 +55,11 @@ class MessageMain extends StatelessWidget {
                           child: SizedBox(
                             height: 10.45.h,
                             child: Received_Message(
-                                data: state.receive_message[index]),
+                                data: state.repository!.receive_message[index]),
                           ),
                           onTap: () {
-                            context
-                                .read<MessageProfileCubit>()
-                                .updateState(state.receive_message[index]);
+                            context.read<MessageProfileCubit>().updateState(
+                                state.repository!.receive_message[index]);
                             print(1);
                             getx.Get.toNamed('/MessageProfile');
                           },

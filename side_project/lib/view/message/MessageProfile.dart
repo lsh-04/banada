@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/bloc/MyProfilesBloc.dart';
+import 'package:side_project/bloc/MyProfileBloc.dart';
 import 'package:side_project/bloc/OtherProfilesBloc.dart';
 import 'package:side_project/bloc/ReceivedMessageBloc.dart';
+import 'package:side_project/bloc/event/ReceivedMessageEvent.dart';
+import 'package:side_project/bloc/state/MyProfileState.dart';
 import 'package:side_project/cubit/MessageProfileCubit.dart';
 import 'package:side_project/dto/MessageUpdateDto.dart';
-import 'package:side_project/model/MessageModel.dart';
+import 'package:side_project/model/Mapping/MappingMessageModel.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -151,11 +153,11 @@ class MessageProfile extends StatelessWidget {
                             onTap: () {
                               // 내 연락처 등록하기 이벤트
                             },
-                            child: BlocBuilder<MyProfilesBloc, MyProfileState>(
+                            child: BlocBuilder<MyProfileBloc, MyProfileState>(
                                 builder: (context, state) {
                               return GestureDetector(
                                 onTap: () {
-                                  if (state.phone_number) {
+                                  if (state.repository!.phone_number) {
                                     //수락하기
                                   } else {
                                     //내 연락처 등록하기
@@ -174,7 +176,9 @@ class MessageProfile extends StatelessWidget {
                                       EdgeInsets.symmetric(vertical: 2.1.h),
                                   alignment: Alignment.center,
                                   child: Text(
-                                    state.phone_number ? '수락하기' : '내 연락처 등록하기',
+                                    state.repository!.phone_number
+                                        ? '수락하기'
+                                        : '내 연락처 등록하기',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontSize: 17.sp,

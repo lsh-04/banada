@@ -1,32 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
+import './AnswersModel.dart';
+import 'Nested/Image.dart' as ImageModel;
 
-class AnswersModel extends Equatable {
-  final int id;
-  final String question;
-  final String answer;
-
-  const AnswersModel(
-      {required this.id, required this.answer, required this.question});
-
-  factory AnswersModel.fromJson(Map<String, dynamic> Json) => AnswersModel(
-      id: Json['id'], answer: Json['answer'], question: Json['question']);
-  @override
-  // TODO: implement props
-  List<Object?> get props => [];
-}
-
-class ImageModel extends Equatable {
-  final int id;
-  final String image;
-  const ImageModel({required this.id, required this.image});
-
-  factory ImageModel.fromJson(Map<String, dynamic> Json) =>
-      ImageModel(id: Json['id'], image: Json['image']);
-  @override
-  // TODO: implement props
-  List<Object?> get props => [];
-}
-
+@immutable
 class ProfileModel extends Equatable {
   final int id;
   final int user;
@@ -63,7 +40,8 @@ class ProfileModel extends Equatable {
         is_smoke: Json['is_smoke'],
         job: Json['job'],
         religion: Json['religion'],
-        images: Json['images'].map((e) => ImageModel.fromJson(e)).toList(),
+        images:
+            Json['images'].map((e) => ImageModel.Image.fromJson(e)).toList(),
       );
 
   @override

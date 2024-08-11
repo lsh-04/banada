@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:side_project/model/MessageModel.dart';
+import 'package:side_project/model/Mapping/MappingMessageModel.dart';
 import 'package:equatable/equatable.dart';
+import 'package:side_project/model/MessageModel.dart';
 import 'package:side_project/model/ProfileModel.dart';
 
 class MessageProfileCubit extends Cubit<MessageProfileState> {

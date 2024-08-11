@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/bloc/MyProfilesBloc.dart';
+import 'package:side_project/bloc/MyProfileBloc.dart';
+import 'package:side_project/bloc/state/MyProfileState.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/test/Image.dart';
@@ -88,7 +89,7 @@ class _ProfileMainState extends State<ProfileMain> {
 
   @override
   Widget build(BuildContext context) {
-    final currentState = context.watch<MyProfilesBloc>().state;
+    final currentState = context.watch<MyProfileBloc>().state;
     if (currentState is LoadedMyProfileState) {
       return SafeArea(
         child: Scaffold(
@@ -111,7 +112,7 @@ class _ProfileMainState extends State<ProfileMain> {
                   ),
                   SizedBox(height: 2.3.h),
                   Text(
-                    currentState.data!.nickname,
+                    currentState.repository!.data.nickname,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,

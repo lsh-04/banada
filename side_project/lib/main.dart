@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
-import 'package:side_project/bloc/MyProfilesBloc.dart';
+import 'package:side_project/bloc/MyProfileBloc.dart';
 import 'package:side_project/bloc/OtherProfilesBloc.dart';
 import 'package:side_project/bloc/ReceivedMessageBloc.dart';
 import 'package:side_project/bloc/SentMessageBloc.dart';
@@ -25,7 +25,7 @@ void main() async {
   runApp(ResponsiveSizer(builder: (context, orientation, screenType) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(lazy: false, create: (context) => MyProfilesBloc()),
+        BlocProvider(lazy: false, create: (context) => MyProfileBloc()),
         BlocProvider(lazy: false, create: (context) => ReceivedMessageBloc()),
         BlocProvider(lazy: false, create: (context) => SentMessageBloc()),
         BlocProvider(

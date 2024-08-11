@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
-import 'package:side_project/bloc/MyProfilesBloc.dart';
+import 'package:side_project/bloc/MyProfileBloc.dart';
 import 'package:side_project/bloc/SentMessageBloc.dart';
+import 'package:side_project/bloc/event/SentMessageEvent.dart';
 import 'package:side_project/cubit/MessageProfileCubit.dart';
 import 'package:side_project/view/message/registrationPhoneNumber/RegistrationPhoneNumberPage3.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
@@ -141,7 +142,8 @@ class _RegistrationPhoneNumberPage3WidgetState
 
               print(_id);
               final MessageSentDto messageSentDto = new MessageSentDto(
-                  sender_id: context.read<MyProfilesBloc>().state.data!.id,
+                  sender_id:
+                      context.read<MyProfileBloc>().state.repository!.data.id,
                   content: _controller[0].text,
                   message_type_id: 1, //메세지 타입
                   receiver_id: _id);

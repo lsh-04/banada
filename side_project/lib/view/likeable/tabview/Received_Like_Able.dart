@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:side_project/bloc/ReceivedMessageBloc.dart';
+import 'package:side_project/bloc/state/ReceivedMessageState.dart';
 import 'package:side_project/view/likeable/tabview/received_like_able/ReceivedHeart.dart';
 import 'package:side_project/view/likeable/tabview/received_like_able/ReceivedRing.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

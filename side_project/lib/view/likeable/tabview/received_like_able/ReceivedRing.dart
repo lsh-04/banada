@@ -13,7 +13,7 @@ class ReceivedRing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<ReceivedMessageBloc>().state;
-    if (state.ring_receive.isNotEmpty) {
+    if (state.repository!.ring_receive.isNotEmpty) {
       return Column(
         children: [
           Row(
@@ -26,7 +26,7 @@ class ReceivedRing extends StatelessWidget {
           ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: (state.ring_receive.length + 1) ~/ 2,
+            itemCount: (state.repository!.ring_receive.length + 1) ~/ 2,
             itemBuilder: (context, index) {
               int firstIndex = index * 2;
               int secondIndex = firstIndex + 1;
@@ -40,27 +40,32 @@ class ReceivedRing extends StatelessWidget {
                       onTap: () {
                         context.read<OtherProfilesBloc>().add(
                             LoadOtherProfilesEvent(
-                                id: state
-                                    .ring_receive[firstIndex].contacts![0].id));
+                                id: state.repository!.ring_receive[firstIndex]
+                                    .contacts![0].id));
                         Get.toNamed("DetailsProfile");
                       },
                       child: likeAbleComponent2(
                           ImageTest.image,
-                          state.ring_receive[firstIndex].sender_name!,
+                          state.repository!.ring_receive[firstIndex]
+                              .sender_name!,
                           '1000시간 전'),
                     ),
-                    if (secondIndex < state.ring_receive.length)
+                    if (secondIndex < state.repository!.ring_receive.length)
                       GestureDetector(
                         onTap: () {
                           context.read<OtherProfilesBloc>().add(
                               LoadOtherProfilesEvent(
-                                  id: state.ring_receive[secondIndex]
-                                      .contacts![0].id));
+                                  id: state
+                                      .repository!
+                                      .ring_receive[secondIndex]
+                                      .contacts![0]
+                                      .id));
                           Get.toNamed("DetailsProfile");
                         },
                         child: likeAbleComponent2(
                             ImageTest.image,
-                            state.ring_receive[secondIndex].sender_name!,
+                            state.repository!.ring_receive[secondIndex]
+                                .sender_name!,
                             '1000시간 전'),
                       ),
                   ],

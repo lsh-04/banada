@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:side_project/bloc/MyProfilesBloc.dart';
+import 'package:side_project/bloc/MyProfileBloc.dart';
 import 'dart:async';
 import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
 import 'package:side_project/bloc/ReceivedMessageBloc.dart';
