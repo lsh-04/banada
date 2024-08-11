@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:side_project/cubit/BottomNavigationBarCubit.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MessageEmpty extends StatelessWidget {
   const MessageEmpty({super.key});
@@ -54,7 +57,10 @@ class MessageEmpty extends StatelessWidget {
           ),
 
           //상태관리
-          InkWell(
+          GestureDetector(
+            onTap: () {
+              context.read<BottomNavigationBarCubit>().setPage(context, 1);
+            },
             child: Component(null, 0, "받은 호감 확인하기", 49, 5.5, 16.8),
           ),
         ],

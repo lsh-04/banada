@@ -4,6 +4,8 @@ import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:side_project/bloc/OtherProfilesBloc.dart';
 import 'package:side_project/bloc/TimeDailyFourIntroduceBloc.dart';
+import 'package:side_project/bloc/state/DailyFourIntroduceState.dart';
+import 'package:side_project/bloc/state/TimeDailyFourIntroduceState.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
 import 'package:side_project/test/Image.dart';
 import 'package:side_project/view/loading/Loading.dart';
@@ -38,12 +40,13 @@ class DailyFourIntroduce extends StatelessWidget {
                       ? GestureDetector(
                           onTap: () {
                             context.read<OtherProfilesBloc>().add(
-                                LoadOtherProfilesEvent(id: state.datas[a].id));
+                                LoadOtherProfilesEvent(
+                                    id: state.repository!.datas[a].id));
                             Get.toNamed('/DetailsProfile');
                           },
                           child: CustomGridItem(
                             image: ImageTest.image,
-                            text: state.datas[a].nickname!,
+                            text: state.repository!.datas[a].nickname!,
                           ),
                         )
                       : CustomGridItem(
