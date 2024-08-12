@@ -8,9 +8,10 @@ import 'package:side_project/bloc/SentMessageBloc.dart';
 import 'package:side_project/bloc/TimeDailyFourIntroduceBloc.dart';
 import 'package:side_project/cubit/BottomNavigationBarCubit.dart';
 import 'package:side_project/cubit/MessageProfileCubit.dart';
+import 'package:side_project/login/LoginMain.dart';
 import 'package:side_project/login/bloc/SplashBloc.dart';
+import 'package:side_project/login/cubit/RegionCubit.dart';
 import 'package:side_project/login/splash/Splash.dart';
-import 'package:side_project/test/design.dart';
 import 'package:side_project/view/home/DetailsProfile.dart';
 import 'package:side_project/view/message/MessageProfile.dart';
 import 'home.dart';
@@ -23,7 +24,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await rootBundle.load('assets/image/logo.png');
   runApp(ResponsiveSizer(builder: (context, orientation, screenType) {
-    return MultiBlocProvider(
+    return
+        /**
+      MultiBlocProvider(
       providers: [
         BlocProvider(lazy: false, create: (context) => MyProfileBloc()),
         BlocProvider(lazy: false, create: (context) => ReceivedMessageBloc()),
@@ -61,11 +64,18 @@ void main() async {
       ),
     );
 
-    /**
-    return getx.GetMaterialApp(
-      home: Design(),
+
+          */
+        MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => RegionCubit(),
+        ),
+      ],
+      child: getx.GetMaterialApp(
+        home: LoginMain(),
+      ),
     );
-    */
 
     //점검
   }));
