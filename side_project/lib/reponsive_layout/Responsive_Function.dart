@@ -61,8 +61,10 @@ Widget Component(String? image, double imageweight, String text, double width,
 //돌아가기 앱바
 
 class PriviousAppbar extends StatelessWidget {
+  final double? fontsize;
+  final FontWeight? fontWeight;
   final String? text;
-  const PriviousAppbar({super.key, this.text});
+  const PriviousAppbar({super.key, this.text, this.fontWeight, this.fontsize});
 
   @override
   Widget build(BuildContext context) {
@@ -85,9 +87,9 @@ class PriviousAppbar extends StatelessWidget {
                 text!,
                 style: TextStyle(
                   color: Color(0xFF2E363A),
-                  fontSize: 17.3.sp,
+                  fontSize: fontsize ?? 17.3.sp,
                   fontFamily: 'Pretendard',
-                  fontWeight: FontWeight.w500,
+                  fontWeight: fontWeight ?? FontWeight.w500,
                 ),
               ),
             )
