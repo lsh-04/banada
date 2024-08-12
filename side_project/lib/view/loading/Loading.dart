@@ -9,10 +9,18 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Image.asset(
-        'assets/image/loading.gif',
-        width: 40.w,
-        fit: BoxFit.cover,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/image/loading.gif',
+            width: 40.w,
+            fit: BoxFit.cover,
+          ),
+          SizedBox(
+            height: 7.h,
+          ),
+        ],
       ),
     );
   }

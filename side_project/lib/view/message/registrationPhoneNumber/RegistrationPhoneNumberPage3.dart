@@ -3,7 +3,7 @@ import 'package:side_project/bloc/OtherProfilesBloc.dart';
 import 'package:side_project/cubit/MessageProfileCubit.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/view/message/registrationPhoneNumber/component/RegistrationPhoneNumberPage3WidgetState.dart';
+import 'package:side_project/view/message/registrationPhoneNumber/component/RegistrationPhoneNumberPage3Widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegistrationPhoneNumberPage3 extends StatelessWidget {

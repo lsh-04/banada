@@ -53,7 +53,7 @@ class MessageEmpty extends StatelessWidget {
           ),
 
           SizedBox(
-            height: 6.5.h,
+            height: 5.3.h,
           ),
 
           //상태관리
