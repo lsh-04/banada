@@ -9,8 +9,17 @@ import 'package:side_project/bloc/TimeDailyFourIntroduceBloc.dart';
 import 'package:side_project/cubit/BottomNavigationBarCubit.dart';
 import 'package:side_project/cubit/MessageProfileCubit.dart';
 import 'package:side_project/login/LoginMain.dart';
+import 'package:side_project/login/bloc/LoginBloc.dart';
+import 'package:side_project/login/bloc/SimulationBloc.dart';
 import 'package:side_project/login/bloc/SplashBloc.dart';
+import 'package:side_project/login/cubit/ImageCubit.dart';
+import 'package:side_project/login/cubit/IntroduceCubit.dart';
+import 'package:side_project/login/cubit/JobCubit.dart';
+import 'package:side_project/login/cubit/PoliticsCubit.dart';
 import 'package:side_project/login/cubit/RegionCubit.dart';
+import 'package:side_project/login/cubit/ReligionCubit.dart';
+import 'package:side_project/login/cubit/SimulationChooseCubit.dart';
+import 'package:side_project/login/simulations/SimulationMain.dart';
 import 'package:side_project/login/splash/Splash.dart';
 import 'package:side_project/view/home/DetailsProfile.dart';
 import 'package:side_project/view/message/MessageProfile.dart';
@@ -18,15 +27,15 @@ import 'home.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
 void main() async {
   //로고 로딩 될때까지 기다림(스플래시)
   WidgetsFlutterBinding.ensureInitialized();
   await rootBundle.load('assets/image/logo.png');
+  KakaoSdk.init(nativeAppKey: '75fd1ed1cfb70be8251a1f70fd22ed2b');
   runApp(ResponsiveSizer(builder: (context, orientation, screenType) {
-    return
-        /**
-      MultiBlocProvider(
+    return MultiBlocProvider(
       providers: [
         BlocProvider(lazy: false, create: (context) => MyProfileBloc()),
         BlocProvider(lazy: false, create: (context) => ReceivedMessageBloc()),
@@ -36,15 +45,45 @@ void main() async {
         BlocProvider(create: (context) => OtherProfilesBloc()),
         BlocProvider(create: (context) => TimeDailyFourIntroduceBloc()),
         BlocProvider(create: (context) => MessageProfileCubit()),
-        BlocProvider(create: (context) => SplashBloc()),
+        BlocProvider(
+          create: (context) => RegionCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ReligionCubit(),
+        ),
+        BlocProvider(
+          create: (context) => JoBCubit(),
+        ),
+        BlocProvider(
+          create: (context) => PoliticsCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ImageCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SimulationBloc(),
+        ),
+        BlocProvider(
+          create: (context) => SimulationChooseCubit(),
+        ),
+        BlocProvider(
+          create: (context) => IntroduceCubit(),
+        ),
+        BlocProvider(create: (context) => LoginBloc()),
+        BlocProvider(
+          create: (context) =>
+              SplashBloc(simulationBloc: context.read<SimulationBloc>()),
+        ),
+        BlocProvider(
+          create: (context) => BottomNavigationBarCubit(),
+        ),
       ],
       //main
       child: getx.GetMaterialApp(
         home: BlocBuilder<SplashBloc, SplashState>(builder: (context, state) {
           print(state);
           if (state is LoadedBlocState) {
-            return BlocProvider(
-                create: (context) => BottomNavigationBarCubit(), child: Home());
+            return LoginMain();
           } else {
             return Splash();
           }
@@ -61,19 +100,6 @@ void main() async {
               page: () => DetailsProfile(),
               transition: getx.Transition.noTransition),
         ],
-      ),
-    );
-
-
-          */
-        MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => RegionCubit(),
-        ),
-      ],
-      child: getx.GetMaterialApp(
-        home: LoginMain(),
       ),
     );
 

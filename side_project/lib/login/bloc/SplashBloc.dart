@@ -1,21 +1,31 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:side_project/bloc/MyProfileBloc.dart';
-import 'dart:async';
-import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
-import 'package:side_project/bloc/ReceivedMessageBloc.dart';
-import 'package:side_project/bloc/SentMessageBloc.dart';
+import 'package:side_project/login/bloc/SimulationBloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
-  SplashBloc() : super(InitialState()) {
-    emit(LoadedBlocState());
+  final SimulationBloc? simulationBloc;
+  SplashBloc({required this.simulationBloc}) : super(InitialState()) {
+    try {
+      if (simulationBloc != null) {
+        simulationBloc!.add(LoadDataEvent());
+      }
+      final FlutterSecureStorage _flutterSecureStorage =
+          new FlutterSecureStorage();
+      final data = _flutterSecureStorage.read(key: 'login');
+
+      emit(LoadedBlocState());
+    } catch (e) {
+      print(e);
+      throw Exception("SplashBloc error");
+    }
   }
 }
 
 //event
 abstract class SplashEvent extends Equatable {}
 
-class LoadBloc extends SplashEvent {
+class LoadEvent extends SplashEvent {
   @override
   // TODO: implement props
   List<Object?> get props => [];
