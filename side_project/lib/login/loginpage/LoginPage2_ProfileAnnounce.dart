@@ -51,7 +51,6 @@ class LoginPage2_ProfileAnnounce extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 6.8.w),
                 child: GestureDetector(
                   onTap: () {
-                    context.read<RegionCubit>().setRegion(null);
                     getx.Get.off(() => LoginPage3_ProfileWrite1(),
                         transition: getx.Transition.noTransition);
                   },
