@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:side_project/login/bloc/LoginBloc.dart';
 import 'package:side_project/login/loginpage/LoginPage1_TOS.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
 import 'package:get/get.dart' as getx;
 
@@ -80,7 +82,7 @@ class LoginMain extends StatelessWidget {
                 //apple 로그인
                 GestureDetector(
                   child: Container(
-                    width: 89.w,
+                    width: 87.w,
                     child: Image_Res('login_apple', 1),
                   ),
                 ),
@@ -91,7 +93,7 @@ class LoginMain extends StatelessWidget {
                 //구글 로그인
                 GestureDetector(
                   child: Container(
-                    width: 89.w,
+                    width: 87.w,
                     child: Image_Res('login_google', 1),
                   ),
                 ),
@@ -100,14 +102,21 @@ class LoginMain extends StatelessWidget {
                 ),
 
                 //카카오 로그인
-                GestureDetector(
-                  onTap: () {
-                    getx.Get.to(() => LoginPage1_TOS(),
-                        transition: getx.Transition.noTransition);
+                BlocListener<LoginBloc, LoginState>(
+                  listener: (context, state) {
+                    if (state.login) {
+                      getx.Get.to(() => LoginPage1_TOS(),
+                          transition: getx.Transition.noTransition);
+                    }
                   },
-                  child: Container(
-                    width: 89.w,
-                    child: Image_Res('login_kakao', 1),
+                  child: GestureDetector(
+                    onTap: () {
+                      context.read<LoginBloc>().add(KakaoLoginEvent());
+                    },
+                    child: Container(
+                      width: 87.w,
+                      child: Image_Res('login_kakao', 1),
+                    ),
                   ),
                 ),
               ],

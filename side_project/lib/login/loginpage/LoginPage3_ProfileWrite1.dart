@@ -22,6 +22,23 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
       List.generate(2, (index) => new TextEditingController());
   int _choose = 0;
   bool _isPass = false;
+  final List<String> _data = [
+    '서울',
+    '경기',
+    '인천',
+    '강원',
+    '대전',
+    '세종',
+    '부산',
+    '대구',
+    '광주',
+    '충남',
+    '충북',
+    '전남',
+    '전북',
+    '경북',
+    '제주'
+  ];
   void check() {
     setState(() {
       //유효성 검사 1
@@ -108,7 +125,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                   GestureDetector(
                     onTap: () {
                       if (_isPass) {
-                        getx.Get.off(() => LoginPage3_ProfileWrite2(),
+                        getx.Get.to(() => LoginPage3_ProfileWrite2(),
                             transition: getx.Transition.noTransition);
                       }
                     },
@@ -270,10 +287,10 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
             children: [
               GestureDetector(
                 onTap: () {
-                  check();
                   setState(() {
                     _choose = 1;
                   });
+                  check();
                 },
                 child: Container(
                   height: 6.5.h,
@@ -311,10 +328,10 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
               ),
               GestureDetector(
                 onTap: () {
-                  check();
                   setState(() {
                     _choose = 2;
                   });
+                  check();
                 },
                 child: Container(
                   height: 6.5.h,
@@ -395,7 +412,11 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
               FocusScope.of(context).unfocus();
             });
             await getx.Get.bottomSheet<String?>(
-              LoginPage3SnackBar(),
+              LoginPage3SnackBar<RegionCubit>(
+                title: '거주지 선택',
+                datas: _data,
+                initialData: context.read<RegionCubit>(),
+              ),
             );
             check();
           },

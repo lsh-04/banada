@@ -2,12 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
+import 'package:side_project/login/cubit/JobCubit.dart';
+import 'package:side_project/login/cubit/PoliticsCubit.dart';
 import 'package:side_project/login/cubit/RegionCubit.dart';
+import 'package:side_project/login/cubit/ReligionCubit.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginPage3SnackBar extends StatefulWidget {
-  const LoginPage3SnackBar({super.key});
+class LoginPage3SnackBar<T> extends StatefulWidget {
+  final List<String> datas;
+  final String title;
+  final T initialData;
+  const LoginPage3SnackBar(
+      {super.key,
+      required this.datas,
+      required this.title,
+      required this.initialData});
 
   @override
   State<LoginPage3SnackBar> createState() => _LoginPage3SnackBarState();
@@ -15,33 +25,46 @@ class LoginPage3SnackBar extends StatefulWidget {
 
 class _LoginPage3SnackBarState extends State<LoginPage3SnackBar> {
   final List<bool> _check = List.generate(15, (index) => false);
-  final List<String> _region = [
-    '서울',
-    '경기',
-    '인천',
-    '강원',
-    '대전',
-    '세종',
-    '부산',
-    '대구',
-    '광주',
-    '충남',
-    '충북',
-    '전남',
-    '전북',
-    '경북',
-    '제주'
-  ];
+  late final List<String> _data;
 
   Widget _buildRegionButton(BuildContext context, int index) {
     return GestureDetector(
       onTap: () {
+        if (widget.initialData is RegionCubit) {
+          context.read<RegionCubit>().setRegion(_data[index]);
+        } else if (widget.initialData == JoBCubit) {
+          context.read<JoBCubit>().setJoB(_data[index]);
+        } else if (widget.initialData == ReligionCubit) {
+          context.read<ReligionCubit>().setReligion(_data[index]);
+        } else if (widget.initialData == PoliticsCubit) {
+          context.read<PoliticsCubit>().setPolitics(_data[index]);
+        }
+        /**
+        switch (T) {
+          case RegionCubit:
+            try {
+              context.read<RegionCubit>().setRegion(_data[index]);
+              print('${context.read<RegionCubit>().state} da');
+            } catch (e) {
+              print(e);
+            }
+            break;
+          case JoBCubit:
+            context.read<JoBCubit>().setJoB(_data[index]);
+            break;
+          case ReligionCubit:
+            context.read<ReligionCubit>().setReligion(_data[index]);
+            break;
+          case PoliticsCubit:
+            context.read<PoliticsCubit>().setPolitics(_data[index]);
+            break;
+        }
+            */
         setState(() {
           for (int a = 0; a < _check.length; a++) {
             _check[a] = false;
           }
           _check[index] = true;
-          context.read<RegionCubit>().setRegion(_region[index]);
         });
       },
       child: Container(
@@ -58,7 +81,7 @@ class _LoginPage3SnackBarState extends State<LoginPage3SnackBar> {
               ),
         child: Center(
           child: Text(
-            _region[index],
+            _data[index],
             style: TextStyle(
               color: _check[index] ? Color(0xFF02D289) : Color(0xFF5A6166),
               fontSize: 17.3.sp,
@@ -69,6 +92,13 @@ class _LoginPage3SnackBarState extends State<LoginPage3SnackBar> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _data = widget.datas;
   }
 
   @override
@@ -91,7 +121,7 @@ class _LoginPage3SnackBarState extends State<LoginPage3SnackBar> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '거주지 선택',
+                  widget.title,
                   style: TextStyle(
                     color: Color(0xFF1E2427),
                     fontSize: 17.3.sp,
@@ -122,7 +152,7 @@ class _LoginPage3SnackBarState extends State<LoginPage3SnackBar> {
                   mainAxisSpacing: 2.h,
                   childAspectRatio: 2,
                   children: List.generate(
-                      _region.length, (i) => _buildRegionButton(context, i))),
+                      _data.length, (i) => _buildRegionButton(context, i))),
             ),
           ],
         ),
