@@ -4,7 +4,7 @@ import 'package:side_project/model/ProfileModel.dart';
 import '../repository/OtherProfilesRepository.dart';
 
 class OtherProfilesBloc extends Bloc<OtherProfilesEvent, OtherProfilesState> {
-  late final OtherProfilesRepository repository;
+  late OtherProfilesRepository repository;
 
   OtherProfilesBloc() : super(InitOtherProfilesState()) {
     on<LoadOtherProfilesEvent>((event, emit) async {
