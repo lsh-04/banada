@@ -33,7 +33,7 @@ class MessageEmpty extends StatelessWidget {
               fontSize: 17.8.sp,
               fontFamily: 'Pretendard',
               fontWeight: FontWeight.w700,
-              height: 0,
+              height: 1.2,
             ),
           ),
 
@@ -48,7 +48,7 @@ class MessageEmpty extends StatelessWidget {
               fontSize: 17.7.sp,
               fontFamily: 'Pretendard',
               fontWeight: FontWeight.w700,
-              height: 0,
+              height: 1.2,
             ),
           ),
 

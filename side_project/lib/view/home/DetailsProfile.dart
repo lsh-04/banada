@@ -8,7 +8,9 @@ import 'package:side_project/bloc/OtherProfilesBloc.dart';
 import 'package:side_project/cubit/MessageProfileCubit.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
 import 'package:side_project/test/Image.dart';
+import 'package:side_project/view/etc/Preparing.dart';
 import 'package:side_project/view/home/ProfileAppbar/ProfileAppbar.dart';
+import 'package:side_project/view/home/designcomponent/DesignComponent_Answers.dart';
 import 'package:side_project/view/home/designcomponent/DesignComponent_DetailsProfile.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/view/loading/Loading.dart';
@@ -130,7 +132,7 @@ class DetailsProfile extends StatelessWidget {
                                           fontSize: 17.7.sp,
                                           fontFamily: 'Pretendard',
                                           fontWeight: FontWeight.w600,
-                                          height: 0,
+                                          height: 1.2,
                                         ),
                                       ),
                                       SizedBox(
@@ -160,7 +162,7 @@ class DetailsProfile extends StatelessWidget {
                                           fontSize: 17.78.sp,
                                           fontFamily: 'Pretendard',
                                           fontWeight: FontWeight.w600,
-                                          height: 0,
+                                          height: 1.2,
                                         ),
                                       ),
                                     ),
@@ -169,24 +171,29 @@ class DetailsProfile extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: 2.h),
-                            Container(
-                              width: double.infinity,
-                              height: 7.h,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFF74D495),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                            GestureDetector(
+                              onTap: () {
+                                showPrepareDialog(context);
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 7.h,
+                                decoration: ShapeDecoration(
+                                  color: Color(0xFF74D495),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
                                 ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '연애 스타일 보러가기 >',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17.5.sp,
-                                    fontFamily: 'Pretendard',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0,
+                                child: Center(
+                                  child: Text(
+                                    '연애 스타일 보러가기 >',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17.5.sp,
+                                      fontFamily: 'Pretendard',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.2,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -196,8 +203,12 @@ class DetailsProfile extends StatelessWidget {
                               data: state.repository!.data,
                             ),
                             SizedBox(
-                              height: 50.h,
-                            )
+                              height: 1.5.h,
+                            ),
+                            DesignComponent_Answers(),
+                            SizedBox(
+                              height: 12.h,
+                            ),
                           ],
                         ),
                       ),
@@ -228,49 +239,59 @@ class DetailsProfile extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                child: Image_Res('heart_ch', 1),
-                                width: 8.w,
-                              ),
-                              SizedBox(
-                                height: 0.3.h,
-                              ),
-                              Text(
-                                '하트',
-                                style: TextStyle(
-                                  color: Color(0xFF00C57D),
-                                  fontSize: 14.5.sp,
-                                  fontFamily: 'Pretendard',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0,
+                          GestureDetector(
+                            onTap: () {
+                              showPrepareDialog(context);
+                            },
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(
+                                  child: Image_Res('heart_ch', 1),
+                                  width: 8.w,
                                 ),
-                              ),
-                            ],
+                                SizedBox(
+                                  height: 0.3.h,
+                                ),
+                                Text(
+                                  '하트',
+                                  style: TextStyle(
+                                    color: Color(0xFF00C57D),
+                                    fontSize: 14.5.sp,
+                                    fontFamily: 'Pretendard',
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.2,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                child: Image_Res('ring_change', 1),
-                                width: 8.w,
-                              ),
-                              SizedBox(
-                                height: 0.3.h,
-                              ),
-                              Text(
-                                '반지',
-                                style: TextStyle(
-                                  color: Color(0xFF00C57D),
-                                  fontSize: 14.5.sp,
-                                  fontFamily: 'Pretendard',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0,
+                          GestureDetector(
+                            onTap: () {
+                              showPrepareDialog(context);
+                            },
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(
+                                  child: Image_Res('ring_change', 1),
+                                  width: 8.w,
                                 ),
-                              ),
-                            ],
+                                SizedBox(
+                                  height: 0.3.h,
+                                ),
+                                Text(
+                                  '반지',
+                                  style: TextStyle(
+                                    color: Color(0xFF00C57D),
+                                    fontSize: 14.5.sp,
+                                    fontFamily: 'Pretendard',
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.2,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -298,7 +319,7 @@ class DetailsProfile extends StatelessWidget {
                                     fontSize: 14.5.sp,
                                     fontFamily: 'Pretendard',
                                     fontWeight: FontWeight.w600,
-                                    height: 0,
+                                    height: 1.2,
                                   ),
                                 ),
                               ],

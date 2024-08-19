@@ -43,7 +43,7 @@ class SimulationAppbar extends StatelessWidget {
                       fontSize: 17.3.sp,
                       fontFamily: 'Pretendard',
                       fontWeight: FontWeight.w700,
-                      height: 0,
+                      height: 1.2,
                     ),
                   ),
                   SizedBox(
@@ -57,7 +57,7 @@ class SimulationAppbar extends StatelessWidget {
                       fontSize: 17.3.sp,
                       fontFamily: 'Pretendard',
                       fontWeight: FontWeight.w500,
-                      height: 0,
+                      height: 1.2,
                     ),
                   ),
                 ],

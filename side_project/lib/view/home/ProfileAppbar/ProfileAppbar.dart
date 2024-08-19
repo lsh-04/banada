@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
 import 'package:get/get.dart';
+import 'package:side_project/view/etc/Preparing.dart';
 
 class ProfileAppbar extends StatelessWidget {
   final String text;
@@ -32,7 +33,7 @@ class ProfileAppbar extends StatelessWidget {
                 fontSize: 17.3.sp,
                 fontFamily: 'Pretendard',
                 fontWeight: FontWeight.w500,
-                height: 0,
+                height: 1.0,
               ),
             ),
           ),
@@ -41,7 +42,9 @@ class ProfileAppbar extends StatelessWidget {
               width: 6.w,
               child: Image_Res('attention', 1),
             ),
-            onTap: () {},
+            onTap: () {
+              showPrepareDialog(context);
+            },
           ),
         ],
       ),

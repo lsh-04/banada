@@ -98,7 +98,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                       fontSize: 19.5.sp,
                       fontFamily: 'Pretendard',
                       fontWeight: FontWeight.w800,
-                      height: 0,
+                      height: 1.2,
                     ),
                   ),
 
@@ -147,7 +147,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                               fontSize: 17.3.sp,
                               fontFamily: 'Pretendard',
                               fontWeight: FontWeight.w600,
-                              height: 0),
+                              height: 1.0),
                         ),
                       ),
                     ),
@@ -177,7 +177,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                 fontSize: 16.3.sp,
                 fontFamily: 'Pretendard',
                 fontWeight: FontWeight.w500,
-                height: 0,
+                height: 1.2,
               ),
             ),
             if (isEdit) ...[
@@ -188,7 +188,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                   fontSize: 16.3.sp,
                   fontFamily: 'Pretendard',
                   fontWeight: FontWeight.w400,
-                  height: 0,
+                  height: 1.2,
                 ),
               )
             ],
@@ -262,7 +262,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                 fontSize: 16.3.sp,
                 fontFamily: 'Pretendard',
                 fontWeight: FontWeight.w500,
-                height: 0,
+                height: 1.2,
               ),
             ),
             if (isEdit) ...[
@@ -273,7 +273,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                   fontSize: 16.sp,
                   fontFamily: 'Pretendard',
                   fontWeight: FontWeight.w400,
-                  height: 0,
+                  height: 1.2,
                 ),
               )
             ],
@@ -317,7 +317,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                         fontSize: 17.3.sp,
                         fontFamily: 'Pretendard',
                         fontWeight: FontWeight.w500,
-                        height: 0,
+                        height: 1.2,
                       ),
                     ),
                   ),
@@ -358,7 +358,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                         fontSize: 17.3.sp,
                         fontFamily: 'Pretendard',
                         fontWeight: FontWeight.w500,
-                        height: 0,
+                        height: 1.2,
                       ),
                     ),
                   ),
@@ -386,7 +386,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                 fontSize: 16.3.sp,
                 fontFamily: 'Pretendard',
                 fontWeight: FontWeight.w500,
-                height: 0,
+                height: 1.2,
               ),
             ),
             if (isEdit) ...[
@@ -397,7 +397,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                   fontSize: 16.sp,
                   fontFamily: 'Pretendard',
                   fontWeight: FontWeight.w400,
-                  height: 0,
+                  height: 1.2,
                 ),
               )
             ],
@@ -443,7 +443,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                       fontSize: 17.3.sp,
                       fontFamily: 'Pretendard',
                       fontWeight: FontWeight.w500,
-                      height: 0,
+                      height: 1.2,
                     ),
                   );
                 }),

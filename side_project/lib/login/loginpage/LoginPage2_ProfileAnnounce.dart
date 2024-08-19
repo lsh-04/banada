@@ -34,7 +34,7 @@ class LoginPage2_ProfileAnnounce extends StatelessWidget {
                   fontSize: 19.5.sp,
                   fontFamily: 'Pretendard',
                   fontWeight: FontWeight.w800,
-                  height: 0,
+                  height: 1.2,
                 ),
               ),
               SizedBox(
@@ -72,7 +72,7 @@ class LoginPage2_ProfileAnnounce extends StatelessWidget {
                             fontSize: 17.3.sp,
                             fontFamily: 'Pretendard',
                             fontWeight: FontWeight.w600,
-                            height: 0),
+                            height: 1.2),
                       ),
                     ),
                   ),

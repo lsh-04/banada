@@ -40,7 +40,7 @@ class LoginMain extends StatelessWidget {
                     fontSize: 21.7.sp,
                     fontFamily: 'Pretendard',
                     fontWeight: FontWeight.w400,
-                    height: 0,
+                    height: 1.2,
                   ),
                 ),
 
@@ -56,7 +56,7 @@ class LoginMain extends StatelessWidget {
                     fontSize: 21.7.sp,
                     fontFamily: 'Pretendard',
                     fontWeight: FontWeight.w400,
-                    height: 0,
+                    height: 1.2,
                   ),
                 ),
                 SizedBox(
@@ -71,7 +71,7 @@ class LoginMain extends StatelessWidget {
                     fontSize: 21.7.sp,
                     fontFamily: 'Pretendard',
                     fontWeight: FontWeight.w400,
-                    height: 0,
+                    height: 1.2,
                   ),
                 ),
 

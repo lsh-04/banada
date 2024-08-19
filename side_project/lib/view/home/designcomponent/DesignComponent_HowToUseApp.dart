@@ -11,11 +11,11 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
       return Text(
         text,
         style: TextStyle(
-          color: Color(0xFF5A6166),
-          fontSize: 15.5.sp,
-          fontFamily: 'Pretendard',
-          fontWeight: fontWeight,
-        ),
+            color: Color(0xFF5A6166),
+            fontSize: 15.5.sp,
+            fontFamily: 'Pretendard',
+            fontWeight: fontWeight,
+            height: 1.2),
       );
     }
 
@@ -23,11 +23,11 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
       return Text(
         text,
         style: TextStyle(
-          color: Colors.white,
-          fontSize: 15.5.sp,
-          fontFamily: 'Pretendard',
-          fontWeight: FontWeight.w500,
-        ),
+            color: Colors.white,
+            fontSize: 15.5.sp,
+            fontFamily: 'Pretendard',
+            fontWeight: FontWeight.w500,
+            height: 1.4),
       );
     }
 
@@ -40,7 +40,7 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
           fontSize: 14.sp,
           fontFamily: 'Pretendard',
           fontWeight: FontWeight.w600,
-          height: 0.14,
+          height: 1.2,
         ),
       );
     }
@@ -104,9 +104,6 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(width: 8.5.w, child: Image_Res("heart_ch2", 1)),
-                      SizedBox(
-                        height: 1.h,
-                      ),
                       textWidget_Image('무료')
                     ],
                   ),
@@ -160,9 +157,6 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
                     children: [
                       Container(
                           width: 8.5.w, child: Image_Res("ring_change", 1)),
-                      SizedBox(
-                        height: 1.h,
-                      ),
                       textWidget_Image('11루비')
                     ],
                   ),
@@ -217,9 +211,6 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(width: 8.5.w, child: Image_Res("chat_ch", 1)),
-                      SizedBox(
-                        height: 1.h,
-                      ),
                       textWidget_Image('27루비')
                     ],
                   ),

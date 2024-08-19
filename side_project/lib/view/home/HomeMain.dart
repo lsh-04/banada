@@ -107,7 +107,7 @@ class _HomeMainState extends State<HomeMain> {
                   fontSize: 21.sp,
                   fontFamily: 'Pretendard',
                   fontWeight: FontWeight.w700,
-                  height: 0,
+                  height: 1.2,
                 ),
               ),
 
@@ -121,7 +121,7 @@ class _HomeMainState extends State<HomeMain> {
                   fontSize: 16.3.sp,
                   fontFamily: 'Pretendard',
                   fontWeight: FontWeight.w400,
-                  height: 0,
+                  height: 1.2,
                 ),
               ),
               SizedBox(

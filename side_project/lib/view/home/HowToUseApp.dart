@@ -44,7 +44,7 @@ class HowToUseApp extends StatelessWidget {
                   fontSize: 21.sp,
                   fontFamily: 'Pretendard',
                   fontWeight: FontWeight.w700,
-                  height: 0,
+                  height: 1.2,
                 ),
               ),
               SizedBox(

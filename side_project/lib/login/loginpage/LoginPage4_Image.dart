@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,11 +15,13 @@ class LoginPage4_Image extends StatelessWidget {
   LoginPage4_Image({super.key});
 
   Future<void> _requestPermission() async {
-    if (await Permission.storage.request().isGranted) {
-      // 권한이 부여됨
-    } else {
-      // 권한 요청 거부됨
-      openAppSettings();
+    if (!kIsWeb) {
+      if (await Permission.storage.request().isGranted) {
+        // 권한이 부여됨
+      } else {
+        // 권한 요청 거부됨
+        openAppSettings();
+      }
     }
   }
 
@@ -60,7 +63,7 @@ class LoginPage4_Image extends StatelessWidget {
                     fontSize: 19.5.sp,
                     fontFamily: 'Pretendard',
                     fontWeight: FontWeight.w800,
-                    height: 0,
+                    height: 1.2,
                   ),
                 ),
                 SizedBox(
@@ -75,12 +78,11 @@ class LoginPage4_Image extends StatelessWidget {
                     Text(
                       '프로필 사진 TIP',
                       style: TextStyle(
-                        color: Color(0xFF41474C),
-                        fontSize: 17.3.sp,
-                        fontFamily: 'Pretendard',
-                        fontWeight: FontWeight.w700,
-                        height: 0,
-                      ),
+                          color: Color(0xFF41474C),
+                          fontSize: 17.3.sp,
+                          fontFamily: 'Pretendard',
+                          fontWeight: FontWeight.w700,
+                          height: 1.2),
                     ),
                   ],
                 ),
@@ -90,14 +92,14 @@ class LoginPage4_Image extends StatelessWidget {
                 Text(
                   '얼굴이 정면으로 나온 사진이 매칭이 잘 돼요.\n최소 두 장의 사진이 필요해요.',
                   style: TextStyle(
-                    color: Color(0xFF5A6166),
-                    fontSize: 15.5.sp,
-                    fontFamily: 'Pretendard',
-                    fontWeight: FontWeight.w500,
-                    height: 0,
-                  ),
+                      color: Color(0xFF5A6166),
+                      fontSize: 15.5.sp,
+                      fontFamily: 'Pretendard',
+                      fontWeight: FontWeight.w500,
+                      height: 1.2),
                 ),
-                BlocBuilder<ImageCubit, List<File>?>(builder: (context, state) {
+                BlocBuilder<ImageCubit, List<dynamic>?>(
+                    builder: (context, state) {
                   if (state == null) {
                     return Column(
                       children: [
@@ -119,12 +121,11 @@ class LoginPage4_Image extends StatelessWidget {
                               child: Text(
                                 '사진 선택하기',
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18.5.sp,
-                                  fontFamily: 'Pretendard',
-                                  fontWeight: FontWeight.w700,
-                                  height: 0,
-                                ),
+                                    color: Colors.white,
+                                    fontSize: 18.5.sp,
+                                    fontFamily: 'Pretendard',
+                                    fontWeight: FontWeight.w700,
+                                    height: 1.0),
                               ),
                             ),
                           ),
@@ -169,8 +170,13 @@ class LoginPage4_Image extends StatelessWidget {
                                             : ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
-                                                child: Image.file(state[index],
-                                                    fit: BoxFit.cover)),
+                                                child: !kIsWeb
+                                                    ? Image.file(state[index],
+                                                        fit: BoxFit.cover)
+                                                    : Image.memory(
+                                                        state[index],
+                                                        fit: BoxFit.cover,
+                                                      )),
                                       ),
                                       if (index == 0) ...[
                                         Padding(
@@ -191,12 +197,11 @@ class LoginPage4_Image extends StatelessWidget {
                                               child: Text(
                                                 '대표',
                                                 style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16.3.sp,
-                                                  fontFamily: 'Pretendard',
-                                                  fontWeight: FontWeight.w400,
-                                                  height: 0,
-                                                ),
+                                                    color: Colors.white,
+                                                    fontSize: 16.3.sp,
+                                                    fontFamily: 'Pretendard',
+                                                    fontWeight: FontWeight.w400,
+                                                    height: 1.2),
                                               ),
                                             ),
                                           ),
@@ -245,8 +250,13 @@ class LoginPage4_Image extends StatelessWidget {
                                         : ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            child: Image.file(state[index + 2],
-                                                fit: BoxFit.cover)),
+                                            child: !kIsWeb
+                                                ? Image.file(state[index + 2],
+                                                    fit: BoxFit.cover)
+                                                : Image.memory(
+                                                    state[index + 2],
+                                                    fit: BoxFit.cover,
+                                                  )),
                                   ),
                                   if (index != 2) ...[
                                     SizedBox(
@@ -290,12 +300,11 @@ class LoginPage4_Image extends StatelessWidget {
                                 Text(
                                   '다시 선택하기',
                                   style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16.3.sp,
-                                    fontFamily: 'Pretendard',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0,
-                                  ),
+                                      color: Colors.white,
+                                      fontSize: 16.3.sp,
+                                      fontFamily: 'Pretendard',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.2),
                                 ),
                               ],
                             ),
@@ -331,7 +340,7 @@ class LoginPage4_Image extends StatelessWidget {
                                     fontSize: 17.3.sp,
                                     fontFamily: 'Pretendard',
                                     fontWeight: FontWeight.w600,
-                                    height: 0),
+                                    height: 1.0),
                               ),
                             ),
                           ),

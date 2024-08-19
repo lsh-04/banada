@@ -1,8 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 
-class ImageCubit extends Cubit<List<File>?> {
+class ImageCubit extends Cubit<List<dynamic>?> {
   ImageCubit() : super(null);
 
   void pickImages() async {
@@ -12,7 +13,12 @@ class ImageCubit extends Cubit<List<File>?> {
     );
 
     if (result != null) {
-      final _images = result.paths.map((path) => File(path!)).take(5).toList();
+      final _images;
+      if (!kIsWeb) {
+        _images = result.paths.map((path) => File(path!)).take(5).toList();
+      } else {
+        _images = result.files.map((file) => file.bytes).take(5).toList();
+      }
       emit(_images);
 
       //캐시 관리해야함

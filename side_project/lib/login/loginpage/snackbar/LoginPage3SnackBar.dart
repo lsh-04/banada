@@ -127,7 +127,7 @@ class _LoginPage3SnackBarState extends State<LoginPage3SnackBar> {
                     fontSize: 17.3.sp,
                     fontFamily: 'Pretendard',
                     fontWeight: FontWeight.w600,
-                    height: 0,
+                    height: 1.0,
                   ),
                 ),
                 //돌아가기 버튼
@@ -146,7 +146,6 @@ class _LoginPage3SnackBarState extends State<LoginPage3SnackBar> {
             Container(
               height: 41.9.h,
               child: GridView.count(
-                  physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 3,
                   crossAxisSpacing: 3.w,
                   mainAxisSpacing: 2.h,

@@ -39,7 +39,7 @@ class _ProfileMainState extends State<ProfileMain> {
                 fontSize: 17.sp,
                 fontFamily: 'Pretendard',
                 fontWeight: FontWeight.w500,
-                height: 0,
+                height: 1.2,
               ),
             ),
             Icon(
@@ -73,7 +73,7 @@ class _ProfileMainState extends State<ProfileMain> {
                 fontSize: 17.sp,
                 fontFamily: 'Pretendard',
                 fontWeight: FontWeight.w500,
-                height: 0,
+                height: 1.2,
               ),
             ),
             Icon(
@@ -119,7 +119,7 @@ class _ProfileMainState extends State<ProfileMain> {
                       fontSize: 19.4.sp,
                       fontFamily: 'Pretendard',
                       fontWeight: FontWeight.w700,
-                      height: 0,
+                      height: 1.2,
                     ),
                   ),
                   SizedBox(height: 1.2.h),
@@ -159,7 +159,7 @@ class _ProfileMainState extends State<ProfileMain> {
                                       fontSize: 17.sp,
                                       fontFamily: 'Pretendard',
                                       fontWeight: FontWeight.w500,
-                                      height: 0,
+                                      height: 1.2,
                                     ),
                                   ),
                                   Icon(
@@ -227,7 +227,7 @@ class _ProfileMainState extends State<ProfileMain> {
                                       fontSize: 17.sp,
                                       fontFamily: 'Pretendard',
                                       fontWeight: FontWeight.w500,
-                                      height: 0,
+                                      height: 1.2,
                                     ),
                                   ),
                                   Icon(
@@ -266,7 +266,7 @@ class _ProfileMainState extends State<ProfileMain> {
                                         fontSize: 17.sp,
                                         fontFamily: 'Pretendard',
                                         fontWeight: FontWeight.w500,
-                                        height: 0,
+                                        height: 1.2,
                                       ),
                                     ),
                                     SizedBox(
@@ -279,7 +279,7 @@ class _ProfileMainState extends State<ProfileMain> {
                                         fontSize: 15.sp,
                                         fontFamily: 'Pretendard',
                                         fontWeight: FontWeight.w400,
-                                        height: 0,
+                                        height: 1.2,
                                       ),
                                     ),
                                   ],

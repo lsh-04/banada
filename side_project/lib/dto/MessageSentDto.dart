@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
+@immutable
 class MessageSentDto extends Equatable {
   final int sender_id;
   final int receiver_id;
@@ -23,5 +25,5 @@ class MessageSentDto extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [sender_id, receiver_id, message_type_id, content];
 }

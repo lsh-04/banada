@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
 import 'package:side_project/bloc/MyProfileBloc.dart';
@@ -19,8 +20,11 @@ import 'package:side_project/login/cubit/PoliticsCubit.dart';
 import 'package:side_project/login/cubit/RegionCubit.dart';
 import 'package:side_project/login/cubit/ReligionCubit.dart';
 import 'package:side_project/login/cubit/SimulationChooseCubit.dart';
+import 'package:side_project/login/introduce/IntroducePage.dart';
 import 'package:side_project/login/simulations/SimulationMain.dart';
 import 'package:side_project/login/splash/Splash.dart';
+import 'package:side_project/test/Test.dart';
+import 'package:side_project/view/etc/Preparing.dart';
 import 'package:side_project/view/home/DetailsProfile.dart';
 import 'package:side_project/view/message/MessageProfile.dart';
 import 'home.dart';
@@ -33,7 +37,11 @@ void main() async {
   //로고 로딩 될때까지 기다림(스플래시)
   WidgetsFlutterBinding.ensureInitialized();
   await rootBundle.load('assets/image/logo.png');
-  KakaoSdk.init(nativeAppKey: '75fd1ed1cfb70be8251a1f70fd22ed2b');
+  debugProfileBuildsEnabled = false;
+  debugProfilePaintsEnabled = false;
+  KakaoSdk.init(
+      nativeAppKey: '75fd1ed1cfb70be8251a1f70fd22ed2b',
+      javaScriptAppKey: 'ad36e43a17b490d106346aea6f0e9637');
   runApp(ResponsiveSizer(builder: (context, orientation, screenType) {
     return MultiBlocProvider(
       providers: [
@@ -83,7 +91,7 @@ void main() async {
         home: BlocBuilder<SplashBloc, SplashState>(builder: (context, state) {
           print(state);
           if (state is LoadedBlocState) {
-            return LoginMain();
+            return Test();
           } else {
             return Splash();
           }

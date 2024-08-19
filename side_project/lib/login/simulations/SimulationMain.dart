@@ -37,7 +37,7 @@ class SimulationMain extends StatelessWidget {
                   fontSize: 17.3.sp,
                   fontFamily: 'Pretendard',
                   fontWeight: FontWeight.w500,
-                  height: 0,
+                  height: 1.2,
                 ),
               ),
               SizedBox(
@@ -51,7 +51,7 @@ class SimulationMain extends StatelessWidget {
                   fontSize: 19.5.sp,
                   fontFamily: 'Pretendard',
                   fontWeight: FontWeight.w700,
-                  height: 0,
+                  height: 1.2,
                   letterSpacing: -0.46,
                 ),
               ),
@@ -74,7 +74,7 @@ class SimulationMain extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: 5.5.w,
+                          width: 5.w,
                           child: Image_Res('point', 1),
                         ),
                         SizedBox(
@@ -87,7 +87,7 @@ class SimulationMain extends StatelessWidget {
                             fontSize: 16.3.sp,
                             fontFamily: 'Pretendard',
                             fontWeight: FontWeight.w400,
-                            height: 0,
+                            height: 1.2,
                           ),
                         ),
                       ],
@@ -99,7 +99,7 @@ class SimulationMain extends StatelessWidget {
                         fontSize: 16.3.sp,
                         fontFamily: 'Pretendard',
                         fontWeight: FontWeight.w400,
-                        height: 0,
+                        height: 1.2,
                       ),
                     ),
                   ],
@@ -141,7 +141,7 @@ class SimulationMain extends StatelessWidget {
                           fontSize: 17.3.sp,
                           fontFamily: 'Pretendard',
                           fontWeight: FontWeight.w600,
-                          height: 0),
+                          height: 1.0),
                     ),
                   ),
                 ),

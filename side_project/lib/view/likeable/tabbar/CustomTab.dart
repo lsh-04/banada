@@ -5,18 +5,15 @@ class CustomTab extends StatelessWidget {
   final String label;
   final bool selected;
   final double width;
-  const CustomTab({
-    required this.label,
-    required this.selected,
-    required this.width
-  });
+  const CustomTab(
+      {required this.label, required this.selected, required this.width});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.zero, // 간격 제거
       width: width.w,
-      padding: EdgeInsets.symmetric( vertical: 1.2.h),
+      padding: EdgeInsets.symmetric(vertical: 1.2.h),
       decoration: ShapeDecoration(
         color: selected ? Color(0xFF41474C) : Colors.white,
         shape: RoundedRectangleBorder(

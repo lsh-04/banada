@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 class FourIntroduceModel extends Equatable {
   final int id;
   final String? nickname;
-  final int age;
+  final int? age;
   final int height;
   final String? main_image;
 

@@ -114,7 +114,7 @@ class CustomGridItem extends StatelessWidget {
             fontSize: 15.4.sp,
             fontFamily: 'Pretendard',
             fontWeight: FontWeight.w500,
-            height: 0,
+            height: 1.0,
           ),
         ),
       ],

@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
+@immutable
 class MessageUpdateDto extends Equatable {
   final String content;
   final String status;

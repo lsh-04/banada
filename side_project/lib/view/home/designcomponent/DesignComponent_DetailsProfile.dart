@@ -10,7 +10,7 @@ class DesignComponent_DetailsProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.9.h),
+      padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.7.h),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -33,7 +33,7 @@ class DesignComponent_DetailsProfile extends StatelessWidget {
             height: 3.h,
           ),
           Container(
-            height: 23.h,
+            height: 22.7.h,
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               itemCount: 4,

@@ -11,7 +11,12 @@ class MappingFourIntroduceModel extends Equatable {
     datas = List<FourIntroduceModel>.empty(growable: true);
 
     for (int a = 0; a < Json.length; a++) {
-      datas.add(FourIntroduceModel.fromJson(Json[a]));
+      try {
+        datas.add(FourIntroduceModel.fromJson(Json[a]));
+      } catch (e) {
+        print(e);
+        print("여기");
+      }
     }
   }
 

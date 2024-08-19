@@ -13,6 +13,7 @@ import 'package:side_project/model/Mapping/MappingMessageModel.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:side_project/view/message/MessageDialog.dart';
 import 'package:side_project/view/message/registrationPhoneNumber/RegistrationPhoneNumberPage1.dart';
 
 class MessageProfile extends StatelessWidget {
@@ -60,7 +61,7 @@ class MessageProfile extends StatelessWidget {
                                 fontSize: 18.5.sp,
                                 fontFamily: 'Pretendard',
                                 fontWeight: FontWeight.w600,
-                                height: 0,
+                                height: 1.2,
                               ),
                             ),
                             SizedBox(
@@ -84,7 +85,7 @@ class MessageProfile extends StatelessWidget {
                                   color: Color(0xFF74D495),
                                   decoration: TextDecoration.underline,
                                   decorationColor: Color(0xFF08D88F),
-                                  height: 0,
+                                  height: 1.2,
                                 ),
                               ),
                             ),
@@ -112,7 +113,7 @@ class MessageProfile extends StatelessWidget {
                               fontSize: 17.sp,
                               fontFamily: 'Pretendard',
                               fontWeight: FontWeight.w700,
-                              height: 0,
+                              height: 1.2,
                             ),
                           ),
                           SizedBox(
@@ -133,7 +134,7 @@ class MessageProfile extends StatelessWidget {
                                     fontSize: 16.sp,
                                     fontFamily: 'Pretendard',
                                     fontWeight: FontWeight.w400,
-                                    height: 0,
+                                    height: 1.2,
                                   ),
                                 ),
                               ),
@@ -181,11 +182,11 @@ class MessageProfile extends StatelessWidget {
                                         : '내 연락처 등록하기',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontSize: 17.sp,
-                                      fontFamily: 'Pretendard',
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white,
-                                    ),
+                                        fontSize: 17.sp,
+                                        fontFamily: 'Pretendard',
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                        height: 1.0),
                                   ),
                                 ),
                               );
@@ -197,17 +198,12 @@ class MessageProfile extends StatelessWidget {
                           width: double.infinity,
                           child: GestureDetector(
                             onTap: () {
-                              // 거절하기 이벤트
                               final MessageUpdateDto _messageUpdateDto =
                                   new MessageUpdateDto(
                                       id: data.messageModel!.id!,
                                       status: data.messageModel!.status!,
                                       content: data.messageModel!.content!);
-                              context.read<ReceivedMessageBloc>().add(
-                                  ReceivedMessagedRefuseEvent(
-                                      _messageUpdateDto));
-
-                              getx.Get.back();
+                              showMessageDialog(context, _messageUpdateDto);
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -220,11 +216,11 @@ class MessageProfile extends StatelessWidget {
                                 '거절하기',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: 17.sp,
-                                  fontFamily: 'Pretendard',
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFF68C284),
-                                ),
+                                    fontSize: 17.sp,
+                                    fontFamily: 'Pretendard',
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFF68C284),
+                                    height: 1.0),
                               ),
                             ),
                           ),

@@ -51,7 +51,7 @@ class _LoginPage1_TOSState extends State<LoginPage1_TOS> {
                 fontSize: 19.5.sp,
                 fontFamily: 'Pretendard',
                 fontWeight: FontWeight.w700,
-                height: 0,
+                height: 1.2,
               ),
             ),
             SizedBox(height: 3.8.h),
@@ -101,7 +101,7 @@ class _LoginPage1_TOSState extends State<LoginPage1_TOS> {
                             fontSize: 17.3.sp,
                             fontFamily: 'Pretendard',
                             fontWeight: FontWeight.w700,
-                            height: 0,
+                            height: 1.2,
                           ),
                         ),
                       ),
@@ -114,7 +114,7 @@ class _LoginPage1_TOSState extends State<LoginPage1_TOS> {
               height: 0.5.h,
             ),
             Container(
-              height: 36.h,
+              height: 48.h,
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.zero,
@@ -127,7 +127,7 @@ class _LoginPage1_TOSState extends State<LoginPage1_TOS> {
               ),
             ),
             SizedBox(
-              height: 23.9.h,
+              height: 11.9.h,
             ),
             GestureDetector(
               onTap: () {
@@ -154,7 +154,7 @@ class _LoginPage1_TOSState extends State<LoginPage1_TOS> {
                         fontSize: 17.3.sp,
                         fontFamily: 'Pretendard',
                         fontWeight: FontWeight.w600,
-                        height: 0),
+                        height: 1.0),
                   ),
                 ),
               ),
@@ -204,12 +204,11 @@ class _LoginPage1_TOSState extends State<LoginPage1_TOS> {
                 child: Text(
                   title,
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 17.3.sp,
-                    fontFamily: 'Pretendard',
-                    fontWeight: FontWeight.w600,
-                    height: 0,
-                  ),
+                      color: Colors.black,
+                      fontSize: 17.3.sp,
+                      fontFamily: 'Pretendard',
+                      fontWeight: FontWeight.w600,
+                      height: 1.2),
                 ),
               ),
             ),

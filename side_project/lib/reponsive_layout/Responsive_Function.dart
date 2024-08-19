@@ -50,7 +50,7 @@ Widget Component(String? image, double imageweight, String text, double width,
             fontSize: fontsize.sp,
             fontFamily: 'Pretendard',
             fontWeight: FontWeight.w500,
-            height: 0,
+            height: 1.2,
           ),
         ),
       ],
@@ -74,7 +74,7 @@ class PriviousAppbar extends StatelessWidget {
         children: [
           GestureDetector(
             child: Container(
-              width: 2.7.w,
+              width: 2.8.w,
               child: Image_Res('privious', 1),
             ),
             onTap: () {
@@ -86,11 +86,11 @@ class PriviousAppbar extends StatelessWidget {
               child: Text(
                 text!,
                 style: TextStyle(
-                  color: Color(0xFF2E363A),
-                  fontSize: fontsize ?? 17.3.sp,
-                  fontFamily: 'Pretendard',
-                  fontWeight: fontWeight ?? FontWeight.w500,
-                ),
+                    color: Color(0xFF2E363A),
+                    fontSize: fontsize ?? 17.3.sp,
+                    fontFamily: 'Pretendard',
+                    fontWeight: fontWeight ?? FontWeight.w500,
+                    height: 1.2),
               ),
             )
           ],
@@ -164,7 +164,7 @@ Widget likeAbleComponent2(String url, String text, String subtitle) {
           fontSize: 16.7.sp,
           fontFamily: 'Pretendard',
           fontWeight: FontWeight.w600,
-          height: 0,
+          height: 1.2,
         ),
       ),
       SizedBox(
@@ -178,7 +178,7 @@ Widget likeAbleComponent2(String url, String text, String subtitle) {
           fontSize: 15.2.sp,
           fontFamily: 'Pretendard',
           fontWeight: FontWeight.w400,
-          height: 0,
+          height: 1.2,
         ),
       ),
       SizedBox(
@@ -201,7 +201,7 @@ Widget form(String text, int index, List<TextEditingController> _controller) {
             fontSize: 17.sp,
             fontFamily: 'Pretendard',
             fontWeight: FontWeight.w500,
-            height: 0,
+            height: 1.2,
           ),
         ),
         SizedBox(

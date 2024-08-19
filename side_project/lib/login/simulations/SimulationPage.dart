@@ -84,7 +84,7 @@ class SimulationPage extends StatelessWidget {
                                 fontSize: 18.5.sp,
                                 fontFamily: 'Pretendard',
                                 fontWeight: FontWeight.w700,
-                                height: 0,
+                                height: 1.2,
                               ),
                             ),
                           ),
@@ -130,7 +130,7 @@ class SimulationPage extends StatelessWidget {
                                       fontWeight: state2[currentpage] == 1
                                           ? FontWeight.w600
                                           : FontWeight.w400,
-                                      height: 0,
+                                      height: 1.2,
                                     ),
                                   ),
                                 ),
@@ -179,7 +179,7 @@ class SimulationPage extends StatelessWidget {
                                       fontWeight: state2[currentpage] == 2
                                           ? FontWeight.w600
                                           : FontWeight.w400,
-                                      height: 0,
+                                      height: 1.2,
                                     ),
                                   ),
                                 ),
@@ -198,8 +198,8 @@ class SimulationPage extends StatelessWidget {
                     builder: (context, state) {
                   return GestureDetector(
                     onTap: () {
-                      if (currentpage < 14) {
-                        if (state[currentpage] != 0) {
+                      if (state[currentpage] != 0) {
+                        if (currentpage < 14) {
                           Navigator.push(
                             context,
                             PageRouteBuilder(
@@ -215,10 +215,10 @@ class SimulationPage extends StatelessWidget {
                               },
                             ),
                           );
+                        } else {
+                          getx.Get.to(() => IntroduceMain(),
+                              transition: getx.Transition.noTransition);
                         }
-                      } else {
-                        getx.Get.to(() => IntroduceMain(),
-                            transition: getx.Transition.noTransition);
                       }
                     },
                     child: Padding(
@@ -243,7 +243,7 @@ class SimulationPage extends StatelessWidget {
                                 fontSize: 17.3.sp,
                                 fontFamily: 'Pretendard',
                                 fontWeight: FontWeight.w600,
-                                height: 0),
+                                height: 1.0),
                           ),
                         ),
                       ),

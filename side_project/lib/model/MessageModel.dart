@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:side_project/model/nested/MessageType.dart';
 import './Nested/Contacts.dart';
 
 @immutable
@@ -10,7 +11,7 @@ class MessageModel extends Equatable {
   final List<dynamic>? contacts;
   final String? content;
   final String? status;
-  final Map<String, dynamic>? message_type;
+  final MessageType? message_type;
 
   const MessageModel(
       {this.id,
@@ -26,7 +27,7 @@ class MessageModel extends Equatable {
       sender_name: Json["sender_name"],
       receiver_name: Json["receiver_name"],
       contacts: Json["contacts"].map((e) => Contacts.fromJson(e)).toList(),
-      message_type: Json["message_type"],
+      message_type: MessageType.fromJson(Json["message_type"]),
       status: Json["status"],
       content: Json["content"]);
 

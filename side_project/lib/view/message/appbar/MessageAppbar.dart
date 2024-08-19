@@ -22,7 +22,8 @@ class MessageAppbar extends StatelessWidget {
               style: TextStyle(
                   fontFamily: "Pretendard",
                   fontWeight: FontWeight.w800,
-                  fontSize: 19.5.sp),
+                  fontSize: 19.5.sp,
+                  height: 1.2),
             ),
             SizedBox(
               width: 1.w,
