@@ -24,9 +24,11 @@ jobs:
 
       - name: Enable Flutter Web
         run: flutter config --enable-web
+        working-directory: ./side_project
 
       - name: Build Flutter Web
         run: flutter build web --base-href "/${{ github.event.repository.name }}/"
+        working-directory: ./side_project
 
       - name: Deploy to GitHub Pages
         env:
