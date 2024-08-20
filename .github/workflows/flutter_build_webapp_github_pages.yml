@@ -7,10 +7,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./side_project
 
     steps:
       - name: List all files in nested directory
-        run: ls -R ./sideproject/lib/model/nested/
+        run: ./lib/model/nested/
         
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,15 +25,12 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-        working-directory: ./side_project
 
       - name: Enable Flutter Web
         run: flutter config --enable-web
-        working-directory: ./side_project
 
       - name: Build Flutter Web
         run: flutter build web --base-href "/${{ github.event.repository.name }}/"
-        working-directory: ./side_project
       
       - name: Deploy to GitHub Pages
         env:
