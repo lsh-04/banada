@@ -12,6 +12,6 @@ class MessageType extends Equatable {
   factory MessageType.fromJson(Map<String, dynamic> Json) =>
       MessageType(id: Json['id'], name: Json['name'], cost: Json['cost']);
   @override
-  // TODO: implement props
+  // TODO: implement propss
   List<Object?> get props => [id, name, cost];
 }
