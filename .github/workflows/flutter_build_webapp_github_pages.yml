@@ -10,8 +10,7 @@ jobs:
 
     steps:
       - name: List all files in nested directory
-        run: ls -R ./lib/model/nested/
-        working-directory: ./sideproject
+        run: ls -R ./sideproject/lib/model/nested/
         
       - name: Checkout code
         uses: actions/checkout@v4
