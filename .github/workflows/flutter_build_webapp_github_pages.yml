@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add --all build/web
+          git add -f --all build/web
           git commit -m "Automatic deployment by GitHub Actions"
           git push origin HEAD:gh_pages --force
         working-directory: ./side_project  # side_project 폴더를 기준으로 작업 수행
