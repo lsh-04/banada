@@ -12,13 +12,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: List all files in nested directory
-        run:  ls -R ./side_project 
-
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: stable  # 필요한 Flutter 채널을 선택하세요
+          channel: master  # 필요한 Flutter 채널을 선택하세요
           flutter-version: 3.19.6  # 필요한 Flutter 버전을 명시하세요
 
       - name: Install dependencies
@@ -39,7 +36,7 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add --all build/web
+          git add -f --all build/web
           git commit -m "Automatic deployment by GitHub Actions"
           git push origin HEAD:gh_pages --force
         working-directory: ./side_project  # side_project 폴더를 기준으로 작업 수행
