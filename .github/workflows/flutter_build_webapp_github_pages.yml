@@ -19,7 +19,7 @@ jobs:
           flutter-version: 3.19.6
 
       - name: Build Flutter Web
-        run: flutter build web --base-href "/FlutterSideproject/side_project/"
+        run: flutter build web --base-href "/FlutterSideproject/"
         working-directory: ./side_project
 
       - name: Deploy to GitHub Pages
