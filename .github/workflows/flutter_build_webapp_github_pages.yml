@@ -29,6 +29,9 @@ jobs:
       - name: Build Flutter Web
         run: flutter build web --base-href "/${{ github.event.repository.name }}/"
         working-directory: ./side_project
+        
+      - name: List all files in nested directory
+        run: ls -R ./lib/model/nested/
 
       - name: Deploy to GitHub Pages
         env:
