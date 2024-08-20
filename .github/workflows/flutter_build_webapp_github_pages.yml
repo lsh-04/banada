@@ -16,12 +16,12 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable  # 필요한 Flutter 채널을 선택하세요
-          flutter-version: 3.19.0  # 필요한 Flutter 버전을 명시하세요
+          flutter-version: 3.24.0  # 필요한 Flutter 버전을 명시하세요
 
       - name: Install dependencies
         run: flutter pub get
         working-directory: ./side_project
-        
+
       - name: Enable Flutter Web
         run: flutter config --enable-web
 
