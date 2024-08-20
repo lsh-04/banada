@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import './nested/MessageType.dart';
+import './Nested/MessageType.dart';
 import './Nested/Contacts.dart';
 
 @immutable
