@@ -1,4 +1,4 @@
-name: Build and deploy flutter web app
+name: Build and deploy Flutter web app
 
 on:
   push:
@@ -15,28 +15,20 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: master  # 필요한 Flutter 채널을 선택하세요
-          flutter-version: 3.19.6  # 필요한 Flutter 버전을 명시하세요
-
-      - name: Install dependencies
-        run: flutter pub get
-        working-directory: ./side_project  # side_project 폴더를 기준으로 작업 수행
-
-      - name: Enable Flutter Web
-        run: flutter config --enable-web
-        working-directory: ./side_project  # side_project 폴더를 기준으로 작업 수행
+          channel: stable
+          flutter-version: 3.19.6
 
       - name: Build Flutter Web
-        run: flutter build web --base-href "/${{ github.event.repository.name }}/"
-        working-directory: ./side_project  # side_project 폴더를 기준으로 작업 수행
-      
+        run: flutter build web --base-href "/FlutterSideproject/side_project/"
+        working-directory: ./side_project
+
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add -f --all build/web
+          git add -f build/web
           git commit -m "Automatic deployment by GitHub Actions"
           git push origin HEAD:gh_pages --force
-        working-directory: ./side_project  # side_project 폴더를 기준으로 작업 수행
+        working-directory: ./side_project
