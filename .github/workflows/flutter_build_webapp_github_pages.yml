@@ -20,7 +20,8 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-
+        working-directory: ./side_project
+        
       - name: Enable Flutter Web
         run: flutter config --enable-web
 
