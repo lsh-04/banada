@@ -7,15 +7,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./side_project
 
     steps:
-      - name: List all files in nested directory
-        run: ./lib/model/nested/
-        
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: List all files in nested directory
+        run: ls -R ./side_project/lib/model/nested/  # 올바른 디렉토리 경로로 수정
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -25,12 +23,15 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+        working-directory: ./side_project  # side_project 폴더를 기준으로 작업 수행
 
       - name: Enable Flutter Web
         run: flutter config --enable-web
+        working-directory: ./side_project  # side_project 폴더를 기준으로 작업 수행
 
       - name: Build Flutter Web
         run: flutter build web --base-href "/${{ github.event.repository.name }}/"
+        working-directory: ./side_project  # side_project 폴더를 기준으로 작업 수행
       
       - name: Deploy to GitHub Pages
         env:
@@ -41,3 +42,4 @@ jobs:
           git add --all build/web
           git commit -m "Automatic deployment by GitHub Actions"
           git push origin HEAD:gh_pages --force
+        working-directory: ./side_project  # side_project 폴더를 기준으로 작업 수행
