@@ -1,5 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 name: Banana Test Web Before Deploy
+=======
+name: Build and deploy flutter web app
+>>>>>>> Stashed changes
 =======
 name: Build and deploy flutter web app
 >>>>>>> Stashed changes
@@ -21,7 +25,11 @@ jobs:
       - run: flutter config --enable-web
       - run: flutter build web --base-href "/${{ github.event.repository.name }}/"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
