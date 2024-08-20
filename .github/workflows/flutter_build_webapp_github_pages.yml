@@ -31,4 +31,3 @@ jobs:
           git add -f build/web
           git commit -m "Automatic deployment by GitHub Actions"
           git push origin HEAD:gh_pages --force
-        working-directory: ./side_project
