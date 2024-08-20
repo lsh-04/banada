@@ -2,7 +2,7 @@ name: Banana Test Web Before Deploy
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
