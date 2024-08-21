@@ -60,6 +60,7 @@ dev_dependencies:
   path_provider:
   flutter_secure_storage:
   kakao_flutter_sdk:
+  flutter_web_frame:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

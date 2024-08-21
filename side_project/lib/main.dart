@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -32,6 +33,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:flutter_web_frame/flutter_web_frame.dart';
 
 void main() async {
   //로고 로딩 될때까지 기다림(스플래시)
