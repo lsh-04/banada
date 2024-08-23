@@ -8,10 +8,12 @@ import 'package:dio/dio.dart';
 import 'package:side_project/bloc/event/MyProfileEvent.dart';
 import 'package:side_project/bloc/event/ReceivedMessageEvent.dart';
 import 'package:side_project/bloc/event/SentMessageEvent.dart';
+import 'package:side_project/dto/AuthorizedDto.dart';
 import 'package:side_project/dto/MessageSentDto.dart';
 import 'package:side_project/dto/MessageUpdateDto.dart';
 import 'package:side_project/bloc/MyProfileBloc.dart';
 import 'package:side_project/bloc/SentMessageBloc.dart';
+import 'package:side_project/login/bloc/SplashBloc.dart';
 
 class ApiController<T> extends Request_Api {
   late Response _response;
@@ -29,6 +31,11 @@ class ApiController<T> extends Request_Api {
   ApiController({this.refuseDto, this.id, this.messageSentDto});
 
   Future<Response> apiCategorize() async {
+    try {
+      await GetAccessToken();
+    } catch (e) {
+      throw Exception("ApiController -> accessToken 요청 오류");
+    }
     switch (T) {
       case ReceivedMessageLoadEvent:
         //받은 메세지
@@ -51,6 +58,7 @@ class ApiController<T> extends Request_Api {
         _response = await get_Request(_registrationPhoneNumber);
         return _response;
     */
+
       case SentMessageLoadEvent:
         //보낸 메세지
         _response = await get_Request(_messageSent);

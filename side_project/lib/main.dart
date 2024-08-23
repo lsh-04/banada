@@ -81,6 +81,7 @@ void main() async {
         ),
         BlocProvider(create: (context) => LoginBloc()),
         BlocProvider(
+          lazy: false,
           create: (context) =>
               SplashBloc(simulationBloc: context.read<SimulationBloc>()),
         ),
