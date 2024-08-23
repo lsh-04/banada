@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
@@ -15,7 +16,7 @@ class Test extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "모바일로 접속해 주세요",
+              kIsWeb ? "모바일로 접속해 주세요" : "개발 중 입니다!",
               style: TextStyle(fontSize: 20.sp),
             ),
             SizedBox(

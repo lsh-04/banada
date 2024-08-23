@@ -73,6 +73,7 @@ class PriviousAppbar extends StatelessWidget {
       body: Stack(
         children: [
           GestureDetector(
+            behavior: HitTestBehavior.opaque,
             child: Container(
               width: 2.8.w,
               child: Image_Res('privious', 1),

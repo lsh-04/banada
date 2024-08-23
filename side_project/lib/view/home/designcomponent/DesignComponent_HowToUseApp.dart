@@ -19,18 +19,6 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
       );
     }
 
-    Widget textWidget_white(String text) {
-      return Text(
-        text,
-        style: TextStyle(
-            color: Colors.white,
-            fontSize: 15.5.sp,
-            fontFamily: 'Pretendard',
-            fontWeight: FontWeight.w500,
-            height: 1.4),
-      );
-    }
-
     Widget textWidget_Image(String text) {
       return Text(
         text,
@@ -40,7 +28,7 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
           fontSize: 14.sp,
           fontFamily: 'Pretendard',
           fontWeight: FontWeight.w600,
-          height: 1.2,
+          height: 1.1,
         ),
       );
     }
@@ -65,18 +53,32 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
                   SizedBox(
                     width: 4.w,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
+                  Container(
+                    width: 60.w,
+                    child: RichText(
+                      text: TextSpan(
                         children: [
-                          textWidget('하루 네 번 ', FontWeight.w700),
-                          textWidget('새로운 사람을 만날 수 있어요.', FontWeight.w500),
+                          TextSpan(
+                            text: '하루 네 번 ', // 굵게 표시할 부분
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700, // 굵게 설정
+                              fontFamily: 'Pretendard',
+                              fontSize: 15.5.sp, // 반응형 크기
+                              color: Color(0xFF5A6166), // 색상 설정
+                            ),
+                          ),
+                          TextSpan(
+                            text: '새로운 사람을 만날 수 있어요. (11시, 14시, 17시, 20시)',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500, // 굵게 설정
+                              fontFamily: 'Pretendard',
+                              fontSize: 15.5.sp, // 반응형 크기
+                              color: Color(0xFF5A6166), // 색상 설정
+                            ),
+                          ),
                         ],
                       ),
-                      textWidget('(11시, 14시, 17시, 20시)', FontWeight.w500),
-                    ],
+                    ),
                   )
                 ],
               ),
@@ -163,28 +165,69 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
                   SizedBox(
                     width: 4.4.w,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
+                  Container(
+                    width: 68.w,
+                    child: RichText(
+                      text: TextSpan(
                         children: [
-                          textWidget('놓치고 싶지 않은 ', FontWeight.w700),
-                          textWidget('반쪽에게 ', FontWeight.w500),
-                          textWidget('반지', FontWeight.w700),
-                          textWidget('를 보내주세요.', FontWeight.w500),
+                          TextSpan(
+                            text: '놓치고 싶지 않은 ', // 굵게 표시할 부분
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700, // 굵게 설정
+                              fontFamily: 'Pretendard',
+                              fontSize: 15.5.sp, // 반응형 크기
+                              color: Color(0xFF5A6166), // 색상 설정
+                            ),
+                          ),
+                          TextSpan(
+                            text: '반쪽에게 ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500, // 굵게 설정
+                              fontFamily: 'Pretendard',
+                              fontSize: 15.5.sp, // 반응형 크기
+                              color: Color(0xFF5A6166), // 색상 설정
+                            ),
+                          ),
+                          TextSpan(
+                            text: '반지', // 굵게 표시할 부분
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700, // 굵게 설정
+                              fontFamily: 'Pretendard',
+                              fontSize: 15.5.sp, // 반응형 크기
+                              color: Color(0xFF5A6166), // 색상 설정
+                            ),
+                          ),
+                          TextSpan(
+                            text: '를 보내주세요. 반지를 주고받으면, ', // 굵게 표시할 부분
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500, // 굵게 설정
+                              fontFamily: 'Pretendard',
+                              fontSize: 15.5.sp, // 반응형 크기
+                              color: Color(0xFF5A6166), // 색상 설정
+                            ),
+                          ),
+                          TextSpan(
+                            text: '무료로 연락처 공유', // 굵게 표시할 부분
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700, // 굵게 설정
+                              fontFamily: 'Pretendard',
+                              fontSize: 15.5.sp, // 반응형 크기
+                              color: Color(0xFF5A6166), // 색상 설정
+                            ),
+                          ),
+                          TextSpan(
+                            text: '가 가능해요.', // 굵게 표시할 부분
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500, // 굵게 설정
+                              fontFamily: 'Pretendard',
+                              fontSize: 15.5.sp, // 반응형 크기
+                              color: Color(0xFF5A6166), // 색상 설정
+                            ),
+                          ),
                         ],
                       ),
-                      Row(
-                        children: [
-                          textWidget('반지를 주고받으면, ', FontWeight.w500),
-                          textWidget('무료로 연락처 공유', FontWeight.w700),
-                          textWidget('가', FontWeight.w500),
-                        ],
-                      ),
-                      textWidget('가능해요.', FontWeight.w500),
-                    ],
-                  )
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -217,21 +260,43 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
                   SizedBox(
                     width: 4.4.w,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
+                  Container(
+                    width: 60.w,
+                    child: RichText(
+                      text: TextSpan(
                         children: [
-                          textWidget('바로 ', FontWeight.w500),
-                          textWidget('연락처를 공유', FontWeight.w700),
-                          textWidget('하고 싶다면 메시지를 ', FontWeight.w500),
+                          TextSpan(
+                            text: '바로 ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500, // 굵게 설정
+                              fontFamily: 'Pretendard',
+                              fontSize: 15.5.sp, // 반응형 크기
+                              color: Color(0xFF5A6166), // 색상 설정
+                            ),
+                          ),
+                          TextSpan(
+                            text: '연락처를 공유', // 굵게 표시할 부분
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700, // 굵게 설정
+                              fontFamily: 'Pretendard',
+                              fontSize: 15.5.sp, // 반응형 크기
+                              color: Color(0xFF5A6166), // 색상 설정
+                            ),
+                          ),
+                          TextSpan(
+                            text:
+                                '하고 싶다면 메시지를 보내주세요. 하트와 반지를 보내지 않아도 메시지를 보낼 수 있어요.', // 굵게 표시할 부분
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500, // 굵게 설정
+                              fontFamily: 'Pretendard',
+                              fontSize: 15.5.sp, // 반응형 크기
+                              color: Color(0xFF5A6166), // 색상 설정
+                            ),
+                          ),
                         ],
                       ),
-                      textWidget('보내주세요. 하트와 반지를 보내지 않아도', FontWeight.w500),
-                      textWidget('메시지를 보낼 수 있어요.', FontWeight.w500),
-                    ],
-                  )
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -270,8 +335,45 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          textWidget_white(
-                              '불쾌함을 유발할 경우 이용자를 차단/신고할 수\n있어요.\n차단/신고시 반,하다에서 검토를 통해 일시정지/\n영구정지를 할 수 있어요.'),
+                          Container(
+                            width: 67.3.w,
+                            child: Column(
+                              children: [
+                                RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text:
+                                            '불쾌함을 유발할 경우 이용자를 차단/신고할 수 있어요.', // 굵게 표시할 부분
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500, // 굵게 설정
+                                          fontFamily: 'Pretendard',
+                                          fontSize: 15.5.sp, // 반응형 크기
+                                          color: Colors.white, // 색상 설정
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text:
+                                            '차단/신고시 반, 하다에서 검토를 통해 일시정지/영구정지를 할 수 있어요.', // 굵게 표시할 부분
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500, // 굵게 설정
+                                          fontFamily: 'Pretendard',
+                                          fontSize: 15.5.sp, // 반응형 크기
+                                          color: Colors.white, // 색상 설정
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ],

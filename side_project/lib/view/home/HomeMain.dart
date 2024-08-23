@@ -51,7 +51,7 @@ class _HomeMainState extends State<HomeMain> {
                       },
                       child: Row(
                         children: [
-                          SizedBox(width: 7.2.w, child: Image_Res("point", 1)),
+                          SizedBox(width: 6.2.w, child: Image_Res("point", 1)),
                           SizedBox(
                             width: 0.75.w,
                           ),
