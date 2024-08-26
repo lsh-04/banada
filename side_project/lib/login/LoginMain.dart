@@ -8,8 +8,45 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
 import 'package:get/get.dart' as getx;
 
-class LoginMain extends StatelessWidget {
+class LoginMain extends StatefulWidget {
   const LoginMain({super.key});
+
+  @override
+  State<LoginMain> createState() => _LoginMainState();
+}
+
+class _LoginMainState extends State<LoginMain> with TickerProviderStateMixin {
+  late List<AnimationController> controllers;
+  late List<Animation<double>> animations;
+
+  @override
+  void initState() {
+    super.initState();
+    controllers = List.generate(
+        3,
+        (index) => AnimationController(
+              duration: const Duration(milliseconds: 1100),
+              vsync: this,
+            ));
+
+    animations = new List.generate(
+        3, (index) => Tween(begin: 0.0, end: 1.0).animate(controllers[index]));
+
+    // Start the animations with delays
+    controllers[0].forward().then((_) {
+      controllers[1].forward().then((_) {
+        controllers[2].forward();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    for (var a in controllers) {
+      a.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +63,24 @@ class LoginMain extends StatelessWidget {
                   height: 15.5.h,
                 ),
                 Container(
-                  width: 21.w,
+                  width: 23.w,
                   child: Image_Res('logo_login', 1),
                 ),
                 SizedBox(
                   height: 3.5.h,
                 ),
-                Text(
-                  '만나서 반가워요!',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 21.7.sp,
-                    fontFamily: 'Pretendard',
-                    fontWeight: FontWeight.w400,
-                    height: 1.2,
+                FadeTransition(
+                  opacity: animations[0],
+                  child: Text(
+                    '만나서 반가워요!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 21.8.sp,
+                      fontFamily: 'Pretendard',
+                      fontWeight: FontWeight.w500,
+                      height: 1.1,
+                    ),
                   ),
                 ),
 
@@ -48,30 +88,36 @@ class LoginMain extends StatelessWidget {
                   height: 0.5.h,
                 ),
                 //애니메이션
-                Text(
-                  '당신이 반하는 모든 순간',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 21.7.sp,
-                    fontFamily: 'Pretendard',
-                    fontWeight: FontWeight.w400,
-                    height: 1.2,
+                FadeTransition(
+                  opacity: animations[1],
+                  child: Text(
+                    '당신이 반하는 모든 순간',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 21.8.sp,
+                      fontFamily: 'Pretendard',
+                      fontWeight: FontWeight.w500,
+                      height: 1.2,
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: 0.5.h,
                 ),
                 //애니메이션
-                Text(
-                  '반,하다 입니다.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 21.7.sp,
-                    fontFamily: 'Pretendard',
-                    fontWeight: FontWeight.w400,
-                    height: 1.2,
+                FadeTransition(
+                  opacity: animations[2],
+                  child: Text(
+                    '반,하다 입니다.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 21.8.sp,
+                      fontFamily: 'Pretendard',
+                      fontWeight: FontWeight.w500,
+                      height: 1.1,
+                    ),
                   ),
                 ),
 

@@ -31,8 +31,6 @@ class SentMessageBloc extends Bloc<SentMessageEvent, SentMessageState> {
         emit(ErrorMessageState());
       }
     });
-    //블럭 주입시 이벤트 실행
-    add(SentMessageLoadEvent());
 
     on<SentEvent>((event, emit) {
       try {

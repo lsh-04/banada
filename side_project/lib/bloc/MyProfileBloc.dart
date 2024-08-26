@@ -18,8 +18,5 @@ class MyProfileBloc extends Bloc<MyProfileEvent, MyProfileState> {
         throw Exception("api 요청 오류");
       }
     });
-
-    //블럭 주입시 이벤트 실행
-    add(LoadMyProfileEvent());
   }
 }

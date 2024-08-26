@@ -23,9 +23,6 @@ class ReceivedMessageBloc
       }
     });
 
-    //블럭 주입시 이벤트 실행
-    add(ReceivedMessageLoadEvent());
-
     //메세지 거절
     on<ReceivedMessagedRefuseEvent>((event, emit) async {
       //로딩 상태

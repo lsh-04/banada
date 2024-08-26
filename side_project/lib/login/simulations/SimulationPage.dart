@@ -14,25 +14,25 @@ class SimulationPage extends StatelessWidget {
   const SimulationPage({super.key, required this.currentpage});
 
   List<dynamic> current() {
-    if (currentpage < 4) {
-      return [(currentpage / 4) + 0.25, '일상', '(${currentpage + 1}/4)'];
-    } else if (currentpage < 9) {
+    if (currentpage < 6) {
+      return [(currentpage / 6) + 0.167, '일상', '(${currentpage + 1}/6)'];
+    } else if (currentpage < 10) {
       return [
-        ((currentpage - 4) / 5) + 0.2,
+        ((currentpage - 6) / 4) + 0.25,
         'MBTI',
-        '(${(currentpage - 4) + 1}/5)'
+        '(${(currentpage - 6) + 1}/4)'
       ];
-    } else if (currentpage < 12) {
+    } else if (currentpage < 13) {
       return [
-        ((currentpage - 9) / 3) + 0.34,
+        ((currentpage - 10) / 3) + 0.34,
         '음식 취향',
-        '(${(currentpage - 9) + 1}/3)'
+        '(${(currentpage - 10) + 1}/3)'
       ];
     } else {
       return [
-        ((currentpage - 12) / 3) + 0.34,
+        ((currentpage - 13) / 3) + 0.34,
         '일과 사랑',
-        '(${(currentpage - 12) + 1}/3)'
+        '(${(currentpage - 13) + 1}/3)'
       ];
     }
   }
@@ -199,7 +199,7 @@ class SimulationPage extends StatelessWidget {
                   return GestureDetector(
                     onTap: () {
                       if (state[currentpage] != 0) {
-                        if (currentpage < 14) {
+                        if (currentpage < 15) {
                           Navigator.push(
                             context,
                             PageRouteBuilder(
