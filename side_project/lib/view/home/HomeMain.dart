@@ -97,7 +97,7 @@ class _HomeMainState extends State<HomeMain> {
               ),
 
               SizedBox(
-                height: 4.h,
+                height: 3.2.h,
               ),
 
               Text(
@@ -125,7 +125,7 @@ class _HomeMainState extends State<HomeMain> {
                 ),
               ),
               SizedBox(
-                height: 4.5.h,
+                height: 4.3.h,
               ),
               Expanded(child: DailyFourIntroduce()),
             ],
