@@ -21,7 +21,5 @@ class DailyFourIntroduceBloc
         }
       },
     );
-
-    add(LoadDailyFourIntroduceEvent());
   }
 }

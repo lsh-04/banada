@@ -338,6 +338,7 @@ class DesignComponent_HowToUseApp extends StatelessWidget {
                           Container(
                             width: 67.3.w,
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 RichText(
                                   text: TextSpan(

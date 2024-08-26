@@ -16,6 +16,15 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   SplashBloc({required this.simulationBloc}) : super(InitialState()) {
     on<GetAccessTokenEvent>(
       (event, emit) async {
+        try {
+          if (simulationBloc != null) {
+            simulationBloc!.add(LoadDataEvent());
+          }
+        } catch (e) {
+          print(e);
+          throw Exception("SplashBloc error");
+        }
+
         final AuthorizedDto authorizedDto =
             new AuthorizedDto(username: "bmarshall", password: "testpass");
         final response =
@@ -23,6 +32,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
         if (response.statusCode == 200) {
           await flutterSecureStorage.write(
               key: 'accessToken', value: jsonEncode(response.data));
+          emit(LoadedBlocState());
         } else {
           throw Exception("Splash Bloc -> GetAccessTokenEvent -> post 요청 오류");
         }
@@ -30,15 +40,6 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     );
 
     add(GetAccessTokenEvent());
-    try {
-      if (simulationBloc != null) {
-        simulationBloc!.add(LoadDataEvent());
-      }
-      emit(LoadedBlocState());
-    } catch (e) {
-      print(e);
-      throw Exception("SplashBloc error");
-    }
   }
 }
 
