@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -91,6 +92,15 @@ void main() async {
       //main
       child: getx.GetMaterialApp(
         home: BlocBuilder<SplashBloc, SplashState>(builder: (context, state) {
+          if (kIsWeb) {
+            context.read<MyProfileBloc>().add(LoadMyProfileEvent());
+            context.read<ReceivedMessageBloc>().add(ReceivedMessageLoadEvent());
+            context.read<SentMessageBloc>().add(SentMessageLoadEvent());
+            context
+                .read<DailyFourIntroduceBloc>()
+                .add(LoadDailyFourIntroduceEvent());
+            return Test();
+          }
           print(state);
           if (state is LoadedBlocState) {
             //인증 후 데이터 요청

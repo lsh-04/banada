@@ -1,9 +1,10 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
 import 'package:side_project/controller/ApiController.dart';
 import 'package:side_project/model/FourIntroduceModel.dart';
-import 'package:side_project/model/Mapping/MappingFourIntroduceModel.dart';
+import 'package:side_project/model/mapping/MappingFourIntroduceModel.dart';
 
 @immutable
 class FourIntroduceRepository extends Equatable {
@@ -11,6 +12,11 @@ class FourIntroduceRepository extends Equatable {
   late List<FourIntroduceModel> datas;
 
   Future<void> getData() async {
+    if (kIsWeb) {
+      datas = MappingFourIntroduceModel.dummyData().datas;
+
+      return;
+    }
     apiController = new ApiController<DailyFourIntroduceBloc>();
     try {
       final response = await apiController.apiCategorize();

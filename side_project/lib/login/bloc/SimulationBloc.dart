@@ -5,6 +5,7 @@ import 'package:side_project/repository/SimulationRepository.dart';
 
 class SimulationBloc extends Bloc<SimulationEvent, SimulationState> {
   late final SimulationRepository simulationRepository;
+
   SimulationBloc() : super(InitialSimulationState()) {
     simulationRepository = new SimulationRepository();
 

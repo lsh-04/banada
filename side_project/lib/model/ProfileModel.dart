@@ -44,6 +44,18 @@ class ProfileModel extends Equatable {
             Json['images'].map((e) => ImageModel.Image.fromJson(e)).toList(),
       );
 
+  factory ProfileModel.demoData() => ProfileModel._(
+      id: 1,
+      user: 1,
+      nickname: 'test',
+      answers: [],
+      drinking_frequency: 'test',
+      is_smoke: true,
+      job: 'test',
+      religion: 'test',
+      images: [],
+      residence: 'test');
+
   @override
   // TODO: implement props
   List<Object?> get props => [];

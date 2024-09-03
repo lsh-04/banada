@@ -12,26 +12,28 @@ class MessageAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: EdgeInsets.only(top: 1.h, left: 6.9.w),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              this.text,
-              style: TextStyle(
-                  fontFamily: "Pretendard",
-                  fontWeight: FontWeight.w800,
-                  fontSize: 19.5.sp,
-                  height: 1.2),
-            ),
-            SizedBox(
-              width: 1.w,
-            ),
-            if (this.image != null) ...[
-              Container(width: 6.8.w, child: Image_Res(this.image ?? "", 1))
-            ]
-          ],
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.only(left: 6.9.w),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                this.text,
+                style: TextStyle(
+                    fontFamily: "Pretendard",
+                    fontWeight: FontWeight.w800,
+                    fontSize: 19.5.sp,
+                    height: 1.2),
+              ),
+              SizedBox(
+                width: 1.w,
+              ),
+              if (this.image != null) ...[
+                Container(width: 6.8.w, child: Image_Res(this.image ?? "", 1))
+              ]
+            ],
+          ),
         ),
       ),
     );
