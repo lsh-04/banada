@@ -16,7 +16,6 @@ class MyProfileRepository extends Equatable {
     try {
       final response = await apiController.apiCategorize();
       data = ProfileModel.fromJson(response.data);
-
       phone_number = false;
       /**
           //폰 등록 여부

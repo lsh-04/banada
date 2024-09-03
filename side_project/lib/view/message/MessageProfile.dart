@@ -144,21 +144,22 @@ class MessageProfile extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 6.9.h,
+                      height: 7.2.h,
                     ),
                     Column(
                       children: [
                         SizedBox(
                           width: double.infinity,
                           child: GestureDetector(
-                            onTap: () {
-                              // 내 연락처 등록하기 이벤트
-                            },
-                            child: BlocBuilder<MyProfileBloc, MyProfileState>(
-                                builder: (context, state) {
-                              return GestureDetector(
+                              onTap: () {
+                                // 내 연락처 등록하기 이벤트
+                              },
+                              child: GestureDetector(
                                 onTap: () {
-                                  if (state.repository!.phone_number) {
+                                  if (BlocProvider.of<MyProfileBloc>(context)
+                                      .state
+                                      .repository!
+                                      .phone_number) {
                                     //수락하기
                                   } else {
                                     //내 연락처 등록하기
@@ -174,10 +175,13 @@ class MessageProfile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   padding:
-                                      EdgeInsets.symmetric(vertical: 2.1.h),
+                                      EdgeInsets.symmetric(vertical: 2.6.h),
                                   alignment: Alignment.center,
                                   child: Text(
-                                    state.repository!.phone_number
+                                    BlocProvider.of<MyProfileBloc>(context)
+                                            .state
+                                            .repository!
+                                            .phone_number
                                         ? '수락하기'
                                         : '내 연락처 등록하기',
                                     textAlign: TextAlign.center,
@@ -189,9 +193,7 @@ class MessageProfile extends StatelessWidget {
                                         height: 1.0),
                                   ),
                                 ),
-                              );
-                            }),
-                          ),
+                              )),
                         ),
                         SizedBox(height: 1.4.h),
                         SizedBox(
@@ -210,7 +212,7 @@ class MessageProfile extends StatelessWidget {
                                 color: Color(0xFFC1FFDD),
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              padding: EdgeInsets.symmetric(vertical: 2.1.h),
+                              padding: EdgeInsets.symmetric(vertical: 2.6.h),
                               alignment: Alignment.center,
                               child: Text(
                                 '거절하기',
