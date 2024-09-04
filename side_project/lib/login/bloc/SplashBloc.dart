@@ -18,6 +18,15 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     on<GetAccessTokenEvent>(
       (event, emit) async {
         if (kIsWeb) {
+          try {
+            if (simulationBloc != null) {
+              simulationBloc!.add(LoadDataEvent());
+            }
+          } catch (e) {
+            print(e);
+            throw Exception("SplashBloc error");
+          }
+
           return;
         }
 
