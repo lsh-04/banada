@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
 import 'package:side_project/controller/ApiController.dart';
 import 'package:side_project/model/FourIntroduceModel.dart';
-import 'package:side_project/model/mapping/MappingFourIntroduceModel.dart';
+import '../model/mapping/MappingFourIntroduceModel.dart';
 
 @immutable
 class FourIntroduceRepository extends Equatable {
