@@ -35,6 +35,22 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  flutter_lints: ^3.0.0
+  get:
+  responsive_sizer:
+  rxdart:
+  bloc:
+  http:
+  flutter_bloc:
+  dio:
+  equatable:
+  meta:
+  file_picker:
+  permission_handler:
+  path_provider:
+  flutter_secure_storage:
+  kakao_flutter_sdk:
+  flutter_web_frame:
 
 dev_dependencies:
   flutter_test:
@@ -66,7 +82,17 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  plugin:
+    platforms:
+      linux:
+        default_package: file_picker
+        pluginClass: FilePickerLinux
+      macos:
+        default_package: file_picker
+        pluginClass: FilePickerMacOS
+      windows:
+        default_package: file_picker
+        pluginClass: FilePickerWindows
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
