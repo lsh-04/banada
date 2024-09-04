@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
 import 'package:side_project/controller/ApiController.dart';
 import 'package:side_project/model/FourIntroduceModel.dart';
-import '../model/mapping/MappingFourIntroduceModel.dart';
+import '../model/Mapping/MappingFourIntroduceModel.dart';
 
 @immutable
 class FourIntroduceRepository extends Equatable {
@@ -14,9 +14,9 @@ class FourIntroduceRepository extends Equatable {
   Future<void> getData() async {
     if (kIsWeb) {
       datas = MappingFourIntroduceModel.dummyData().datas;
-
       return;
     }
+
     apiController = new ApiController<DailyFourIntroduceBloc>();
     try {
       final response = await apiController.apiCategorize();
