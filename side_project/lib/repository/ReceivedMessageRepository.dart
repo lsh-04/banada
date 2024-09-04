@@ -1,9 +1,10 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:side_project/bloc/ReceivedMessageBloc.dart';
 import 'package:side_project/bloc/event/ReceivedMessageEvent.dart';
 import 'package:side_project/controller/ApiController.dart';
-import 'package:side_project/model/Mapping/MappingMessageModel.dart';
+import '../model/Mapping/MappingMessageModel.dart';
 import 'package:side_project/model/MessageModel.dart';
 
 @immutable
@@ -14,6 +15,14 @@ class ReceivedMessageRepository extends Equatable {
   late List<MessageModel> ring_receive;
 
   Future<void> getData() async {
+    if (kIsWeb) {
+      final _mappingMessageModel = MappingMessageModel.dummyData();
+      receive_message = _mappingMessageModel.alldatas;
+      heart_receive = _mappingMessageModel.heartdatas;
+      ring_receive = _mappingMessageModel.ringdatas;
+      return;
+    }
+
     apiController = new ApiController<ReceivedMessageLoadEvent>();
     try {
       final response = await apiController.apiCategorize();

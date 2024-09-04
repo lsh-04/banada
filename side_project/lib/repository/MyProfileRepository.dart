@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:side_project/bloc/MyProfileBloc.dart';
 import 'package:side_project/bloc/event/MyProfileEvent.dart';
@@ -12,6 +13,11 @@ class MyProfileRepository extends Equatable {
   late bool phone_number;
 
   Future<void> getData() async {
+    if (kIsWeb) {
+      data = new ProfileModel.demoData();
+      phone_number = false;
+      return;
+    }
     apiController = new ApiController<LoadMyProfileEvent>();
     try {
       final response = await apiController.apiCategorize();

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -157,6 +158,12 @@ class _LoginMainState extends State<LoginMain> with TickerProviderStateMixin {
                   },
                   child: GestureDetector(
                     onTap: () {
+                      //웹 일시 인증 건너뜀.
+                      if (kIsWeb) {
+                        getx.Get.to(() => LoginPage1_TOS(),
+                            transition: getx.Transition.noTransition);
+                        return;
+                      }
                       context.read<LoginBloc>().add(KakaoLoginEvent());
                     },
                     child: Container(

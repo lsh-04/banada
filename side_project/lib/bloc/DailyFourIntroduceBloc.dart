@@ -8,7 +8,6 @@ class DailyFourIntroduceBloc
   late final FourIntroduceRepository _repository;
   DailyFourIntroduceBloc() : super(InitialDailyFourIntroduceState()) {
     _repository = new FourIntroduceRepository();
-
     //데이터 로드
     on<LoadDailyFourIntroduceEvent>(
       (event, emit) async {

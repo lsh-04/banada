@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:side_project/controller/ApiController.dart';
@@ -16,6 +17,19 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   SplashBloc({required this.simulationBloc}) : super(InitialState()) {
     on<GetAccessTokenEvent>(
       (event, emit) async {
+        if (kIsWeb) {
+          try {
+            if (simulationBloc != null) {
+              simulationBloc!.add(LoadDataEvent());
+            }
+          } catch (e) {
+            print(e);
+            throw Exception("SplashBloc error");
+          }
+
+          return;
+        }
+
         try {
           if (simulationBloc != null) {
             simulationBloc!.add(LoadDataEvent());
