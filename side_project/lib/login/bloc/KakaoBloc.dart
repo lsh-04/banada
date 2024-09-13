@@ -43,10 +43,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     } else {
       try {
         token = await UserApi.instance.loginWithKakaoAccount();
-        print("access Token: " + token.accessToken);
-        print("refresh Token: " + token.refreshToken!);
+        print("accessToken: " + token.accessToken);
+        print("refreshToken: " + token.refreshToken!);
         User infor = await UserApi.instance.me();
-        print("user_id_kakao: " + infor.id.toString());
+        print("kakao_id match password: " + infor.id.toString());
+        print("email: " + infor.kakaoAccount!.email!);
+        print("user_id_kakao: " + infor.kakaoAccount!.profile!.nickname!);
         emit(LoginSuccessState());
         return;
       } catch (error) {
