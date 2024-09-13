@@ -1,17 +1,24 @@
+import 'dart:convert';
+
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:side_project/model/LoginModel.dart';
 
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc() : super(InitState()) {
+class KakaoBloc extends Bloc<LoginEvent, LoginState> {
+  late FlutterSecureStorage flutterSecureStorage;
+
+  KakaoBloc() : super(InitState()) {
     on<KakaoLoginEvent>((event, emit) async {
       await kakaoLogin();
     });
   }
 
   Future<void> kakaoLogin() async {
+    flutterSecureStorage = new FlutterSecureStorage();
     OAuthToken token;
     if (await isKakaoTalkInstalled()) {
       try {
@@ -49,6 +56,22 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         print("kakao_id match password: " + infor.id.toString());
         print("email: " + infor.kakaoAccount!.email!);
         print("user_id_kakao: " + infor.kakaoAccount!.profile!.nickname!);
+
+        //저장소 전부 삭제
+        //await flutterSecureStorage.deleteAll();
+        print(LoginModel.build(
+                platform: "kakao",
+                accessToken: token.accessToken,
+                refreshToken: token.refreshToken!)
+            .toJson());
+        await flutterSecureStorage.write(
+            key: "login",
+            value: jsonEncode(LoginModel.build(
+                    platform: "kakao",
+                    accessToken: token.accessToken,
+                    refreshToken: token.refreshToken!)
+                .toJson()));
+        print(await flutterSecureStorage.read(key: "login"));
         emit(LoginSuccessState());
         return;
       } catch (error) {
@@ -71,6 +94,7 @@ class KakaoLoginEvent extends LoginEvent {}
 
 @immutable
 abstract class LoginState extends Equatable {
+  //카카오 로그인이 진행 됬는지 확인 -> 동의 화면으로 넘어감
   bool login;
   LoginState({required this.login});
   @override
