@@ -18,10 +18,12 @@ class MyProfileRepository extends Equatable {
       phone_number = false;
       return;
     }
+
     apiController = new ApiController<LoadMyProfileEvent>();
     try {
       final response = await apiController.apiCategorize();
       data = ProfileModel.fromJson(response.data);
+
       phone_number = false;
       /**
           //폰 등록 여부
