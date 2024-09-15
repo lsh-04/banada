@@ -23,7 +23,6 @@ class MappingMessageModel extends Equatable {
       //거부한 메세지는 처리 안함
       if (a['status'] != "refused") {
         final messageModel = MessageModel.fromJson(a);
-        //print(messageModel);
         alldatas.add(messageModel);
         if (a["message_type"]['name'] == 'heart') {
           heartdatas.add(messageModel);

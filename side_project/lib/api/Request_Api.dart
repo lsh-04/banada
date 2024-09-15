@@ -7,7 +7,7 @@ class Request_Api {
   final FlutterSecureStorage flutterSecureStorage = new FlutterSecureStorage();
   late Dio dio;
 
-  Future<void> LoginAuthorize() async {
+  Future<void> GetAccessToken() async {
     final accessToken;
     try {
       accessToken = await flutterSecureStorage.read(key: 'accessToken');
@@ -26,7 +26,8 @@ class Request_Api {
         //http://10.0.2.2:8000/api/v1/
         //schen
         //http://ec2-3-25-64-39.ap-southeast-2.compute.amazonaws.com/api/v1/
-        baseUrl: "https://banada.duckdns.org/api/v1/"));
+        baseUrl:
+            "http://ec2-3-25-64-39.ap-southeast-2.compute.amazonaws.com/api/v1/"));
   }
 
   Future<Response> get_Request(String address) async {

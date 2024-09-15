@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/login/bloc/KakaoBloc.dart';
+import 'package:side_project/login/bloc/LoginBloc.dart';
 import 'package:side_project/login/loginpage/LoginPage1_TOS.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
@@ -149,7 +149,7 @@ class _LoginMainState extends State<LoginMain> with TickerProviderStateMixin {
                 ),
 
                 //카카오 로그인
-                BlocListener<KakaoBloc, LoginState>(
+                BlocListener<LoginBloc, LoginState>(
                   listener: (context, state) {
                     if (state.login) {
                       getx.Get.to(() => LoginPage1_TOS(),
@@ -164,7 +164,7 @@ class _LoginMainState extends State<LoginMain> with TickerProviderStateMixin {
                             transition: getx.Transition.noTransition);
                         return;
                       }
-                      context.read<KakaoBloc>().add(KakaoLoginEvent());
+                      context.read<LoginBloc>().add(KakaoLoginEvent());
                     },
                     child: Container(
                       width: 87.w,

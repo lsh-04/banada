@@ -14,7 +14,7 @@ class LoginPage1_TOS extends StatefulWidget {
 }
 
 class _LoginPage1_TOSState extends State<LoginPage1_TOS> {
-  final List<bool> check_list = List.generate(5, (i) => false);
+  final List<bool> check_list = List.generate(6, (i) => false);
   bool check() {
     for (int a = 0; a < check_list.length; a++) {
       if (a == check_list.length - 1) {
@@ -28,9 +28,10 @@ class _LoginPage1_TOSState extends State<LoginPage1_TOS> {
   }
 
   final List<String> _titles = [
-    '서비스 이용약관 동의',
+    '이용약관 동의',
     '개인정보 수집 및 이용 동의',
     '위치정보 이용약관 동의',
+    '민감정보 이용 동의',
     '마케팅 수신 동의(선택)'
   ];
 

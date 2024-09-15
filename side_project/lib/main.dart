@@ -15,7 +15,7 @@ import 'package:side_project/bloc/event/SentMessageEvent.dart';
 import 'package:side_project/cubit/BottomNavigationBarCubit.dart';
 import 'package:side_project/cubit/MessageProfileCubit.dart';
 import 'package:side_project/login/LoginMain.dart';
-import 'package:side_project/login/bloc/KakaoBloc.dart';
+import 'package:side_project/login/bloc/LoginBloc.dart';
 import 'package:side_project/login/bloc/SimulationBloc.dart';
 import 'package:side_project/login/bloc/SplashBloc.dart';
 import 'package:side_project/login/cubit/ImageCubit.dart';
@@ -84,7 +84,7 @@ void main() async {
         BlocProvider(
           create: (context) => IntroduceCubit(),
         ),
-        BlocProvider(create: (context) => KakaoBloc()),
+        BlocProvider(create: (context) => LoginBloc()),
         BlocProvider(
           create: (context) => BottomNavigationBarCubit(),
         ),
@@ -102,7 +102,7 @@ void main() async {
             return Test();
           }
           print(state);
-          if (state is LoginBlocState) {
+          if (state is LoadedBlocState) {
             //인증 후 데이터 요청
             context.read<MyProfileBloc>().add(LoadMyProfileEvent());
             context.read<ReceivedMessageBloc>().add(ReceivedMessageLoadEvent());
@@ -112,7 +112,7 @@ void main() async {
                 .add(LoadDailyFourIntroduceEvent());
             return Test();
           } else {
-            return LoginMain();
+            return Splash();
           }
         }),
 
