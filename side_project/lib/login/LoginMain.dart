@@ -164,7 +164,8 @@ class _LoginMainState extends State<LoginMain> with TickerProviderStateMixin {
                             transition: getx.Transition.noTransition);
                         return;
                       }
-                      context.read<LoginBloc>().add(KakaoLoginEvent());
+                      // context.read<LoginBloc>().add(KakaoLoginEvent());
+                      getx.Get.toNamed("/kakaoLogin");
                     },
                     child: Container(
                       width: 87.w,

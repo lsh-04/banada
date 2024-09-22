@@ -10,8 +10,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:dio/dio.dart';
 
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
-  final Dio dio = new Dio(BaseOptions(
-      baseUrl: "http://ec2-3-25-64-39.ap-southeast-2.compute.amazonaws.com/"));
+  final Dio dio = new Dio(BaseOptions(baseUrl: "https://banada.duckdns.org/"));
   final SimulationBloc? simulationBloc;
   final FlutterSecureStorage flutterSecureStorage = new FlutterSecureStorage();
   SplashBloc({required this.simulationBloc}) : super(InitialState()) {
