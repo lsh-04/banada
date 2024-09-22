@@ -28,6 +28,7 @@ import 'package:side_project/login/cubit/SimulationChooseCubit.dart';
 import 'package:side_project/login/introduce/IntroducePage.dart';
 import 'package:side_project/login/simulations/SimulationMain.dart';
 import 'package:side_project/login/splash/Splash.dart';
+import 'package:side_project/login/webView/KakaoLoginWebView.dart';
 import 'package:side_project/test/Test.dart';
 import 'package:side_project/view/etc/Preparing.dart';
 import 'package:side_project/view/home/DetailsProfile.dart';
@@ -119,13 +120,17 @@ void main() async {
         //라우트 관리
         getPages: [
           getx.GetPage(
-              name: '/MessageProfile',
+              name: "/MessageProfile",
               page: () => MessageProfile(),
               transition: getx.Transition.noTransition),
           getx.GetPage(
-              name: '/DetailsProfile',
+              name: "/DetailsProfile",
               page: () => DetailsProfile(),
               transition: getx.Transition.noTransition),
+          getx.GetPage(
+              name: "/kakaoLogin",
+              page: () => KakaoLoginWebView(),
+              transition: getx.Transition.noTransition)
         ],
       ),
     );

@@ -141,15 +141,12 @@ class _RegistrationPhoneNumberPage3WidgetState
               }
 
               print(_id);
-              final MessageSentDto messageSentDto = new MessageSentDto(
-                  sender_id:
+              context.read<SentMessageBloc>().add(SentEvent(
+                  sentDto: MessageSentDto.of(
                       context.read<MyProfileBloc>().state.repository!.data.id,
-                  content: _controller[0].text,
-                  message_type_id: 1, //메세지 타입
-                  receiver_id: _id);
-              context
-                  .read<SentMessageBloc>()
-                  .add(SentEvent(sentDto: messageSentDto));
+                      _id,
+                      1,
+                      _controller[0].text)));
             }
           },
           child: Container(

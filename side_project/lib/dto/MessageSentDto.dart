@@ -8,11 +8,19 @@ class MessageSentDto extends Equatable {
   final int message_type_id;
   final String content;
 
-  const MessageSentDto(
+  const MessageSentDto._(
       {required this.sender_id,
       required this.content,
       required this.message_type_id,
       required this.receiver_id});
+
+  factory MessageSentDto.of(int sender_id, int receiver_id, int message_type_id,
+          String content) =>
+      MessageSentDto._(
+          sender_id: sender_id,
+          content: content,
+          message_type_id: message_type_id,
+          receiver_id: receiver_id);
 
   Map<String, dynamic> toJson() {
     return {
