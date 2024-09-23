@@ -6,6 +6,7 @@ import 'package:side_project/bloc/MyProfileBloc.dart';
 import 'package:side_project/bloc/SentMessageBloc.dart';
 import 'package:side_project/bloc/event/SentMessageEvent.dart';
 import 'package:side_project/cubit/MessageProfileCubit.dart';
+import 'package:side_project/view/message/MessageSend.dart';
 import 'package:side_project/view/message/registrationPhoneNumber/RegistrationPhoneNumberPage3.dart';
 import 'package:side_project/reponsive_layout/Responsive_Function.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -147,6 +148,9 @@ class _RegistrationPhoneNumberPage3WidgetState
                       _id,
                       1,
                       _controller[0].text)));
+
+              getx.Get.off(() => MessageSend(),
+                  transition: getx.Transition.noTransition);
             }
           },
           child: Container(

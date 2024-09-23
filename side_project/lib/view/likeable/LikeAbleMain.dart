@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:side_project/view/likeable/tabview/PastMatch_Like_Able.dart';
 import 'package:side_project/view/likeable/tabview/Received_Like_Able.dart';
 import 'package:side_project/view/likeable/tabview/Sent_Like_Able.dart';
 import 'package:side_project/view/message/appbar/MessageAppbar.dart';
@@ -81,7 +82,7 @@ class _LikeAbleMainState extends State<LikeAbleMain>
                 children: [
                   Recieved_Like_Able(),
                   Sent_Like_Able(),
-                  Center(child: Text("스쳐간 반쪽 내용")),
+                  PastMatch_Like_Able(),
                 ],
               ),
             ),

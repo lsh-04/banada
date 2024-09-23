@@ -7,7 +7,7 @@ class Request_Api {
   final FlutterSecureStorage flutterSecureStorage = new FlutterSecureStorage();
   late Dio dio;
 
-  Future<void> GetAccessToken() async {
+  Future<void> getAccessToken() async {
     final accessToken;
     try {
       accessToken = await flutterSecureStorage.read(key: 'accessToken');

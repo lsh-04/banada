@@ -6,6 +6,7 @@ import 'package:side_project/bloc/OtherProfilesBloc.dart';
 import 'package:side_project/bloc/ReceivedMessageBloc.dart';
 import 'package:dio/dio.dart';
 import 'package:side_project/bloc/event/MyProfileEvent.dart';
+import 'package:side_project/bloc/event/PastMatchEvent.dart';
 import 'package:side_project/bloc/event/ReceivedMessageEvent.dart';
 import 'package:side_project/bloc/event/SentMessageEvent.dart';
 import 'package:side_project/dto/AuthorizedDto.dart';
@@ -25,6 +26,7 @@ class ApiController<T> extends Request_Api {
   static const String _myprofile = 'profiles/my/';
   static const String _registrationPhoneNumber = 'profiles/validation/';
   static const String _sentMessageOther = 'message/';
+  static const String _pastMatch = "message/past_match/";
   MessageSentDto? messageSentDto;
   MessageUpdateDto? refuseDto;
   int? id;
@@ -32,8 +34,9 @@ class ApiController<T> extends Request_Api {
 
   Future<Response> apiCategorize() async {
     try {
-      await GetAccessToken();
+      await getAccessToken();
     } catch (e) {
+      print(e);
       throw Exception("ApiController -> accessToken 요청 오류");
     }
     switch (T) {
@@ -50,6 +53,11 @@ class ApiController<T> extends Request_Api {
       case LoadOtherProfilesEvent:
         //프로필 조회
         _response = await get_Request_Include_param(_profile, id!);
+        return _response;
+
+      case LoadPastMatchEvent:
+        //스쳐관 반쪽 조회
+        _response = await get_Request(_pastMatch);
         return _response;
 
       /**
