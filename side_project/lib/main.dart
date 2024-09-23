@@ -1,20 +1,20 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
 import 'package:side_project/bloc/MyProfileBloc.dart';
 import 'package:side_project/bloc/OtherProfilesBloc.dart';
+import 'package:side_project/bloc/PastMatchBloc.dart';
 import 'package:side_project/bloc/ReceivedMessageBloc.dart';
 import 'package:side_project/bloc/SentMessageBloc.dart';
 import 'package:side_project/bloc/TimeDailyFourIntroduceBloc.dart';
 import 'package:side_project/bloc/event/DailyFourIntroduceEvent.dart';
 import 'package:side_project/bloc/event/MyProfileEvent.dart';
+import 'package:side_project/bloc/event/PastMatchEvent.dart';
 import 'package:side_project/bloc/event/ReceivedMessageEvent.dart';
 import 'package:side_project/bloc/event/SentMessageEvent.dart';
 import 'package:side_project/cubit/BottomNavigationBarCubit.dart';
 import 'package:side_project/cubit/MessageProfileCubit.dart';
-import 'package:side_project/login/LoginMain.dart';
 import 'package:side_project/login/bloc/LoginBloc.dart';
 import 'package:side_project/login/bloc/SimulationBloc.dart';
 import 'package:side_project/login/bloc/SplashBloc.dart';
@@ -25,15 +25,11 @@ import 'package:side_project/login/cubit/PoliticsCubit.dart';
 import 'package:side_project/login/cubit/RegionCubit.dart';
 import 'package:side_project/login/cubit/ReligionCubit.dart';
 import 'package:side_project/login/cubit/SimulationChooseCubit.dart';
-import 'package:side_project/login/introduce/IntroducePage.dart';
-import 'package:side_project/login/simulations/SimulationMain.dart';
 import 'package:side_project/login/splash/Splash.dart';
 import 'package:side_project/login/webView/KakaoLoginWebView.dart';
 import 'package:side_project/test/Test.dart';
-import 'package:side_project/view/etc/Preparing.dart';
 import 'package:side_project/view/home/DetailsProfile.dart';
 import 'package:side_project/view/message/MessageProfile.dart';
-import 'home.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,6 +54,7 @@ void main() async {
               SplashBloc(simulationBloc: context.read<SimulationBloc>()),
         ),
         BlocProvider(create: (context) => MyProfileBloc()),
+        BlocProvider(create: (context) => PastMatchBloc()),
         BlocProvider(create: (context) => ReceivedMessageBloc()),
         BlocProvider(create: (context) => SentMessageBloc()),
         BlocProvider(create: (context) => DailyFourIntroduceBloc()),
@@ -111,6 +108,7 @@ void main() async {
             context
                 .read<DailyFourIntroduceBloc>()
                 .add(LoadDailyFourIntroduceEvent());
+            context.read<PastMatchBloc>().add(LoadPastMatchEvent());
             return Test();
           } else {
             return Splash();

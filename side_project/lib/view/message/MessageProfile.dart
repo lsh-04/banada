@@ -200,12 +200,12 @@ class MessageProfile extends StatelessWidget {
                           width: double.infinity,
                           child: GestureDetector(
                             onTap: () {
-                              final MessageUpdateDto _messageUpdateDto =
-                                  new MessageUpdateDto(
-                                      id: data.messageModel!.id!,
-                                      status: data.messageModel!.status!,
-                                      content: data.messageModel!.content!);
-                              showMessageDialog(context, _messageUpdateDto);
+                              showMessageDialog(
+                                  context,
+                                  MessageUpdateDto.of(
+                                      data.messageModel!.id!,
+                                      data.messageModel!.status!,
+                                      data.messageModel!.content!));
                             },
                             child: Container(
                               decoration: BoxDecoration(
