@@ -36,7 +36,7 @@ class Received_Message extends StatelessWidget {
           ),
           width: containerWidth,
           height: containerHeight,
-          padding: EdgeInsets.all(containerWidth * 0.04),
+          padding: EdgeInsets.all(containerWidth * 0.032),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -45,7 +45,7 @@ class Received_Message extends StatelessWidget {
                 backgroundColor: Color(0xFF171B1C),
                 backgroundImage: NetworkImage(ImageTest.image),
               ),
-              SizedBox(width: containerWidth * 0.02),
+              SizedBox(width: containerWidth * 0.03),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,7 +79,7 @@ class Received_Message extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: containerHeight * 0.21),
+                    SizedBox(height: containerHeight * 0.25),
                     Flexible(
                       child: Text(
                         getFirstLine(data.content),
