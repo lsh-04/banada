@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:side_project/login/loginpage/LoginPage2_ProfileAnnounce.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:get/get.dart' as getx;
 
 class LoginPage1_TOS extends StatefulWidget {

@@ -1,7 +1,8 @@
+import 'package:side_project/repository/FourIntroduceRepository.dart';
+
 import './event/DailyFourIntroduceEvent.dart';
 import './state/DailyFourIntroduceState.dart';
 import 'package:bloc/bloc.dart';
-import '../repository/FourIntroduceRepository.dart';
 
 class DailyFourIntroduceBloc
     extends Bloc<DailyFourIntroduceEvent, DailyFourIntroduceState> {

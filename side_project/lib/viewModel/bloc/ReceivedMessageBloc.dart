@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:side_project/controller/ApiController.dart';
 import './event/ReceivedMessageEvent.dart';
 import './state/ReceivedMessageState.dart';
 import 'package:side_project/repository/ReceivedMessageRepository.dart';
-import '../controller/ApiController.dart';
 
 class ReceivedMessageBloc
     extends Bloc<ReceivedMessageEvent, ReceivedMessageState> {

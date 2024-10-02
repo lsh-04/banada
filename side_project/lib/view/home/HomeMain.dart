@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:side_project/view/home/DailyFourIntroduce.dart';
 import 'package:get/get.dart' as getx;
 import 'package:side_project/view/home/HowToUseApp.dart';

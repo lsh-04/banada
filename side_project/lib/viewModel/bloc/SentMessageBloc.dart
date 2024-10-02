@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:side_project/controller/ApiController.dart';
+import 'package:side_project/repository/SentMessageRepository.dart';
 import './state/SentMessageState.dart';
 import './event/SentMessageEvent.dart';
-import '../repository/SentMessageRepository.dart';
 /**
- *  이 클래스를 만드는 이
+ *  이 클래스를 만드는 이유
  *  이전 값을 저장 할 수 있는 경로가 없음.
  *  Sharedpreference는 효과적인 방법이 아님 state를 저장했다가 넘기는 게 방법이 될 수는 없음..
  */

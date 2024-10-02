@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:side_project/bloc/event/PastMatchEvent.dart';
-import 'package:side_project/bloc/state/PastMatchState.dart';
 import 'package:side_project/repository/PastMatchRepository.dart';
+import 'package:side_project/viewModel/bloc/event/PastMatchEvent.dart';
+import 'package:side_project/viewModel/bloc/state/PastMatchState.dart';
 
 class PastMatchBloc extends Bloc<PastMatchEvent, PastMatchState> {
   late PastMatchRepository pastMatchRepository;

@@ -1,10 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
-import 'package:side_project/bloc/MyProfileBloc.dart';
-import 'package:side_project/bloc/event/MyProfileEvent.dart';
 import 'package:side_project/controller/ApiController.dart';
 import 'package:side_project/model/ProfileModel.dart';
+import 'package:side_project/viewModel/bloc/event/MyProfileEvent.dart';
 
 @immutable
 class MyProfileRepository extends Equatable {

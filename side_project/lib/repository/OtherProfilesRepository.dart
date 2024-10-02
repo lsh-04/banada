@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:side_project/bloc/OtherProfilesBloc.dart';
 import 'package:side_project/controller/ApiController.dart';
 import 'package:side_project/model/ProfileModel.dart';
+import 'package:side_project/viewModel/bloc/event/OtherProfilesEvent.dart';
 
 @immutable
 class OtherProfilesRepository extends Equatable {

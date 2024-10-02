@@ -1,13 +1,11 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:side_project/controller/ApiController.dart';
 import 'package:side_project/dto/AuthorizedDto.dart';
-import 'package:side_project/login/bloc/SimulationBloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:dio/dio.dart';
+import 'package:side_project/viewModel/bloc/SimulationBloc.dart';
 
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
   final Dio dio = new Dio(BaseOptions(baseUrl: "https://banada.duckdns.org/"));

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:side_project/model/ProfileModel.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 
 class DesignComponent_DetailsProfile extends StatelessWidget {
   final ProfileModel data;

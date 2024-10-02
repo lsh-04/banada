@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:side_project/bloc/OtherProfilesBloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:side_project/viewModel/bloc/OtherProfilesBloc.dart';
 
 class DesignComponent_Answers extends StatefulWidget {
   const DesignComponent_Answers({super.key});

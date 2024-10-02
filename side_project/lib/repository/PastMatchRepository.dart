@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:side_project/bloc/event/PastMatchEvent.dart';
 import 'package:side_project/controller/ApiController.dart';
 import 'package:side_project/model/Mapping/MappingPastMatchModel.dart';
 import 'package:side_project/model/PastMatchModel.dart';
+import 'package:side_project/viewModel/bloc/event/PastMatchEvent.dart';
 
 @immutable
 class PastMatchRepository extends Equatable {

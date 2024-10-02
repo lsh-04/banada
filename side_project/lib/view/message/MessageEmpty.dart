@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:side_project/cubit/BottomNavigationBarCubit.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/viewModel/cubit/BottomNavigationBarCubit.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
