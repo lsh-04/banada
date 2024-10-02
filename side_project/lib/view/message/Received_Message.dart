@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:side_project/core/dump/Image.dart';
 import 'package:side_project/model/MessageModel.dart';
-import 'package:side_project/test/Image.dart';
 
 class Received_Message extends StatelessWidget {
   final MessageModel data;

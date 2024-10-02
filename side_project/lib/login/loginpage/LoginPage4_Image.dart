@@ -4,11 +4,11 @@ import 'package:flutter/widgets.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:side_project/login/cubit/ImageCubit.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as getx;
+import 'package:side_project/viewModel/cubit/ImageCubit.dart';
 import '../simulations/SimulationMain.dart' as simuls;
 
 class LoginPage4_Image extends StatelessWidget {

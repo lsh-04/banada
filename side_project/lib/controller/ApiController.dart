@@ -1,20 +1,13 @@
-import 'dart:convert';
-
 import 'package:side_project/api/Request_Api.dart';
-import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
-import 'package:side_project/bloc/OtherProfilesBloc.dart';
-import 'package:side_project/bloc/ReceivedMessageBloc.dart';
 import 'package:dio/dio.dart';
-import 'package:side_project/bloc/event/MyProfileEvent.dart';
-import 'package:side_project/bloc/event/PastMatchEvent.dart';
-import 'package:side_project/bloc/event/ReceivedMessageEvent.dart';
-import 'package:side_project/bloc/event/SentMessageEvent.dart';
-import 'package:side_project/dto/AuthorizedDto.dart';
 import 'package:side_project/dto/MessageSentDto.dart';
 import 'package:side_project/dto/MessageUpdateDto.dart';
-import 'package:side_project/bloc/MyProfileBloc.dart';
-import 'package:side_project/bloc/SentMessageBloc.dart';
-import 'package:side_project/login/bloc/SplashBloc.dart';
+import 'package:side_project/viewModel/bloc/DailyFourIntroduceBloc.dart';
+import 'package:side_project/viewModel/bloc/event/MyProfileEvent.dart';
+import 'package:side_project/viewModel/bloc/event/OtherProfilesEvent.dart';
+import 'package:side_project/viewModel/bloc/event/PastMatchEvent.dart';
+import 'package:side_project/viewModel/bloc/event/ReceivedMessageEvent.dart';
+import 'package:side_project/viewModel/bloc/event/SentMessageEvent.dart';
 
 class ApiController<T> extends Request_Api {
   late Response _response;

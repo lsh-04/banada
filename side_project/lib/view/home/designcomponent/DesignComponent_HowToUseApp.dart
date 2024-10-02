@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 
 class DesignComponent_HowToUseApp extends StatelessWidget {
   const DesignComponent_HowToUseApp({super.key});

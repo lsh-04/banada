@@ -2,19 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/bloc/MyProfileBloc.dart';
-import 'package:side_project/bloc/OtherProfilesBloc.dart';
-import 'package:side_project/bloc/ReceivedMessageBloc.dart';
-import 'package:side_project/bloc/event/ReceivedMessageEvent.dart';
-import 'package:side_project/bloc/state/MyProfileState.dart';
-import 'package:side_project/cubit/MessageProfileCubit.dart';
 import 'package:side_project/dto/MessageUpdateDto.dart';
-import 'package:side_project/model/Mapping/MappingMessageModel.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/view/message/MessageDialog.dart';
 import 'package:side_project/view/message/registrationPhoneNumber/RegistrationPhoneNumberPage1.dart';
+import 'package:side_project/viewModel/bloc/MyProfileBloc.dart';
+import 'package:side_project/viewModel/bloc/OtherProfilesBloc.dart';
+import 'package:side_project/viewModel/cubit/MessageProfileCubit.dart';
 
 class MessageProfile extends StatelessWidget {
   const MessageProfile({Key? key}) : super(key: key);

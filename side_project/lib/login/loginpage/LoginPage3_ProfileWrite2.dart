@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:side_project/login/cubit/JobCubit.dart';
-import 'package:side_project/login/cubit/PoliticsCubit.dart';
-import 'package:side_project/login/cubit/ReligionCubit.dart';
 import 'package:side_project/login/loginpage/LoginPage4_Image.dart';
 import 'package:side_project/login/loginpage/snackbar/LoginPage3SnackBar.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:side_project/viewModel/cubit/JobCubit.dart';
+import 'package:side_project/viewModel/cubit/PoliticsCubit.dart';
+import 'package:side_project/viewModel/cubit/ReligionCubit.dart';
 
 class LoginPage3_ProfileWrite2 extends StatefulWidget {
   const LoginPage3_ProfileWrite2({super.key});

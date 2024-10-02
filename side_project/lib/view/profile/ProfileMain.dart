@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/bloc/MyProfileBloc.dart';
-import 'package:side_project/bloc/state/MyProfileState.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/core/dump/Image.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:side_project/test/Image.dart';
 import 'package:side_project/view/loading/Loading.dart';
+import 'package:side_project/viewModel/bloc/MyProfileBloc.dart';
+import 'package:side_project/viewModel/bloc/state/MyProfileState.dart';
 
 class ProfileMain extends StatefulWidget {
   const ProfileMain({super.key});

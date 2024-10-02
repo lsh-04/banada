@@ -2,15 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
-import 'package:side_project/bloc/MyProfileBloc.dart';
-import 'package:side_project/bloc/SentMessageBloc.dart';
-import 'package:side_project/bloc/event/SentMessageEvent.dart';
-import 'package:side_project/cubit/MessageProfileCubit.dart';
 import 'package:side_project/view/message/MessageSend.dart';
-import 'package:side_project/view/message/registrationPhoneNumber/RegistrationPhoneNumberPage3.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/dto/MessageSentDto.dart';
+import 'package:side_project/viewModel/bloc/MyProfileBloc.dart';
+import 'package:side_project/viewModel/bloc/SentMessageBloc.dart';
+import 'package:side_project/viewModel/bloc/event/SentMessageEvent.dart';
+import 'package:side_project/viewModel/cubit/MessageProfileCubit.dart';
 
 class RegistrationPhoneNumberPage3Widget extends StatefulWidget {
   const RegistrationPhoneNumberPage3Widget({super.key});

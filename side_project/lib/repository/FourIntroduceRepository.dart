@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
-import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
 import 'package:side_project/controller/ApiController.dart';
 import 'package:side_project/model/FourIntroduceModel.dart';
+import 'package:side_project/viewModel/bloc/DailyFourIntroduceBloc.dart';
 import '../model/Mapping/MappingFourIntroduceModel.dart';
 
 @immutable

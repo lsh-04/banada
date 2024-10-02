@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/bloc/ReceivedMessageBloc.dart';
-import 'package:side_project/bloc/state/ReceivedMessageState.dart';
-import 'package:side_project/cubit/MessageProfileCubit.dart';
 import 'package:side_project/view/loading/Loading.dart';
 import 'package:side_project/view/message/MessageEmpty.dart';
 import 'package:side_project/view/message/Received_Message.dart';
 import 'package:side_project/view/message/appbar/MessageAppbar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as getx;
+import 'package:side_project/viewModel/bloc/ReceivedMessageBloc.dart';
+import 'package:side_project/viewModel/bloc/state/ReceivedMessageState.dart';
+import 'package:side_project/viewModel/cubit/MessageProfileCubit.dart';
 
 class MessageMain extends StatelessWidget {
   const MessageMain({super.key});

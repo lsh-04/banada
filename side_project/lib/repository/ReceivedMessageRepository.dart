@@ -1,9 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
-import 'package:side_project/bloc/ReceivedMessageBloc.dart';
-import 'package:side_project/bloc/event/ReceivedMessageEvent.dart';
 import 'package:side_project/controller/ApiController.dart';
+import 'package:side_project/viewModel/bloc/event/ReceivedMessageEvent.dart';
 import '../model/Mapping/MappingMessageModel.dart';
 import 'package:side_project/model/MessageModel.dart';
 

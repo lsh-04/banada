@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:side_project/model/ProfileModel.dart';
-import '../repository/OtherProfilesRepository.dart';
+import 'package:side_project/repository/OtherProfilesRepository.dart';
 
 class OtherProfilesBloc extends Bloc<OtherProfilesEvent, OtherProfilesState> {
   late OtherProfilesRepository repository;

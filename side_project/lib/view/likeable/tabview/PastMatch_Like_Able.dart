@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/bloc/OtherProfilesBloc.dart';
-import 'package:side_project/bloc/PastMatchBloc.dart';
-import 'package:side_project/bloc/state/PastMatchState.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
-import 'package:side_project/test/Image.dart';
+import 'package:side_project/core/dump/Image.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:side_project/view/loading/Loading.dart';
 import 'package:get/get.dart' as getx;
+import 'package:side_project/viewModel/bloc/OtherProfilesBloc.dart';
+import 'package:side_project/viewModel/bloc/PastMatchBloc.dart';
+import 'package:side_project/viewModel/bloc/state/PastMatchState.dart';
 
 class PastMatch_Like_Able extends StatelessWidget {
   const PastMatch_Like_Able({super.key});

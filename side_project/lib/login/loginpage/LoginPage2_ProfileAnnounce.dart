@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:side_project/login/cubit/RegionCubit.dart';
 import 'package:side_project/login/loginpage/LoginPage3_ProfileWrite1.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage2_ProfileAnnounce extends StatelessWidget {
   const LoginPage2_ProfileAnnounce({super.key});

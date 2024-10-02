@@ -1,13 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/bloc/OtherProfilesBloc.dart';
-import 'package:side_project/cubit/MessageProfileCubit.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
-import 'package:side_project/test/Image.dart';
+import 'package:side_project/core/dump/Image.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:side_project/view/etc/Preparing.dart';
 import 'package:side_project/view/home/ProfileAppbar/ProfileAppbar.dart';
 import 'package:side_project/view/home/designcomponent/DesignComponent_Answers.dart';
@@ -15,8 +12,9 @@ import 'package:side_project/view/home/designcomponent/DesignComponent_DetailsPr
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/view/loading/Loading.dart';
 import 'package:get/get.dart' as getx;
-import 'package:side_project/view/message/MessageProfile.dart';
 import 'package:side_project/view/message/registrationPhoneNumber/RegistrationPhoneNumberPage1.dart';
+import 'package:side_project/viewModel/bloc/OtherProfilesBloc.dart';
+import 'package:side_project/viewModel/cubit/MessageProfileCubit.dart';
 
 class DetailsProfile extends StatelessWidget {
   const DetailsProfile({super.key});

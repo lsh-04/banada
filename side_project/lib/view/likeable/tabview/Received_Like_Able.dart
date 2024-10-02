@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/bloc/ReceivedMessageBloc.dart';
-import 'package:side_project/bloc/state/ReceivedMessageState.dart';
 import 'package:side_project/view/likeable/tabview/received_like_able/ReceivedHeart.dart';
 import 'package:side_project/view/likeable/tabview/received_like_able/ReceivedRing.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/view/loading/Loading.dart';
+import 'package:side_project/viewModel/bloc/ReceivedMessageBloc.dart';
+import 'package:side_project/viewModel/bloc/state/ReceivedMessageState.dart';
 
 class Recieved_Like_Able extends StatefulWidget {
   const Recieved_Like_Able({super.key});

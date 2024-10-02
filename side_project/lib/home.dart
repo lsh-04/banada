@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:side_project/bloc/DailyFourIntroduceBloc.dart';
-import 'package:side_project/bloc/ReceivedMessageBloc.dart';
-import 'package:side_project/bloc/SentMessageBloc.dart';
-import 'package:side_project/bloc/TimeDailyFourIntroduceBloc.dart';
-import 'package:side_project/cubit/BottomNavigationBarCubit.dart';
+import 'package:side_project/viewModel/cubit/BottomNavigationBarCubit.dart';
 import 'package:side_project/view/home/HomeMain.dart';
 import 'package:side_project/view/likeable/LikeAbleMain.dart';
 import 'package:side_project/view/message/MessageMain.dart';
 import 'package:side_project/view/profile/ProfileMain.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

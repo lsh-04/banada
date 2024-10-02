@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:side_project/login/appbar/SimulationAppbar.dart';
-import 'package:side_project/login/bloc/SimulationBloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as getx;
-import 'package:side_project/login/cubit/SimulationChooseCubit.dart';
+import 'package:side_project/viewModel/bloc/SimulationBloc.dart';
+import 'package:side_project/viewModel/cubit/SimulationChooseCubit.dart';
 import 'package:side_project/login/introduce/IntroduceMain.dart';
 
 class SimulationPage extends StatelessWidget {

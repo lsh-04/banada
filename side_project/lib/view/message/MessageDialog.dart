@@ -1,11 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
-import 'package:side_project/bloc/ReceivedMessageBloc.dart';
-import 'package:side_project/bloc/event/ReceivedMessageEvent.dart';
-import 'package:side_project/cubit/BottomNavigationBarCubit.dart';
+import 'package:side_project/viewModel/bloc/ReceivedMessageBloc.dart';
+import 'package:side_project/viewModel/bloc/event/ReceivedMessageEvent.dart';
+import 'package:side_project/viewModel/cubit/BottomNavigationBarCubit.dart';
 import 'package:side_project/dto/MessageUpdateDto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/home.dart';

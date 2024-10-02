@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
-import 'package:side_project/login/cubit/JobCubit.dart';
-import 'package:side_project/login/cubit/PoliticsCubit.dart';
-import 'package:side_project/login/cubit/RegionCubit.dart';
-import 'package:side_project/login/cubit/ReligionCubit.dart';
-import 'package:side_project/reponsive_layout/Responsive_Function.dart';
+import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:side_project/viewModel/cubit/JobCubit.dart';
+import 'package:side_project/viewModel/cubit/PoliticsCubit.dart';
+import 'package:side_project/viewModel/cubit/RegionCubit.dart';
+import 'package:side_project/viewModel/cubit/ReligionCubit.dart';
 
 class LoginPage3SnackBar<T> extends StatefulWidget {
   final List<String> datas;
