@@ -112,7 +112,7 @@ class _ProfileMainState extends State<ProfileMain> {
                   ),
                   SizedBox(height: 2.3.h),
                   Text(
-                    currentState.repository!.data.nickname,
+                    currentState.repository!.data.nickname!,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,

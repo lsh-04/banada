@@ -15,8 +15,16 @@ class MyProfileBloc extends Bloc<MyProfileEvent, MyProfileState> {
         emit(LoadedMyProfileState(repository: _repository));
       } catch (e) {
         print(e);
-        throw Exception("api 요청 오류");
+        throw Exception("MyProfileBloc -> LoadMyProfileEvent 오류");
       }
     });
+
+    //repository로 바로 상태 갱신 -> registerBloc
+    on<ReigsterMyProfileEvent>(_registerMyProfileEvent);
+  }
+
+  //repository로 바로 상태 갱신 -> registerBloc
+  _registerMyProfileEvent(event, emit) async {
+    LoadedMyProfileState(repository: event.myProfileRepository);
   }
 }

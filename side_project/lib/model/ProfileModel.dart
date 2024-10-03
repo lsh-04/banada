@@ -5,15 +5,15 @@ import 'Nested/Image.dart' as ImageModel;
 
 @immutable
 class ProfileModel extends Equatable {
-  final int id;
-  final int user;
+  final int? id;
+  final int? user;
   final int? height;
-  final String nickname;
-  final String job;
-  final String residence;
-  final String religion;
-  final bool is_smoke;
-  final String drinking_frequency;
+  final String? nickname;
+  final String? job;
+  final String? residence;
+  final String? religion;
+  final bool? is_smoke;
+  final String? drinking_frequency;
   final List<dynamic> answers;
   final List<dynamic> images;
   const ProfileModel._(

@@ -7,18 +7,18 @@ class Request_Api {
   final FlutterSecureStorage flutterSecureStorage = new FlutterSecureStorage();
   late Dio dio;
 
-  Future<void> getAccessToken() async {
-    final accessToken;
+  Future<void> authorize() async {
+    final auth;
     try {
-      accessToken = await flutterSecureStorage.read(key: 'accessToken');
+      auth = await flutterSecureStorage.read(key: 'auth');
     } catch (e) {
       print(e);
-      throw Exception("fluttersecurestroage");
+      throw Exception("Request_Api -> getAccessToken");
     }
     dio = new Dio(BaseOptions(
         headers: {
           'Authorization':
-              'Bearer ${jsonDecode(accessToken!)['access']}', // API 키를 Authorization 헤더로 설정
+              'Bearer ${jsonDecode(auth!)['access']}', // API 키를 Authorization 헤더로 설정
         },
         validateStatus: (status) {
           return status! < 500; // 500보다 작은 상태 코드만 유효하다고 간주

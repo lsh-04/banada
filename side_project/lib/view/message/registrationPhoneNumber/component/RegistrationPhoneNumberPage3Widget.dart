@@ -130,7 +130,7 @@ class _RegistrationPhoneNumberPage3WidgetState
               if (context.read<MessageProfileCubit>().state.messageModel ==
                   null) {
                 _id =
-                    context.read<MessageProfileCubit>().state.profileModel!.id;
+                    context.read<MessageProfileCubit>().state.profileModel!.id!;
               } else {
                 _id = context
                     .read<MessageProfileCubit>()
@@ -143,7 +143,7 @@ class _RegistrationPhoneNumberPage3WidgetState
               print(_id);
               context.read<SentMessageBloc>().add(SentEvent(
                   sentDto: MessageSentDto.of(
-                      context.read<MyProfileBloc>().state.repository!.data.id,
+                      context.read<MyProfileBloc>().state.repository!.data.id!,
                       _id,
                       1,
                       _controller[0].text)));

@@ -11,6 +11,19 @@ class MyProfileRepository extends Equatable {
   late ProfileModel data;
   late bool phone_number;
 
+  MyProfileRepository() {}
+
+  MyProfileRepository._(
+      {required ProfileModel data, required bool phone_number}) {
+    this.data = data;
+    this.phone_number = phone_number;
+  }
+
+  //factory
+  factory MyProfileRepository.of(
+          {required ProfileModel data, required bool phone_number}) =>
+      MyProfileRepository._(data: data, phone_number: phone_number);
+
   Future<void> getData() async {
     if (kIsWeb) {
       data = new ProfileModel.demoData();

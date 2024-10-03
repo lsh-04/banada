@@ -7,7 +7,6 @@ import 'package:side_project/login/loginpage/LoginPage1_TOS.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:get/get.dart' as getx;
-import 'package:side_project/viewModel/bloc/LoginBloc.dart';
 
 class LoginMain extends StatefulWidget {
   const LoginMain({super.key});
@@ -33,7 +32,7 @@ class _LoginMainState extends State<LoginMain> with TickerProviderStateMixin {
     animations = new List.generate(
         3, (index) => Tween(begin: 0.0, end: 1.0).animate(controllers[index]));
 
-    // Start the animations with delays
+    //애니메이션 딜레이 실행
     controllers[0].forward().then((_) {
       controllers[1].forward().then((_) {
         controllers[2].forward();
@@ -149,28 +148,24 @@ class _LoginMainState extends State<LoginMain> with TickerProviderStateMixin {
                 ),
 
                 //카카오 로그인
-                BlocListener<LoginBloc, LoginState>(
-                  listener: (context, state) {
-                    if (state.login) {
+                GestureDetector(
+                  onTap: () async {
+                    //웹 일시 인증 건너뜀.
+                    if (kIsWeb) {
                       getx.Get.to(() => LoginPage1_TOS(),
+                          transition: getx.Transition.noTransition);
+                      return;
+                    }
+                    final login = await getx.Get.toNamed("/kakaoLogin");
+
+                    if (login) {
+                      getx.Get.off(() => LoginPage1_TOS(),
                           transition: getx.Transition.noTransition);
                     }
                   },
-                  child: GestureDetector(
-                    onTap: () {
-                      //웹 일시 인증 건너뜀.
-                      if (kIsWeb) {
-                        getx.Get.to(() => LoginPage1_TOS(),
-                            transition: getx.Transition.noTransition);
-                        return;
-                      }
-                      // context.read<LoginBloc>().add(KakaoLoginEvent());
-                      getx.Get.toNamed("/kakaoLogin");
-                    },
-                    child: Container(
-                      width: 87.w,
-                      child: Image_Res('login_kakao', 1),
-                    ),
+                  child: Container(
+                    width: 87.w,
+                    child: Image_Res('login_kakao', 1),
                   ),
                 ),
               ],

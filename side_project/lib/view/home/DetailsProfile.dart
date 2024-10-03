@@ -36,7 +36,7 @@ class DetailsProfile extends StatelessWidget {
                 padding:
                     EdgeInsets.symmetric(horizontal: 7.6.w, vertical: 1.1.h),
                 child: ProfileAppbar(
-                  text: state.repository!.data.nickname,
+                  text: state.repository!.data.nickname!,
                 ),
               ),
             ),

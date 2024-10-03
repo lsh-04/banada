@@ -126,15 +126,15 @@ class ProfileRow extends StatelessWidget {
       case 1:
         return data.height.toString();
       case 2:
-        return data.residence;
+        return data.residence!;
       case 3:
-        return data.job;
+        return data.job!;
       case 4:
-        return data.is_smoke ? '흡연자' : '비흡연자';
+        return data.is_smoke! ? '흡연자' : '비흡연자';
       case 5:
-        return data.drinking_frequency;
+        return data.drinking_frequency!;
       case 6:
-        return data.religion;
+        return data.religion!;
       default:
         return '준비중';
     }
