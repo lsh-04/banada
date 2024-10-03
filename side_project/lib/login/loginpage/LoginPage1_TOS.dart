@@ -38,6 +38,7 @@ class _LoginPage1_TOSState extends State<LoginPage1_TOS> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.5.w),
         child: Column(

@@ -7,7 +7,7 @@ import 'package:side_project/viewModel/bloc/event/ReceivedMessageEvent.dart';
 import 'package:side_project/viewModel/cubit/BottomNavigationBarCubit.dart';
 import 'package:side_project/dto/MessageUpdateDto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:side_project/home.dart';
+import 'package:side_project/view/MainPage.dart';
 
 class MessageDialog extends StatelessWidget {
   final MessageUpdateDto messageUpdateDto;
@@ -95,7 +95,7 @@ class MessageDialog extends StatelessWidget {
                         onTap: () {
                           context.read<ReceivedMessageBloc>().add(
                               ReceivedMessagedRefuseEvent(messageUpdateDto));
-                          getx.Get.offAll(() => Home(),
+                          getx.Get.offAll(() => MainPage(),
                               transition: getx.Transition.noTransition);
                           context
                               .read<BottomNavigationBarCubit>()

@@ -2,11 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:side_project/viewModel/bloc/DailyFourIntroduceBloc.dart';
-import 'package:side_project/viewModel/bloc/LoginBloc.dart';
 import 'package:side_project/viewModel/bloc/MyProfileBloc.dart';
 import 'package:side_project/viewModel/bloc/OtherProfilesBloc.dart';
 import 'package:side_project/viewModel/bloc/PastMatchBloc.dart';
 import 'package:side_project/viewModel/bloc/ReceivedMessageBloc.dart';
+import 'package:side_project/viewModel/bloc/RegisterBloc.dart';
 import 'package:side_project/viewModel/bloc/SentMessageBloc.dart';
 import 'package:side_project/viewModel/bloc/SimulationBloc.dart';
 import 'package:side_project/viewModel/bloc/SplashBloc.dart';
@@ -45,15 +45,19 @@ void main() async {
   runApp(ResponsiveSizer(builder: (context, orientation, screenType) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => MyProfileBloc()),
         BlocProvider(
           create: (context) => SimulationBloc(),
         ),
         BlocProvider(
+            create: (context) =>
+                RegisterBloc(myProfileBloc: context.read<MyProfileBloc>())),
+        BlocProvider(
           lazy: false,
-          create: (context) =>
-              SplashBloc(simulationBloc: context.read<SimulationBloc>()),
+          create: (context) => SplashBloc(
+              simulationBloc: context.read<SimulationBloc>(),
+              registerBloc: context.read<RegisterBloc>()),
         ),
-        BlocProvider(create: (context) => MyProfileBloc()),
         BlocProvider(create: (context) => PastMatchBloc()),
         BlocProvider(create: (context) => ReceivedMessageBloc()),
         BlocProvider(create: (context) => SentMessageBloc()),
@@ -82,7 +86,6 @@ void main() async {
         BlocProvider(
           create: (context) => IntroduceCubit(),
         ),
-        BlocProvider(create: (context) => LoginBloc()),
         BlocProvider(
           create: (context) => BottomNavigationBarCubit(),
         ),
@@ -101,13 +104,13 @@ void main() async {
           }
           print(state);
           if (state is LoadedBlocState) {
-            //인증 후 데이터 요청
-            context.read<MyProfileBloc>().add(LoadMyProfileEvent());
-            context.read<ReceivedMessageBloc>().add(ReceivedMessageLoadEvent());
-            context.read<SentMessageBloc>().add(SentMessageLoadEvent());
-            context
-                .read<DailyFourIntroduceBloc>()
-                .add(LoadDailyFourIntroduceEvent());
+            // //인증 후 데이터 요청
+            // context.read<MyProfileBloc>().add(LoadMyProfileEvent());
+            // context.read<ReceivedMessageBloc>().add(ReceivedMessageLoadEvent());
+            // context.read<SentMessageBloc>().add(SentMessageLoadEvent());
+            // context
+            //     .read<DailyFourIntroduceBloc>()
+            //     .add(LoadDailyFourIntroduceEvent());
             context.read<PastMatchBloc>().add(LoadPastMatchEvent());
             return Test();
           } else {

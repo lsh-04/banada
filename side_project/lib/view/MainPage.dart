@@ -8,8 +8,8 @@ import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {

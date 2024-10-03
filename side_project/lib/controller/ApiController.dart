@@ -27,7 +27,7 @@ class ApiController<T> extends Request_Api {
 
   Future<Response> apiCategorize() async {
     try {
-      await getAccessToken();
+      await authorize();
     } catch (e) {
       print(e);
       throw Exception("ApiController -> accessToken 요청 오류");

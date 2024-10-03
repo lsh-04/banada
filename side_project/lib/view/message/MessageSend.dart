@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:side_project/home.dart';
+import 'package:side_project/view/MainPage.dart';
 import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
@@ -61,7 +61,7 @@ class MessageSend extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 6.w),
               child: GestureDetector(
                 onTap: () {
-                  getx.Get.offAll(() => Home(),
+                  getx.Get.offAll(() => MainPage(),
                       transition: getx.Transition.noTransition);
                 },
                 child: Container(

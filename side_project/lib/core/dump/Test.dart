@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
-import 'package:side_project/home.dart';
+import 'package:side_project/view/MainPage.dart';
 import 'package:side_project/login/LoginMain.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
@@ -56,7 +56,7 @@ class _TestState extends State<Test> {
             ),
             ElevatedButton(
               onPressed: () {
-                getx.Get.to(() => Home());
+                getx.Get.to(() => MainPage());
               },
               child: Text(
                 "메인 페이지 이동",
