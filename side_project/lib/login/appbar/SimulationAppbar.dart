@@ -20,9 +20,7 @@ class SimulationAppbar extends StatelessWidget {
         preferredSize: Size.fromHeight(5.h),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 6.8.w, vertical: 1.1.h),
-          child: PriviousAppbar(
-            text: '연애 시뮬레이션',
-          ),
+          child: PriviousAppbar(text: '연애 시뮬레이션'),
         ),
       ),
       body: Padding(

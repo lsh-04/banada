@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:side_project/viewModel/bloc/DailyFourIntroduceBloc.dart';
 import 'package:side_project/viewModel/bloc/MyProfileBloc.dart';
+import 'package:side_project/viewModel/bloc/NickNameValidBloc.dart';
 import 'package:side_project/viewModel/bloc/OtherProfilesBloc.dart';
 import 'package:side_project/viewModel/bloc/PastMatchBloc.dart';
 import 'package:side_project/viewModel/bloc/ReceivedMessageBloc.dart';
@@ -89,6 +90,7 @@ void main() async {
         BlocProvider(
           create: (context) => BottomNavigationBarCubit(),
         ),
+        BlocProvider(create: (context) => NickNameValidBloc()),
       ],
       //main
       child: getx.GetMaterialApp(

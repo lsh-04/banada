@@ -6,6 +6,7 @@ import 'package:side_project/model/ProfileModel.dart';
 import 'package:side_project/repository/MyProfileRepository.dart';
 import 'package:side_project/viewModel/bloc/MyProfileBloc.dart';
 import 'package:side_project/viewModel/bloc/event/MyProfileEvent.dart';
+import 'dart:developer';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   late ApiController apiController;
@@ -16,6 +17,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   }
 
   _registerStatisEvent(event, emit) async {
+    ProfileModel _myprofile;
     apiController = new ApiController<LoadMyProfileEvent>();
 
     // profile/my 요청 -> 현재 프로필을 가져옴
@@ -23,25 +25,36 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
     //401: 토큰 만료 됨
     if (response.statusCode == 401) {
-      print("토큰 만료 -> 로그인");
+      log("토큰 만료 -> 로그인");
 
       //로그인 해야함
       emit(RenewRegisterState(page: 0, register: false));
     } else if (response.statusCode == 200) {
       // profile/my 요청 했으니 상태 관리를 같이 해 주면서 회원가입을 진행
+      //ProfileModel로 형변환
       try {
         //Repository로 상태 갱신 -> 데이터가 빈 상태
-        myProfileBloc.add(ReigsterMyProfileEvent(
-            myProfileRepository: MyProfileRepository.of(
-                data: ProfileModel.fromJson(response.data),
-                phone_number: false)));
-      } catch (e) {
-        print(e);
-        print(
-            "RegisterBloc -> RegisterStatusEvent -> MyProfileBloc ADD Repository error");
-      }
+        _myprofile = ProfileModel.fromJson(response.data);
 
-      print(response);
+        myProfileBloc.add(ReigsterMyProfileEvent(
+            myProfileRepository:
+                MyProfileRepository.of(data: _myprofile, phone_number: false)));
+
+        log("나의 프로필을 가져옴");
+        log(_myprofile.toString());
+
+        //myprofile.residence는 ""임 (null X)
+        if (_myprofile.nickname == null || _myprofile.residence!.isEmpty) {
+          //프로필 작성
+          //Tos: 1 , Annoucement: 2
+          emit(RenewRegisterState(page: 1, register: false));
+        }
+
+        log(response.toString());
+      } catch (e) {
+        log(e.toString());
+        log("RegisterBloc -> RegisterStatusEvent -> MyProfileBloc ADD Repository error");
+      }
     }
   }
 }

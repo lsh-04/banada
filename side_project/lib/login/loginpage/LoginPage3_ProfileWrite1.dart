@@ -1,12 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:side_project/core/dump/NickNameStatusMap.dart';
 import 'package:side_project/login/loginpage/LoginPage3_ProfileWrite2.dart';
 import 'package:side_project/login/loginpage/snackbar/LoginPage3SnackBar.dart';
 import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:side_project/repository/MyProfileRepository.dart';
+import 'package:side_project/viewModel/bloc/MyProfileBloc.dart';
+import 'package:side_project/viewModel/bloc/NickNameValidBloc.dart';
 import 'package:side_project/viewModel/cubit/RegionCubit.dart';
 
 class LoginPage3_ProfileWrite1 extends StatefulWidget {
@@ -20,8 +27,10 @@ class LoginPage3_ProfileWrite1 extends StatefulWidget {
 class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
   final List<TextEditingController> _controller =
       List.generate(2, (index) => new TextEditingController());
+  bool _nicknameValid = true;
   int _choose = 0;
   bool _isPass = false;
+  Timer? timer;
   final List<String> _data = [
     '서울',
     '경기',
@@ -60,6 +69,26 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
       }
       _isPass = true;
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    final MyProfileRepository? myProfileRepository =
+        context.read<MyProfileBloc>().state.repository;
+    //이전 상태 불러오기
+    if (myProfileRepository != null) {
+      if (myProfileRepository.data.nickname != null) {
+        _controller[0].text =
+            context.read<MyProfileBloc>().state.repository!.data.nickname!;
+      }
+      if (myProfileRepository.data.residence!.isNotEmpty) {
+        context
+            .read<RegionCubit>()
+            .setRegion(myProfileRepository.data.residence);
+      }
+    }
+    super.initState();
   }
 
   @override
@@ -115,7 +144,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                   SizedBox(
                     height: 3.6.h,
                   ),
-                  form('생년월일', '1990.01.01', true, _controller[1],
+                  form_type_2('생년월일', '1990.01.01', true, _controller[1],
                       TextInputType.datetime),
                   SizedBox(
                     height: 3.6.h,
@@ -197,12 +226,145 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
         SizedBox(
           height: 1.2.h,
         ),
+        Container(
+          height: 6.8.h,
+          child: Stack(
+            children: [
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 3.5.w),
+                  child: BlocConsumer<NickNameValidBloc, NickNameValidState>(
+                    listener: (context, state) {
+                      if (state is DuplicationNickNameValidState) {
+                        setState(() {
+                          _nicknameValid = false;
+                        });
+                      }
+                    },
+                    builder: (context, state) {
+                      return NickNameStatusMap.nickNameStatusMap[state]!;
+                    },
+                  )),
+              TextField(
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(7), // 최대 7글자까지 입력 가능
+                ],
+                keyboardType: textInputType,
+                cursorColor: Colors.black,
+                controller: controller,
+                textAlign: TextAlign.start,
+                onChanged: (e) {
+                  if (controller.text.length >= 2 &&
+                      controller.text.length <= 7) {
+                    _nicknameValid = true;
+
+                    if (timer != null) {
+                      timer!.cancel();
+                    }
+
+                    timer = Timer(
+                      Duration(milliseconds: 1500),
+                      () {
+                        context.read<NickNameValidBloc>().add(
+                            NickNameValidEvent(nickname: _controller[0].text));
+                      },
+                    );
+                  } else {
+                    _nicknameValid = false;
+                  }
+                  check();
+                },
+                style: TextStyle(
+                    fontFamily: 'Pretendard',
+                    fontSize: 17.3.sp,
+                    color: Colors.black,
+                    height: 1),
+                decoration: InputDecoration(
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.3.h),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: _nicknameValid ? Color(0xFF41474C) : Colors.red,
+                      width: 1,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: _nicknameValid ? Color(0xFFC5C8CE) : Colors.red,
+                      width: 1,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: _nicknameValid ? Color(0xFFC5C8CE) : Colors.red,
+                      width: 1,
+                    ),
+                  ),
+                  hintText: subtitle,
+                  fillColor: Color(0xFFFDFDFD),
+                  hintStyle: TextStyle(
+                    fontFamily: 'Pretendard',
+                    fontSize: 17.3.sp,
+                    color: Color(0xFF999FA4),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget form_type_2(title, subtitle, bool isEdit,
+      TextEditingController controller, TextInputType textInputType) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment:
+              isEdit ? MainAxisAlignment.spaceBetween : MainAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                color: Color(0xFF171B1C),
+                fontSize: 16.3.sp,
+                fontFamily: 'Pretendard',
+                fontWeight: FontWeight.w500,
+                height: 1.2,
+              ),
+            ),
+            if (isEdit) ...[
+              Text(
+                '추후 수정불가',
+                style: TextStyle(
+                  color: Color(0xFF999FA4),
+                  fontSize: 16.3.sp,
+                  fontFamily: 'Pretendard',
+                  fontWeight: FontWeight.w400,
+                  height: 1.2,
+                ),
+              )
+            ],
+          ],
+        ),
+        SizedBox(
+          height: 1.2.h,
+        ),
         TextField(
           keyboardType: textInputType,
           cursorColor: Colors.black,
           controller: controller,
           textAlign: TextAlign.start,
           onChanged: (e) {
+            if (controller.text.length >= 2 && controller.text.length <= 7) {
+              _nicknameValid = true;
+            } else {
+              _nicknameValid = false;
+            }
             check();
           },
           style: TextStyle(

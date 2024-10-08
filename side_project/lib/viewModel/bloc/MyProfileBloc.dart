@@ -20,11 +20,8 @@ class MyProfileBloc extends Bloc<MyProfileEvent, MyProfileState> {
     });
 
     //repository로 바로 상태 갱신 -> registerBloc
-    on<ReigsterMyProfileEvent>(_registerMyProfileEvent);
-  }
-
-  //repository로 바로 상태 갱신 -> registerBloc
-  _registerMyProfileEvent(event, emit) async {
-    LoadedMyProfileState(repository: event.myProfileRepository);
+    on<ReigsterMyProfileEvent>((event, emit) async {
+      emit(LoadedMyProfileState(repository: event.myProfileRepository));
+    });
   }
 }

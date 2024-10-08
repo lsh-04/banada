@@ -54,9 +54,25 @@ class Request_Api {
     }
   }
 
-  Future<Response> get_Request_Include_param(String address, int id) async {
+  Future<Response> get_Request_Include_path(String address, int id) async {
     try {
       final _response = await dio.get(address + '${id}/');
+      print(_response);
+      if (_response.statusCode == 200) {
+        return _response;
+      } else {
+        throw Exception("Api 요청 오류");
+      }
+    } catch (e) {
+      print(e);
+      throw Exception("Api 요청 오류");
+    }
+  }
+
+  Future<Response> get_Request_Include_param(
+      String address, Map<String, dynamic> param) async {
+    try {
+      final _response = await dio.get(address, queryParameters: param);
       print(_response);
       if (_response.statusCode == 200) {
         return _response;
