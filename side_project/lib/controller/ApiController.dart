@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:side_project/dto/MessageSentDto.dart';
 import 'package:side_project/dto/MessageUpdateDto.dart';
 import 'package:side_project/viewModel/bloc/DailyFourIntroduceBloc.dart';
+import 'package:side_project/viewModel/bloc/NickNameValidBloc.dart';
 import 'package:side_project/viewModel/bloc/event/MyProfileEvent.dart';
 import 'package:side_project/viewModel/bloc/event/OtherProfilesEvent.dart';
 import 'package:side_project/viewModel/bloc/event/PastMatchEvent.dart';
@@ -20,10 +21,12 @@ class ApiController<T> extends Request_Api {
   static const String _registrationPhoneNumber = 'profiles/validation/';
   static const String _sentMessageOther = 'message/';
   static const String _pastMatch = "message/past_match/";
+  static const String _nickname_validation = "profiles/nickname-validation/";
   MessageSentDto? messageSentDto;
   MessageUpdateDto? refuseDto;
   int? id;
-  ApiController({this.refuseDto, this.id, this.messageSentDto});
+  Map<String, dynamic>? param;
+  ApiController({this.refuseDto, this.id, this.messageSentDto, this.param});
 
   Future<Response> apiCategorize() async {
     try {
@@ -33,6 +36,12 @@ class ApiController<T> extends Request_Api {
       throw Exception("ApiController -> accessToken 요청 오류");
     }
     switch (T) {
+      case NickNameValidEvent:
+        //닉네임 유효성 판별
+        _response =
+            await get_Request_Include_param(_nickname_validation, param!);
+        return _response;
+
       case ReceivedMessageLoadEvent:
         //받은 메세지
         _response = await get_Request(_messageRecived);
@@ -45,7 +54,7 @@ class ApiController<T> extends Request_Api {
 
       case LoadOtherProfilesEvent:
         //프로필 조회
-        _response = await get_Request_Include_param(_profile, id!);
+        _response = await get_Request_Include_path(_profile, id!);
         return _response;
 
       case LoadPastMatchEvent:
