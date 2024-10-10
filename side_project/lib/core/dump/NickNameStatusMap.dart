@@ -19,12 +19,16 @@ class NickNameStatusMap {
     });
   }
 
+  Map<NickNameValidState, Widget> getNickNameStatusMap() {
+    return NickNameStatusMap.nickNameStatusMap;
+  }
+
   Widget _possibleNicknameValidWidget() {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        width: 13.2.w,
-        height: 3.h,
+        width: 12.2.w,
+        height: 2.9.h,
         decoration: ShapeDecoration(
           color: Color(0xFF78DB9B),
           shape: RoundedRectangleBorder(
@@ -51,8 +55,8 @@ class NickNameStatusMap {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        width: 13.2.w,
-        height: 3.h,
+        width: 12.2.w,
+        height: 2.9.h,
         decoration: ShapeDecoration(
           color: Colors.orange,
           shape: RoundedRectangleBorder(
@@ -79,8 +83,8 @@ class NickNameStatusMap {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        width: 13.2.w,
-        height: 3.h,
+        width: 12.2.w,
+        height: 2.9.h,
         decoration: ShapeDecoration(
           color: Colors.red,
           shape: RoundedRectangleBorder(
