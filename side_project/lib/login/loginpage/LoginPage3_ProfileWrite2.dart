@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:side_project/dto/RegisterPart2Dto.dart';
 import 'package:side_project/login/loginpage/LoginPage4_Image.dart';
 import 'package:side_project/login/loginpage/snackbar/LoginPage3SnackBar.dart';
 import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:side_project/view/loading/Loading.dart';
+import 'package:side_project/viewModel/bloc/RegisterBloc.dart';
 import 'package:side_project/viewModel/cubit/JobCubit.dart';
 import 'package:side_project/viewModel/cubit/PoliticsCubit.dart';
 import 'package:side_project/viewModel/cubit/ReligionCubit.dart';
@@ -136,38 +139,62 @@ class _LoginPage3_ProfileWrite2State extends State<LoginPage3_ProfileWrite2> {
                 SizedBox(
                   height: 7.h,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    if (_isPass) {
-                      getx.Get.to(() => LoginPage4_Image(),
-                          transition: getx.Transition.noTransition);
-                    }
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: 7.2.h,
-                    decoration: ShapeDecoration(
-                      color: _isPass
-                          ? Color(0xFF78DB9B)
-                          : Color(0xFF999FA4), //Color(0xFF999FA4)
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                BlocBuilder<RegisterBloc, RegisterState>(
+                    builder: (context, state) {
+                  return GestureDetector(
+                    onTap: () {
+                      if (_isPass) {
+                        context.read<RegisterBloc>().add(RegisterPart2Event(
+                            registerPart2Dto: RegisterPart2Dto.of(
+                                int.parse(_controller.text),
+                                context.read<JoBCubit>().state!,
+                                _choose2 == 1
+                                    ? "안 마셔요"
+                                    : _choose2 == 2
+                                        ? "가끔 마셔요"
+                                        : "자주 마셔요",
+                                context.read<ReligionCubit>().state!)));
+
+                        if (state is InitRegisterState) {
+                          showDialog(
+                            barrierColor: Colors.black54,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Loading();
+                            },
+                          );
+                        } else {
+                          getx.Get.to(() => LoginPage4_Image(),
+                              transition: getx.Transition.noTransition);
+                        }
+                      }
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 7.2.h,
+                      decoration: ShapeDecoration(
+                        color: _isPass
+                            ? Color(0xFF78DB9B)
+                            : Color(0xFF999FA4), //Color(0xFF999FA4)
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '다음',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17.3.sp,
+                              fontFamily: 'Pretendard',
+                              fontWeight: FontWeight.w600,
+                              height: 1.0),
+                        ),
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        '다음',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17.3.sp,
-                            fontFamily: 'Pretendard',
-                            fontWeight: FontWeight.w600,
-                            height: 1.0),
-                      ),
-                    ),
-                  ),
-                ),
+                  );
+                }),
                 SizedBox(
                   height: 7.5.h,
                 ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -31,6 +33,7 @@ class _LoginPage3SnackBarState extends State<LoginPage3SnackBar> {
     return GestureDetector(
       onTap: () {
         if (widget.initialData is RegionCubit) {
+          log(_data[index]);
           context.read<RegionCubit>().setRegion(_data[index]);
         } else if (widget.initialData == JoBCubit) {
           context.read<JoBCubit>().setJoB(_data[index]);

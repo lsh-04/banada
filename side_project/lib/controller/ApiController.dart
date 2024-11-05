@@ -1,9 +1,14 @@
+import 'dart:developer';
+
 import 'package:side_project/api/Request_Api.dart';
 import 'package:dio/dio.dart';
 import 'package:side_project/dto/MessageSentDto.dart';
 import 'package:side_project/dto/MessageUpdateDto.dart';
+import 'package:side_project/dto/RegisterPart1Dto.dart';
+import 'package:side_project/dto/RegisterPart2Dto.dart';
 import 'package:side_project/viewModel/bloc/DailyFourIntroduceBloc.dart';
 import 'package:side_project/viewModel/bloc/NickNameValidBloc.dart';
+import 'package:side_project/viewModel/bloc/RegisterBloc.dart';
 import 'package:side_project/viewModel/bloc/event/MyProfileEvent.dart';
 import 'package:side_project/viewModel/bloc/event/OtherProfilesEvent.dart';
 import 'package:side_project/viewModel/bloc/event/PastMatchEvent.dart';
@@ -22,11 +27,22 @@ class ApiController<T> extends Request_Api {
   static const String _sentMessageOther = 'message/';
   static const String _pastMatch = "message/past_match/";
   static const String _nickname_validation = "profiles/nickname-validation/";
+
   MessageSentDto? messageSentDto;
   MessageUpdateDto? refuseDto;
   int? id;
+  int? profile_id;
   Map<String, dynamic>? param;
-  ApiController({this.refuseDto, this.id, this.messageSentDto, this.param});
+  RegisterPart1Dto? registerPart1Dto;
+  RegisterPart2Dto? registerPart2Dto;
+  ApiController(
+      {this.refuseDto,
+      this.id,
+      this.messageSentDto,
+      this.param,
+      this.registerPart1Dto,
+      this.profile_id,
+      this.registerPart2Dto});
 
   Future<Response> apiCategorize() async {
     try {
@@ -68,6 +84,16 @@ class ApiController<T> extends Request_Api {
         _response = await get_Request(_registrationPhoneNumber);
         return _response;
     */
+
+      case RegisterPart1Event:
+        _response = await patch_Request(
+            _profile, registerPart1Dto!.toJson(), profile_id!);
+        return _response;
+
+      case RegisterPart2Event:
+        _response = await patch_Request(
+            _profile, registerPart2Dto!.toJson(), profile_id!);
+        return _response;
 
       case SentMessageLoadEvent:
         //보낸 메세지

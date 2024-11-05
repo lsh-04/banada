@@ -12,8 +12,8 @@ abstract class MyProfileState extends Equatable {
   List<Object?> get props => [repository];
 }
 
-class InitMtProfileState extends MyProfileState {
-  InitMtProfileState() : super(repository: null);
+class InitMyProfileState extends MyProfileState {
+  InitMyProfileState() : super(repository: null);
 }
 
 class LoadingMyProfileState extends MyProfileState {

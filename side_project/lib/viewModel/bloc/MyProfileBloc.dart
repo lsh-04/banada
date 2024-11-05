@@ -5,7 +5,7 @@ import 'package:side_project/repository/MyProfileRepository.dart';
 
 class MyProfileBloc extends Bloc<MyProfileEvent, MyProfileState> {
   late final MyProfileRepository _repository;
-  MyProfileBloc() : super(InitMtProfileState()) {
+  MyProfileBloc() : super(InitMyProfileState()) {
     _repository = new MyProfileRepository();
 
     on<LoadMyProfileEvent>((event, emit) async {
@@ -14,6 +14,7 @@ class MyProfileBloc extends Bloc<MyProfileEvent, MyProfileState> {
         await _repository.getData();
         emit(LoadedMyProfileState(repository: _repository));
       } catch (e) {
+        emit(ErrorMyProfileState());
         print(e);
         throw Exception("MyProfileBloc -> LoadMyProfileEvent 오류");
       }
