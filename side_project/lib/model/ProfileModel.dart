@@ -33,15 +33,18 @@ class ProfileModel extends Equatable {
         id: Json['id'],
         user: Json['user'],
         nickname: Json['nickname'],
-        answers: Json['answers'].map((e) => AnswersModel.fromJson(e)).toList(),
+        answers: Json['answers']
+            .map((e) => e == null ? [] : AnswersModel.fromJson(e))
+            .toList(),
         drinking_frequency: Json['drinking_frequency'],
         residence: Json['residence'],
         height: Json['height'],
         is_smoke: Json['is_smoke'],
         job: Json['job'],
         religion: Json['religion'],
-        images:
-            Json['images'].map((e) => ImageModel.Image.fromJson(e)).toList(),
+        images: Json['images']
+            .map((e) => e == null ? [] : ImageModel.Image.fromJson(e))
+            .toList(),
       );
 
   factory ProfileModel.demoData() => ProfileModel._(

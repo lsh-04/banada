@@ -19,7 +19,7 @@ class _DesignComponent_AnswersState extends State<DesignComponent_Answers> {
       return ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: state.repository!.data.answers.length,
+        itemCount: state.repository!.data.answers!.length,
         itemBuilder: (context, index) {
           return Column(
             children: [
@@ -35,7 +35,7 @@ class _DesignComponent_AnswersState extends State<DesignComponent_Answers> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      state.repository!.data.answers[index].question,
+                      state.repository!.data.answers![index].question,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -50,7 +50,7 @@ class _DesignComponent_AnswersState extends State<DesignComponent_Answers> {
                       height: 0.8.h,
                     ),
                     Text(
-                      state.repository!.data.answers[index].answer,
+                      state.repository!.data.answers![index].answer,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

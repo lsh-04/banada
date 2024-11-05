@@ -5,7 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:side_project/core/dump/NickNameStatusMap.dart';
+import 'package:side_project/core/data/NickNameStatusMap.dart';
+import 'package:side_project/dto/RegisterPart1Dto.dart';
 import 'package:side_project/login/loginpage/LoginPage3_ProfileWrite2.dart';
 import 'package:side_project/login/loginpage/snackbar/LoginPage3SnackBar.dart';
 import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
@@ -13,9 +14,12 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/repository/MyProfileRepository.dart';
+import 'package:side_project/view/loading/Loading.dart';
 import 'package:side_project/viewModel/bloc/MyProfileBloc.dart';
 import 'package:side_project/viewModel/bloc/NickNameValidBloc.dart';
+import 'package:side_project/viewModel/bloc/RegisterBloc.dart';
 import 'package:side_project/viewModel/cubit/RegionCubit.dart';
+import 'package:side_project/viewModel/cubit/ReligionCubit.dart';
 
 class LoginPage3_ProfileWrite1 extends StatefulWidget {
   const LoginPage3_ProfileWrite1({super.key});
@@ -26,6 +30,7 @@ class LoginPage3_ProfileWrite1 extends StatefulWidget {
 }
 
 class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
+  @override
   final List<TextEditingController> _controller =
       List.generate(2, (index) => new TextEditingController());
   bool _nicknameValid = true;
@@ -33,6 +38,13 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
   bool _isPass = false;
   bool _dayValid = true;
   Timer? timer;
+
+  void dispose() {
+    // TODO: implement dispose
+    timer?.cancel();
+    super.dispose();
+  }
+
   final List<String> _data = [
     '서울',
     '경기',
@@ -86,21 +98,37 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    final MyProfileRepository? myProfileRepository =
-        context.read<MyProfileBloc>().state.repository;
-    //이전 상태 불러오기
-    if (myProfileRepository != null) {
-      if (myProfileRepository.data.nickname != null) {
-        _controller[0].text =
-            context.read<MyProfileBloc>().state.repository!.data.nickname!;
+    _controller[0].addListener(() {
+      //닉네임 유효성 초기화
+      context.read<NickNameValidBloc>().add(InitNickNameValidEvent());
+
+      if (timer != null) {
+        timer!.cancel();
       }
-      if (myProfileRepository.data.residence!.isNotEmpty) {
-        context
-            .read<RegionCubit>()
-            .setRegion(myProfileRepository.data.residence);
+
+      if (_controller[0].text.length >= 2 && _controller[0].text.length <= 7) {
+        setState(() {
+          _nicknameValid = true;
+        });
+
+        timer = Timer(
+          Duration(milliseconds: 700),
+          () {
+            if (mounted) {
+              context
+                  .read<NickNameValidBloc>()
+                  .add(NickNameValidEvent(nickname: _controller[0].text));
+              log(_controller[0].text);
+            }
+          },
+        );
+      } else {
+        setState(() {
+          _nicknameValid = false;
+        });
       }
-    }
+      check();
+    });
     super.initState();
   }
 
@@ -157,43 +185,67 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                   SizedBox(
                     height: 3.6.h,
                   ),
-                  form_type_2('생년월일', '1990.01.01', true, _controller[1],
-                      TextInputType.datetime),
+                  form_type_2(
+                      '생년월일',
+                      '1990.01.01',
+                      true,
+                      _controller[1],
+                      TextInputType.numberWithOptions(
+                          decimal: true, signed: true)),
                   SizedBox(
                     height: 3.6.h,
                   ),
                   form3('거주지', true),
                   //버튼
-                  GestureDetector(
-                    onTap: () {
-                      if (_isPass) {
-                        getx.Get.to(() => LoginPage3_ProfileWrite2(),
-                            transition: getx.Transition.noTransition);
-                      }
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 7.2.h,
-                      decoration: ShapeDecoration(
-                        color: _isPass ? Color(0xFF78DB9B) : Color(0xFF999FA4),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                  BlocBuilder<RegisterBloc, RegisterState>(
+                      builder: (context, state) {
+                    return GestureDetector(
+                      onTap: () {
+                        if (_isPass) {
+                          log(context.read<ReligionCubit>().state.toString());
+                          context.read<RegisterBloc>().add(RegisterPart1Event(
+                              registerPart1Dto: RegisterPart1Dto.of(
+                                  religion: context.read<RegionCubit>().state!,
+                                  nickName: _controller[0].text)));
+                          if (state is InitRegisterState) {
+                            showDialog(
+                              barrierColor: Colors.black54,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Loading();
+                              },
+                            );
+                          } else {
+                            getx.Get.to(() => LoginPage3_ProfileWrite2(),
+                                transition: getx.Transition.noTransition);
+                          }
+                        }
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 7.2.h,
+                        decoration: ShapeDecoration(
+                          color:
+                              _isPass ? Color(0xFF78DB9B) : Color(0xFF999FA4),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            '다음',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17.3.sp,
+                                fontFamily: 'Pretendard',
+                                fontWeight: FontWeight.w600,
+                                height: 1.0),
+                          ),
                         ),
                       ),
-                      child: Center(
-                        child: Text(
-                          '다음',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17.3.sp,
-                              fontFamily: 'Pretendard',
-                              fontWeight: FontWeight.w600,
-                              height: 1.0),
-                        ),
-                      ),
-                    ),
-                  ),
+                    );
+                  }),
                 ],
               ),
             ),
@@ -252,6 +304,7 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                             _nicknameValid = false;
                           });
                         }
+                        check();
                       },
                       builder: (context, state) {
                         NickNameStatusMap nickNameStatusMap =
@@ -270,33 +323,6 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
                 cursorColor: Colors.black,
                 controller: _controller[0],
                 textAlign: TextAlign.start,
-                onChanged: (e) {
-                  //닉네임 유효성 초기화
-                  context
-                      .read<NickNameValidBloc>()
-                      .add(InitNickNameValidEvent());
-
-                  if (timer != null) {
-                    timer!.cancel();
-                  }
-
-                  if (_controller[0].text.length >= 2 &&
-                      _controller[0].text.length <= 7) {
-                    _nicknameValid = true;
-
-                    timer = Timer(
-                      Duration(milliseconds: 1500),
-                      () {
-                        context.read<NickNameValidBloc>().add(
-                            NickNameValidEvent(nickname: _controller[0].text));
-                        log(_controller[0].text);
-                      },
-                    );
-                  } else {
-                    _nicknameValid = false;
-                  }
-                  check();
-                },
                 style: TextStyle(
                     fontFamily: 'Pretendard',
                     fontSize: 17.3.sp,
@@ -601,17 +627,23 @@ class _LoginPage3_ProfileWrite1State extends State<LoginPage3_ProfileWrite1> {
           height: 1.2.h,
         ),
         GestureDetector(
+          //bottomsheet는 별도의 컨텍스트를 갖기 때문에 주입이 따로 필요
           onTap: () async {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               FocusScope.of(context).unfocus();
             });
             await getx.Get.bottomSheet<String?>(
-              LoginPage3SnackBar<RegionCubit>(
-                title: '거주지 선택',
-                datas: _data,
-                initialData: context.read<RegionCubit>(),
+              BlocProvider.value(
+                value: context.read<RegionCubit>(),
+                child: LoginPage3SnackBar<RegionCubit>(
+                  title: '거주지 선택',
+                  datas: _data,
+                  initialData: context.read<RegionCubit>(),
+                ),
               ),
             );
+
+            log(context.read<RegionCubit>().state.toString());
             check();
           },
           child: Container(

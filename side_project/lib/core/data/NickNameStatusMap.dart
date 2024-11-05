@@ -58,21 +58,15 @@ class NickNameStatusMap {
         width: 12.2.w,
         height: 2.9.h,
         decoration: ShapeDecoration(
-          color: Colors.orange,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
         ),
         child: Center(
-          child: Text(
-            '로딩',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16.3.sp,
-              fontFamily: 'Pretendard',
-              fontWeight: FontWeight.w400,
-              height: 1.2,
-            ),
+          child: Image.asset(
+            'assets/image/nicknameloading.gif',
+            width: 40.w,
+            fit: BoxFit.cover,
           ),
         ),
       ),
