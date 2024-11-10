@@ -83,10 +83,7 @@ class _LoginPage3_ProfileWrite2State extends State<LoginPage3_ProfileWrite2> {
         preferredSize: Size.fromHeight(5.h),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 6.8.w, vertical: 1.1.h),
-          child: PriviousAppbar(
-            text: '2/3',
-            fontsize: 18.sp,
-          ),
+          child: PriviousAppbar(text: '2/3', fontsize: 18.sp, hideBack: true),
         ),
       ),
       body: ScrollConfiguration(
@@ -164,7 +161,7 @@ class _LoginPage3_ProfileWrite2State extends State<LoginPage3_ProfileWrite2> {
                             },
                           );
                         } else {
-                          getx.Get.to(() => LoginPage4_Image(),
+                          getx.Get.offAll(() => LoginPage4_Image(),
                               transition: getx.Transition.noTransition);
                         }
                       }

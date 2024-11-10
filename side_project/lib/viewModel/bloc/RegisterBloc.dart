@@ -21,7 +21,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   late FlutterSecureStorage flutterSecureStorage;
   RegisterBloc({required this.myProfileBloc}) : super(InitRegisterState()) {
     //회원가입 상태 이벤트
-    on<RegisterStatusEvent>(_registerStatisEvent);
+    on<RegisterStatusEvent>(_registerStatusEvent);
 
     //회원가입 나머지 등록
     on<RegisterPart2Event>(
@@ -90,6 +90,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       try {
         final response = await apiController.apiCategorize();
 
+        log("response: " + response.data.toString());
+
         myProfileBloc.add(ReigsterMyProfileEvent(
             myProfileRepository: MyProfileRepository.of(
                 data: ProfileModel.fromJson(response.data),
@@ -107,7 +109,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     }
   }
 
-  _registerStatisEvent(event, emit) async {
+  _registerStatusEvent(event, emit) async {
     ProfileModel _myprofile;
     apiController = new ApiController<LoadMyProfileEvent>();
 
@@ -121,6 +123,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       //로그인 해야함
       emit(RenewRegisterState(page: PageList.LoginMain, register: false));
     } else if (response.statusCode == 200) {
+      //accessToken 가져오기
+      FlutterSecureStorage flutterSecureStorage = new FlutterSecureStorage();
+
+      String? getAuth = await flutterSecureStorage.read(key: "auth");
+      log("Auth: " + getAuth!);
+
       // profile/my 요청 했으니 상태 관리를 같이 해 주면서 회원가입을 진행
       //ProfileModel로 형변환
       try {
@@ -147,9 +155,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           log("LoginPage3_ProfileWrite2로 이동");
           emit(RenewRegisterState(
               page: PageList.LoginPage3_ProfileWrite2, register: false));
-        } else {
+        } else if (_myprofile.images.isEmpty) {
           emit(RenewRegisterState(
               page: PageList.LoginPage4_Image, register: false));
+        } else {
+          emit(RenewRegisterState(
+              page: PageList.SimulationMain, register: false));
         }
 
         log(response.toString());

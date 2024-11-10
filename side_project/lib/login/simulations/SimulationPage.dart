@@ -48,6 +48,7 @@ class SimulationPage extends StatelessWidget {
             progressValue: current()[0],
             text: current()[1],
             subtext: current()[2],
+            hideBack: currentpage == 0,
           ),
         ),
         body: Padding(

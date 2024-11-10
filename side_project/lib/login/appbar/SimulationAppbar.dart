@@ -6,11 +6,13 @@ class SimulationAppbar extends StatelessWidget {
   final double progressValue;
   final String text;
   final String subtext;
+  final bool hideBack;
   const SimulationAppbar(
       {super.key,
       required this.progressValue,
       required this.text,
-      required this.subtext});
+      required this.subtext,
+      required this.hideBack});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,10 @@ class SimulationAppbar extends StatelessWidget {
         preferredSize: Size.fromHeight(5.h),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 6.8.w, vertical: 1.1.h),
-          child: PriviousAppbar(text: '연애 시뮬레이션'),
+          child: PriviousAppbar(
+            text: '연애 시뮬레이션',
+            hideBack: hideBack,
+          ),
         ),
       ),
       body: Padding(

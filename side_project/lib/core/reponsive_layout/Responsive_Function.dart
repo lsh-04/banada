@@ -64,7 +64,9 @@ class PriviousAppbar extends StatelessWidget {
   final double? fontsize;
   final FontWeight? fontWeight;
   final String? text;
-  const PriviousAppbar({super.key, this.text, this.fontWeight, this.fontsize});
+  final bool? hideBack;
+  const PriviousAppbar(
+      {super.key, this.text, this.fontWeight, this.fontsize, this.hideBack});
 
   @override
   Widget build(BuildContext context) {
@@ -72,16 +74,18 @@ class PriviousAppbar extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            child: Container(
-              width: 2.8.w,
-              child: Image_Res('privious', 1),
+          if (hideBack != true) ...[
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              child: Container(
+                width: 2.8.w,
+                child: Image_Res('privious', 1),
+              ),
+              onTap: () {
+                Get.back();
+              },
             ),
-            onTap: () {
-              Get.back();
-            },
-          ),
+          ],
           if (text != null) ...[
             Center(
               child: Text(

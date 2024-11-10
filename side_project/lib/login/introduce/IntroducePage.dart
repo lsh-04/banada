@@ -158,17 +158,14 @@ class IntroducePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Hero(
-                tag: 'unique-tag-${index}',
-                child: Text(
-                  text,
-                  style: TextStyle(
-                    color: Color(0xFF171B1C),
-                    fontSize: 16.8.sp,
-                    fontFamily: 'Pretendard',
-                    fontWeight: FontWeight.w700,
-                    height: 1.2,
-                  ),
+              Text(
+                text,
+                style: TextStyle(
+                  color: Color(0xFF171B1C),
+                  fontSize: 16.8.sp,
+                  fontFamily: 'Pretendard',
+                  fontWeight: FontWeight.w700,
+                  height: 1.2,
                 ),
               ),
               SizedBox(
