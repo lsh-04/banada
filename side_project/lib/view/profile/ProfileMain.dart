@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/view/loading/Loading.dart';
 import 'package:side_project/viewModel/bloc/MyProfileBloc.dart';
 import 'package:side_project/viewModel/bloc/state/MyProfileState.dart';
+import 'package:side_project/viewModel/cubit/ImageCubit.dart';
 
 class ProfileMain extends StatefulWidget {
   const ProfileMain({super.key});
@@ -105,11 +106,42 @@ class _ProfileMainState extends State<ProfileMain> {
                     height: 2.h,
                   ),
                   //공간
-                  CircleAvatar(
-                    radius: 7.4.h,
-                    backgroundImage:
-                        NetworkImage(ImageTest.image), // 이미지 URL을 자신의 것으로 변경
+                  // CircleAvatar(
+                  //   radius: 7.4.h,
+                  //   backgroundImage: NetworkImage(currentState
+                  //       .repository!.data.images
+                  //       .where((element) => element.is_main)
+                  //       .first
+                  //       .image), // 이미지 URL을 자신의 것으로 변경
+                  // ),
+                  Container(
+                    width: 14.8.h, // CircleAvatar의 지름을 설정 (7.4.h * 2)
+                    height: 14.8.h,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(currentState.repository!.data.images
+                            .where((element) => element.is_main)
+                            .first
+                            .image),
+                      ),
+                    ),
+                    child: ClipOval(
+                      child: FadeInImage.assetNetwork(
+                        placeholder:
+                            'assets/image/loading.gif', // 로딩 중 표시할 로컬 이미지
+                        image: currentState.repository!.data.images
+                            .where((element) => element.is_main)
+                            .first
+                            .image,
+                        fit: BoxFit.cover,
+                        fadeInDuration: Duration(milliseconds: 500),
+                        fadeOutDuration: Duration(milliseconds: 300),
+                      ),
+                    ),
                   ),
+
                   SizedBox(height: 2.3.h),
                   Text(
                     currentState.repository!.data.nickname!,

@@ -1,7 +1,11 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:side_project/dto/MessageSentDto.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart' as getx;
+import 'package:side_project/login/LoginMain.dart';
+import 'package:side_project/view/etc/Preparing.dart';
 
 class Request_Api {
   final FlutterSecureStorage flutterSecureStorage = new FlutterSecureStorage();
@@ -29,13 +33,29 @@ class Request_Api {
         baseUrl: "https://banada.duckdns.org/api/v1/"));
   }
 
+  void tokenExpire() {
+    getx.Get.offAll(() => LoginMain(),
+        transition: getx.Transition.noTransition);
+    getx.Get.dialog(
+      Preparing(),
+      barrierColor: Colors.black87,
+      barrierDismissible: false,
+    );
+  }
+
   Future<Response> get_Request(String address) async {
     try {
       final _response = await dio.get(address);
+
+      //토큰 만료
+      if (_response.statusCode == 401) {
+        tokenExpire();
+        throw Exception("토큰 만료");
+      }
       return _response;
     } catch (e) {
       print(e);
-      throw Exception("Api 요청 오류");
+      throw Exception("Request_Api -> get_Request -> token ");
     }
   }
 
@@ -44,6 +64,11 @@ class Request_Api {
       if (object is MessageSentDto) {
         final _response =
             await dio.post(data: jsonEncode(object.toJson()), address);
+        //토큰 만료
+        if (_response.statusCode == 401) {
+          tokenExpire();
+          throw Exception("토큰 만료");
+        }
         return _response;
       } else {
         throw Exception("타입 에러");
@@ -60,6 +85,11 @@ class Request_Api {
       print(_response);
       if (_response.statusCode == 200) {
         return _response;
+      }
+      //토큰 만료
+      else if (_response.statusCode == 401) {
+        tokenExpire();
+        throw Exception("토큰 만료");
       } else {
         throw Exception("Api 요청 오류");
       }
@@ -76,6 +106,11 @@ class Request_Api {
       print(_response);
       if (_response.statusCode == 200) {
         return _response;
+      }
+      //토큰 만료
+      else if (_response.statusCode == 401) {
+        tokenExpire();
+        throw Exception("토큰 만료");
       } else {
         throw Exception("Api 요청 오류");
       }
@@ -92,6 +127,11 @@ class Request_Api {
 
     if (_response.statusCode == 200) {
       return _response;
+    }
+    //토큰 만료
+    else if (_response.statusCode == 401) {
+      tokenExpire();
+      throw Exception("토큰 만료");
     } else {
       throw Exception("Api 요청 오류");
     }

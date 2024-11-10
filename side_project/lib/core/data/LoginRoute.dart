@@ -8,6 +8,7 @@ import 'package:side_project/login/loginpage/LoginPage3_ProfileWrite2.dart';
 import 'package:side_project/login/loginpage/LoginPage4_Image.dart';
 import 'package:side_project/login/loginpage/LoginPageLast.dart';
 import 'package:flutter/material.dart';
+import 'package:side_project/login/simulations/SimulationMain.dart';
 
 @immutable
 class LoginRoute {
@@ -21,6 +22,7 @@ class LoginRoute {
       PageList.LoginPage3_ProfileWrite1: () => LoginPage3_ProfileWrite1(),
       PageList.LoginPage3_ProfileWrite2: () => LoginPage3_ProfileWrite2(),
       PageList.LoginPage4_Image: () => LoginPage4_Image(),
+      PageList.SimulationMain: () => SimulationMain(),
       PageList.LoginPageLast: () => LoginPageLast()
     });
   }

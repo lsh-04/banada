@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:side_project/login/loginpage/LoginPage1_TOS.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:get/get.dart' as getx;
 

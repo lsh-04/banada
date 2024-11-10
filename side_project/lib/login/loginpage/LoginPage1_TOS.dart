@@ -133,7 +133,7 @@ class _LoginPage1_TOSState extends State<LoginPage1_TOS> {
             GestureDetector(
               onTap: () {
                 if (check()) {
-                  getx.Get.off(() => LoginPage2_ProfileAnnounce(),
+                  getx.Get.offAll(() => LoginPage2_ProfileAnnounce(),
                       transition: getx.Transition.noTransition);
                 }
               },

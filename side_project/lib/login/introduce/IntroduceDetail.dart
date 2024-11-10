@@ -54,22 +54,19 @@ class _IntroduceDetailState extends State<IntroduceDetail> {
                 SizedBox(
                   height: 0.8.h,
                 ),
-                Hero(
-                  tag: 'unique-tag-${widget.index}',
-                  child: Container(
-                    width: 66.w,
-                    child: Text(
-                      softWrap: true,
-                      widget.text,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF171B1C),
-                        fontSize: 19.5.sp,
-                        fontFamily: 'Pretendard',
-                        fontWeight: FontWeight.w700,
-                        height: 1.2,
-                        letterSpacing: -0.46,
-                      ),
+                Container(
+                  width: 66.w,
+                  child: Text(
+                    softWrap: true,
+                    widget.text,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF171B1C),
+                      fontSize: 19.5.sp,
+                      fontFamily: 'Pretendard',
+                      fontWeight: FontWeight.w700,
+                      height: 1.2,
+                      letterSpacing: -0.46,
                     ),
                   ),
                 ),

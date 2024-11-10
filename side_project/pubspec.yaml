@@ -52,7 +52,8 @@ dependencies:
   kakao_flutter_sdk:
   flutter_web_frame:
   webview_flutter:
-
+  mime:
+  async:
 dev_dependencies:
   flutter_test:
     sdk: flutter

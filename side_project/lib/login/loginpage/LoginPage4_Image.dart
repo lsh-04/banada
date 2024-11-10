@@ -8,8 +8,8 @@ import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as getx;
+import 'package:side_project/view/loading/Loading.dart';
 import 'package:side_project/viewModel/cubit/ImageCubit.dart';
-import '../simulations/SimulationMain.dart' as simuls;
 
 class LoginPage4_Image extends StatelessWidget {
   LoginPage4_Image({super.key});
@@ -38,10 +38,7 @@ class LoginPage4_Image extends StatelessWidget {
         preferredSize: Size.fromHeight(5.h),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 6.8.w, vertical: 1.1.h),
-          child: PriviousAppbar(
-            text: '3/3',
-            fontsize: 18.sp,
-          ),
+          child: PriviousAppbar(text: '3/3', fontsize: 18.sp, hideBack: true),
         ),
       ),
       body: ScrollConfiguration(
@@ -313,38 +310,42 @@ class LoginPage4_Image extends StatelessWidget {
                         SizedBox(
                           height: 8.h,
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            if (image_length >= 2) {
-                              getx.Get.to(() => simuls.SimulationMain(),
-                                  transition: getx.Transition.noTransition);
-                            }
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            height: 7.2.h,
-                            decoration: ShapeDecoration(
-                              color: image_length >= 2
-                                  ? Color(0xFF78DB9B)
-                                  : Color(0xFF999FA4),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                        BlocBuilder<ImageCubit, List<dynamic>?>(
+                            builder: (context, state) {
+                          return GestureDetector(
+                            onTap: () async {
+                              if (image_length >= 2) {
+                                await context
+                                    .read<ImageCubit>()
+                                    .sendImages(context);
+                              }
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 7.2.h,
+                              decoration: ShapeDecoration(
+                                color: image_length >= 2
+                                    ? Color(0xFF78DB9B)
+                                    : Color(0xFF999FA4),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '완료',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17.3.sp,
+                                      fontFamily: 'Pretendard',
+                                      fontWeight: FontWeight.w600,
+                                      height: 1.0),
+                                ),
                               ),
                             ),
-                            child: Center(
-                              child: Text(
-                                '완료',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17.3.sp,
-                                    fontFamily: 'Pretendard',
-                                    fontWeight: FontWeight.w600,
-                                    height: 1.0),
-                              ),
-                            ),
-                          ),
-                        ),
+                          );
+                        }),
                       ],
                     );
                   }

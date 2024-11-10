@@ -107,12 +107,12 @@ void main() async {
           print(state);
           if (state is LoadedBlocState) {
             // //인증 후 데이터 요청
-            // context.read<MyProfileBloc>().add(LoadMyProfileEvent());
-            // context.read<ReceivedMessageBloc>().add(ReceivedMessageLoadEvent());
-            // context.read<SentMessageBloc>().add(SentMessageLoadEvent());
-            // context
-            //     .read<DailyFourIntroduceBloc>()
-            //     .add(LoadDailyFourIntroduceEvent());
+            context.read<MyProfileBloc>().add(LoadMyProfileEvent());
+            context.read<ReceivedMessageBloc>().add(ReceivedMessageLoadEvent());
+            context.read<SentMessageBloc>().add(SentMessageLoadEvent());
+            context
+                .read<DailyFourIntroduceBloc>()
+                .add(LoadDailyFourIntroduceEvent());
             context.read<PastMatchBloc>().add(LoadPastMatchEvent());
             return Test();
           } else {

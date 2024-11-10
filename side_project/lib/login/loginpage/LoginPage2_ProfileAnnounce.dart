@@ -16,7 +16,7 @@ class LoginPage2_ProfileAnnounce extends StatelessWidget {
           preferredSize: Size.fromHeight(5.h),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 6.8.w, vertical: 1.1.h),
-            child: PriviousAppbar(),
+            child: PriviousAppbar(hideBack: true),
           ),
         ),
         body: Center(
@@ -49,7 +49,7 @@ class LoginPage2_ProfileAnnounce extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 6.8.w),
                 child: GestureDetector(
                   onTap: () {
-                    getx.Get.off(() => LoginPage3_ProfileWrite1(),
+                    getx.Get.offAll(() => LoginPage3_ProfileWrite1(),
                         transition: getx.Transition.noTransition);
                   },
                   child: Container(
