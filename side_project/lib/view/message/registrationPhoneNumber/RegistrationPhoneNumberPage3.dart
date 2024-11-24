@@ -36,6 +36,12 @@ class RegistrationPhoneNumberPage3 extends StatelessWidget {
                   ),
                   BlocBuilder<MessageProfileCubit, MessageProfileState>(
                       builder: (context, state) {
+                    print(state.messageModel == null
+                        ? "null"
+                        : state.messageModel!.sender_name);
+                    print(state.profileModel == null
+                        ? "null"
+                        : state.profileModel!.nickname);
                     return Text(
                       '${(state.messageModel == null) ? state.profileModel!.nickname : state.messageModel!.sender_name}님에게\n메세지를 보낼까요?',
                       style: TextStyle(

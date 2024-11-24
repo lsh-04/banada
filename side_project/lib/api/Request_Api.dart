@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:side_project/dto/ContactsDto.dart';
 import 'package:side_project/dto/MessageSentDto.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart' as getx;
+import 'package:side_project/dto/SimulationDto.dart';
 import 'package:side_project/login/LoginMain.dart';
-import 'package:side_project/view/etc/Preparing.dart';
+import 'package:side_project/view/etc/TokenExpire.dart';
 
 class Request_Api {
   final FlutterSecureStorage flutterSecureStorage = new FlutterSecureStorage();
@@ -37,7 +39,7 @@ class Request_Api {
     getx.Get.offAll(() => LoginMain(),
         transition: getx.Transition.noTransition);
     getx.Get.dialog(
-      Preparing(),
+      TokenExpire(),
       barrierColor: Colors.black87,
       barrierDismissible: false,
     );
@@ -50,29 +52,34 @@ class Request_Api {
       //토큰 만료
       if (_response.statusCode == 401) {
         tokenExpire();
-        throw Exception("토큰 만료");
+        throw Exception("Request_Api -> get_Request -> token");
       }
       return _response;
     } catch (e) {
       print(e);
-      throw Exception("Request_Api -> get_Request -> token ");
+      throw Exception("Request_Api -> get_Request");
     }
   }
 
   Future<Response> post_Request(String address, Object object) async {
     try {
+      final _response;
       if (object is MessageSentDto) {
-        final _response =
-            await dio.post(data: jsonEncode(object.toJson()), address);
-        //토큰 만료
-        if (_response.statusCode == 401) {
-          tokenExpire();
-          throw Exception("토큰 만료");
-        }
-        return _response;
+        _response = await dio.post(data: jsonEncode(object.toJson()), address);
+      } else if (object is ContactsDto) {
+        _response = await dio.post(data: jsonEncode(object.toJson()), address);
+      } else if (object is SimulationDto) {
+        _response = await dio.post(data: jsonEncode(object.toJson()), address);
       } else {
         throw Exception("타입 에러");
       }
+
+      //토큰 만료
+      if (_response.statusCode == 401) {
+        tokenExpire();
+        throw Exception("토큰 만료");
+      }
+      return _response;
     } catch (e) {
       print(e);
       throw Exception("Api 요청 오류");
@@ -126,6 +133,21 @@ class Request_Api {
         await dio.patch(data: jsonEncode(data), address + "${id}/");
 
     if (_response.statusCode == 200) {
+      return _response;
+    }
+    //토큰 만료
+    else if (_response.statusCode == 401) {
+      tokenExpire();
+      throw Exception("토큰 만료");
+    } else {
+      throw Exception("Api 요청 오류");
+    }
+  }
+
+  Future<Response> delete_Request(String address, int user_id) async {
+    final _response = await dio.delete(address + "${user_id}/");
+
+    if (_response.statusCode == 204) {
       return _response;
     }
     //토큰 만료

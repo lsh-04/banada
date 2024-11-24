@@ -7,12 +7,12 @@ import 'package:side_project/model/ProfileModel.dart';
 class MessageProfileCubit extends Cubit<MessageProfileState> {
   MessageProfileCubit() : super(InitMessageProfileState());
 
-  void updateState(MessageModel messageModel) {
-    emit(UpdateMessageProfileState(messageModel: messageModel));
+  void updateState(MessageModel messageModel, int type) {
+    emit(UpdateMessageProfileState(messageModel: messageModel, type: type));
   }
 
-  void updateState_Pr(ProfileModel profileModel) {
-    emit(UpdateProfileState(profileModel: profileModel));
+  void updateState_Pr(ProfileModel profileModel, int type) {
+    emit(UpdateProfileState(profileModel: profileModel, type: type));
   }
 }
 
@@ -20,7 +20,8 @@ class MessageProfileCubit extends Cubit<MessageProfileState> {
 abstract class MessageProfileState extends Equatable {
   final MessageModel? messageModel;
   final ProfileModel? profileModel;
-  const MessageProfileState({this.messageModel, this.profileModel});
+  final int? type;
+  const MessageProfileState({this.messageModel, this.profileModel, this.type});
   @override
   // TODO: implement props
   List<Object?> get props => [messageModel, profileModel];
@@ -31,9 +32,9 @@ class InitMessageProfileState extends MessageProfileState {
 }
 
 class UpdateMessageProfileState extends MessageProfileState {
-  UpdateMessageProfileState({required super.messageModel});
+  UpdateMessageProfileState({required super.messageModel, required super.type});
 }
 
 class UpdateProfileState extends MessageProfileState {
-  UpdateProfileState({required super.profileModel});
+  UpdateProfileState({required super.profileModel, required super.type});
 }

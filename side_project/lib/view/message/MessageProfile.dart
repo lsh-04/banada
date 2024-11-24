@@ -155,7 +155,8 @@ class MessageProfile extends StatelessWidget {
                                   if (BlocProvider.of<MyProfileBloc>(context)
                                       .state
                                       .repository!
-                                      .phone_number) {
+                                      .contacts
+                                      .isNotEmpty) {
                                     //수락하기
                                   } else {
                                     //내 연락처 등록하기
@@ -177,7 +178,8 @@ class MessageProfile extends StatelessWidget {
                                     BlocProvider.of<MyProfileBloc>(context)
                                             .state
                                             .repository!
-                                            .phone_number
+                                            .contacts
+                                            .isNotEmpty
                                         ? '수락하기'
                                         : '내 연락처 등록하기',
                                     textAlign: TextAlign.center,

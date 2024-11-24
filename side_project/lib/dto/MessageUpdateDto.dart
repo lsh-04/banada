@@ -13,6 +13,7 @@ class MessageUpdateDto extends Equatable {
   //factory
   static MessageUpdateDto of(int id, String status, String content) =>
       MessageUpdateDto._(id: id, status: status, content: content);
+
   @override
   // TODO: implement props
   List<Object?> get props => [content, status, id];

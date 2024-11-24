@@ -67,16 +67,16 @@ class Received_Message extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(width: containerWidth * 0.01),
-                        Text(
-                          '1000시간 전',
-                          style: TextStyle(
-                            color: Color(0xFF999FA4),
-                            fontSize: containerWidth * 0.035,
-                            fontFamily: 'Pretendard',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
+                        // SizedBox(width: containerWidth * 0.01),
+                        // Text(
+                        //   '1000시간 전',
+                        //   style: TextStyle(
+                        //     color: Color(0xFF999FA4),
+                        //     fontSize: containerWidth * 0.035,
+                        //     fontFamily: 'Pretendard',
+                        //     fontWeight: FontWeight.w400,
+                        //   ),
+                        // ),
                       ],
                     ),
                     SizedBox(height: containerHeight * 0.25),

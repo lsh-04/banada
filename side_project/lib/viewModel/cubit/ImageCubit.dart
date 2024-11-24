@@ -19,7 +19,7 @@ import 'package:side_project/viewModel/bloc/event/MyProfileEvent.dart';
 class ImageCubit extends Cubit<List<dynamic>?> {
   ImageCubit() : super(null);
 
-  void pickImages() async {
+  Future<void> pickImages() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.image,
       allowMultiple: true, // 다중 선택 허용
@@ -58,8 +58,6 @@ class ImageCubit extends Cubit<List<dynamic>?> {
       if (getx.Get.isDialogOpen ?? false) {
         getx.Get.back();
       }
-      await getx.Get.offAll(() => simuls.SimulationMain(),
-          transition: getx.Transition.noTransition);
 
       //프로필 재갱신
       context.read<MyProfileBloc>().add(LoadMyProfileEvent());

@@ -59,7 +59,7 @@ class MessageMain extends StatelessWidget {
                           ),
                           onTap: () {
                             context.read<MessageProfileCubit>().updateState(
-                                state.repository!.receive_message[index]);
+                                state.repository!.receive_message[index], 4);
                             print(1);
                             getx.Get.toNamed('/MessageProfile');
                           },

@@ -17,7 +17,7 @@ class MappingFourIntroduceModel extends Equatable {
         datas.add(FourIntroduceModel.fromJson(Json[a]));
       } catch (e) {
         print(e);
-        print("여기");
+        print("MappingFourIntroduceModel -> fromJson Error");
       }
     }
   }

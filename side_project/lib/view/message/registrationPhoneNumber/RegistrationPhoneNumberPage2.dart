@@ -52,7 +52,7 @@ class RegistrationPhoneNumberPage2 extends StatelessWidget {
                       fontSize: 16.3.sp,
                       fontFamily: 'Pretendard',
                       fontWeight: FontWeight.w400,
-                      height: 0,
+                      height: 1.1,
                     ),
                   ),
                   SizedBox(

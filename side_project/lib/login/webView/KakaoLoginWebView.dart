@@ -1,9 +1,10 @@
 import 'dart:convert';
-
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_project/dto/TokenDto.dart';
-import 'package:side_project/login/loginpage/LoginPage1_TOS.dart';
+import 'package:side_project/viewModel/bloc/RegisterBloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:get/get.dart' as getx;
 import 'package:dio/dio.dart';
@@ -47,8 +48,11 @@ class _KakaoLoginWebViewState extends State<KakaoLoginWebView> {
             await flutterSecureStorage.write(
                 key: "auth",
                 value: jsonEncode(TokenDto.of(response.data).toJson()));
-            print(response.data);
+            print("WebView Login: ${response.data}");
 
+            log("로그인 진행(KakaoLoginWebView): webView -> registerStatusEvent 실행");
+            log("로그인 진행(KakaoLoginWebView): registerstatusEvent 실행 -> myprofile 조회 및 진행 상황에 따라 page, register 여부 판단 ");
+            context.read<RegisterBloc>().add(RegisterStatusEvent());
             // 리디렉션 후 네비게이션 중단
             getx.Get.back(result: true);
             return NavigationDecision.prevent;

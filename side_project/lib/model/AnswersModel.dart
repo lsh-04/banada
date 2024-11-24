@@ -12,6 +12,7 @@ class AnswersModel extends Equatable {
 
   factory AnswersModel.fromJson(Map<String, dynamic> Json) => AnswersModel(
       id: Json['id'], answer: Json['answer'], question: Json['question']);
+
   @override
   // TODO: implement props
   List<Object?> get props => [];

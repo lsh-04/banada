@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -8,7 +7,7 @@ import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as getx;
-import 'package:side_project/view/loading/Loading.dart';
+import 'package:side_project/login/simulations/SimulationMain.dart';
 import 'package:side_project/viewModel/cubit/ImageCubit.dart';
 
 class LoginPage4_Image extends StatelessWidget {
@@ -318,6 +317,8 @@ class LoginPage4_Image extends StatelessWidget {
                                 await context
                                     .read<ImageCubit>()
                                     .sendImages(context);
+                                await getx.Get.offAll(() => SimulationMain(),
+                                    transition: getx.Transition.noTransition);
                               }
                             },
                             child: Container(

@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:side_project/dto/SimulationDto.dart';
 import 'package:side_project/login/appbar/SimulationAppbar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as getx;
+import 'package:side_project/login/loginpage/LoginPageLast.dart';
 import 'package:side_project/viewModel/bloc/SimulationBloc.dart';
 import 'package:side_project/viewModel/cubit/SimulationChooseCubit.dart';
 import 'package:side_project/login/introduce/IntroduceMain.dart';
@@ -48,7 +50,7 @@ class SimulationPage extends StatelessWidget {
             progressValue: current()[0],
             text: current()[1],
             subtext: current()[2],
-            hideBack: currentpage == 0,
+            hideBack: true,
           ),
         ),
         body: Padding(
@@ -200,8 +202,15 @@ class SimulationPage extends StatelessWidget {
                   return GestureDetector(
                     onTap: () {
                       if (state[currentpage] != 0) {
+                        context.read<SimulationBloc>().add(
+                            RegisterSimulationEvent(
+                                simulationDto: SimulationDto.of(
+                                    28 + currentpage,
+                                    (84 + currentpage * 2) +
+                                        state[currentpage] -
+                                        1)));
                         if (currentpage < 15) {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation,
@@ -217,7 +226,7 @@ class SimulationPage extends StatelessWidget {
                             ),
                           );
                         } else {
-                          getx.Get.to(() => IntroduceMain(),
+                          getx.Get.off(() => LoginPageLast(),
                               transition: getx.Transition.noTransition);
                         }
                       }

@@ -1,11 +1,17 @@
+import 'dart:developer';
+import 'package:get/get.dart' as getx;
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:side_project/controller/ApiController.dart';
+import 'package:side_project/dto/SimulationDto.dart';
 import 'package:side_project/repository/SimulationRepository.dart';
+import 'package:side_project/view/loading/Loading.dart';
 
 class SimulationBloc extends Bloc<SimulationEvent, SimulationState> {
   late final SimulationRepository simulationRepository;
-
+  late ApiController apiController;
   SimulationBloc() : super(InitialSimulationState()) {
     simulationRepository = new SimulationRepository();
 
@@ -15,6 +21,23 @@ class SimulationBloc extends Bloc<SimulationEvent, SimulationState> {
         emit(LoadSimulationState(simulationRepository: simulationRepository));
       },
     );
+
+    on<RegisterSimulationEvent>((event, emit) async {
+      apiController = new ApiController<RegisterSimulationEvent>(
+          simulationDto: event.simulationDto);
+      try {
+        getx.Get.dialog(
+          Loading(),
+          barrierColor: Colors.black12,
+          barrierDismissible: false,
+        );
+        await apiController.apiCategorize();
+        getx.Get.back();
+      } catch (e) {
+        log(e.toString());
+        log("SimulationBloc -> RegisterSimulationEvent Error");
+      }
+    });
   }
 }
 
@@ -43,3 +66,8 @@ abstract class SimulationEvent extends Equatable {
 }
 
 class LoadDataEvent extends SimulationEvent {}
+
+class RegisterSimulationEvent extends SimulationEvent {
+  SimulationDto simulationDto;
+  RegisterSimulationEvent({required this.simulationDto});
+}

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:side_project/login/simulations/SimulationPage.dart';
 import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
+import 'package:side_project/login/simulations/SimulationPage.dart';
 
 class SimulationMain extends StatelessWidget {
   const SimulationMain({super.key});
@@ -116,10 +116,7 @@ class SimulationMain extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  getx.Get.offAll(
-                      () => SimulationPage(
-                            currentpage: 0,
-                          ),
+                  getx.Get.offAll(() => SimulationPage(currentpage: 0),
                       transition: getx.Transition.noTransition);
                 },
                 child: Container(
