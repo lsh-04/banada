@@ -29,7 +29,7 @@ class TokenExpire extends StatelessWidget {
                   height: 6.5.h,
                 ),
                 DefaultTextStyle(
-                  child: Text('해당 기능은 개발 중이에요.'),
+                  child: Text('세션이 만료되었어요'),
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 19.sp,
@@ -41,7 +41,7 @@ class TokenExpire extends StatelessWidget {
                   height: 1.3.h,
                 ),
                 DefaultTextStyle(
-                  child: Text('향후 업데이트를 기대해 주세요.'),
+                  child: Text('로그인을 다시 해주세요!'),
                   style: TextStyle(
                     color: Color(0xFF5A6166),
                     fontSize: 16.3.sp,

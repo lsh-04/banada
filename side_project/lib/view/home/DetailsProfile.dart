@@ -239,7 +239,11 @@ class DetailsProfile extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              showPrepareDialog(context);
+                              context
+                                  .read<MessageProfileCubit>()
+                                  .updateState_Pr(state.repository!.data, 1);
+                              //내 연락처 등록하기
+                              getx.Get.toNamed("/registerPhone");
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -295,10 +299,9 @@ class DetailsProfile extends StatelessWidget {
                             onTap: () {
                               context
                                   .read<MessageProfileCubit>()
-                                  .updateState_Pr(state.repository!.data);
+                                  .updateState_Pr(state.repository!.data, 4);
                               //내 연락처 등록하기
-                              getx.Get.to(() => RegistrationPhoneNumberPage1(),
-                                  transition: getx.Transition.noTransition);
+                              getx.Get.toNamed("/registerPhone");
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.min,

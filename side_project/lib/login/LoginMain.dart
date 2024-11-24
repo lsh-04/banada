@@ -1,11 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/login/loginpage/LoginPage1_TOS.dart';
+import 'package:side_project/core/data/LoginRoute.dart';
 import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:get/get.dart' as getx;
+import 'package:side_project/viewModel/bloc/RegisterBloc.dart';
 
 class LoginMain extends StatefulWidget {
   const LoginMain({super.key});
@@ -49,6 +52,7 @@ class _LoginMainState extends State<LoginMain> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    context.read<RegisterBloc>().add(ExpireEvent());
     return Scaffold(
       backgroundColor: Color(0xFF78DB9B),
       body: ScrollConfiguration(
@@ -121,50 +125,82 @@ class _LoginMainState extends State<LoginMain> with TickerProviderStateMixin {
                 ),
 
                 SizedBox(
-                  height: 26.5.h,
+                  height: 21.5.h,
                 ),
 
-                //apple 로그인
-                GestureDetector(
-                  child: Container(
-                    width: 87.w,
-                    child: Image_Res('login_apple', 1),
-                  ),
-                ),
-                SizedBox(
-                  height: 1.3.h,
-                ),
-
-                //구글 로그인
-                GestureDetector(
-                  child: Container(
-                    width: 87.w,
-                    child: Image_Res('login_google', 1),
-                  ),
-                ),
-                SizedBox(
-                  height: 1.3.h,
-                ),
+                // //apple 로그인
+                // GestureDetector(
+                //   child: Container(
+                //     width: 87.w,
+                //     child: Image_Res('login_apple', 1),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 1.3.h,
+                // ),
+                //
+                // //구글 로그인
+                // GestureDetector(
+                //   child: Container(
+                //     width: 87.w,
+                //     child: Image_Res('login_google', 1),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 1.3.h,
+                // ),
 
                 //카카오 로그인
-                GestureDetector(
-                  onTap: () async {
-                    //웹 일시 인증 건너뜀.
-                    if (kIsWeb) {
-                      getx.Get.to(() => LoginPage1_TOS(),
-                          transition: getx.Transition.noTransition);
-                      return;
-                    }
-                    final login = await getx.Get.toNamed("/kakaoLogin");
+                BlocListener<RegisterBloc, RegisterState>(
+                  listener: (context, state) {
+                    log("Current state in listener: $state");
 
-                    if (login) {
-                      getx.Get.off(() => LoginPage1_TOS(),
-                          transition: getx.Transition.noTransition);
+                    // 상태가 RenewRegisterState일 경우 페이지 전환
+                    if (state is RenewRegisterState) {
+                      log("Navigating to page: ${state.page}");
+                      LoginRoute loginRoute = LoginRoute();
+                      getx.Get.off(
+                        loginRoute.getLoginRoute()[state.page]!(),
+                        transition: getx.Transition.noTransition,
+                      );
                     }
                   },
-                  child: Container(
-                    width: 87.w,
-                    child: Image_Res('login_kakao', 1),
+                  child: BlocBuilder<RegisterBloc, RegisterState>(
+                    builder: (context, state) {
+                      return GestureDetector(
+                        onTap: () async {
+                          log("Navigating to Kakao login");
+                          await getx.Get.toNamed("/kakaoLogin");
+
+                          // 카카오 로그인 후 이벤트 트리거
+                          log("Triggering RegisterStatusEvent");
+                          context
+                              .read<RegisterBloc>()
+                              .add(RegisterStatusEvent());
+                        },
+                        child: Container(
+                          width: 87.w,
+                          child: Image_Res('login_kakao', 1),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+
+                SizedBox(
+                  height: 1.5.h,
+                ),
+                Container(
+                  child: Text(
+                    '--- BETA TEST ---',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17.8.sp,
+                      fontFamily: 'Pretendard',
+                      fontWeight: FontWeight.w500,
+                      height: 1.1,
+                    ),
                   ),
                 ),
               ],

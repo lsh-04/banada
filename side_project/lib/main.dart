@@ -1,6 +1,12 @@
-import 'package:flutter/foundation.dart';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:side_project/core/data/LoginRoute.dart';
+import 'package:side_project/login/LoginMain.dart';
+import 'package:side_project/view/MainPage.dart';
+import 'package:side_project/view/loading/Loading.dart';
+import 'package:side_project/view/message/registrationPhoneNumber/RegistrationPhoneNumberPage2.dart';
+import 'package:side_project/view/message/registrationPhoneNumber/RegistrationPhoneNumberPage3.dart';
 import 'package:side_project/viewModel/bloc/DailyFourIntroduceBloc.dart';
 import 'package:side_project/viewModel/bloc/MyProfileBloc.dart';
 import 'package:side_project/viewModel/bloc/NickNameValidBloc.dart';
@@ -17,6 +23,7 @@ import 'package:side_project/viewModel/bloc/event/MyProfileEvent.dart';
 import 'package:side_project/viewModel/bloc/event/PastMatchEvent.dart';
 import 'package:side_project/viewModel/bloc/event/ReceivedMessageEvent.dart';
 import 'package:side_project/viewModel/bloc/event/SentMessageEvent.dart';
+import 'package:side_project/viewModel/bloc/state/MyProfileState.dart';
 import 'package:side_project/viewModel/cubit/BottomNavigationBarCubit.dart';
 import 'package:side_project/viewModel/cubit/ImageCubit.dart';
 import 'package:side_project/viewModel/cubit/IntroduceCubit.dart';
@@ -34,15 +41,11 @@ import 'package:side_project/view/message/MessageProfile.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
 void main() async {
   //로고 로딩 될때까지 기다림(스플래시)
   WidgetsFlutterBinding.ensureInitialized();
   await rootBundle.load('assets/image/logo.png');
-  KakaoSdk.init(
-      nativeAppKey: '75fd1ed1cfb70be8251a1f70fd22ed2b',
-      javaScriptAppKey: 'ad36e43a17b490d106346aea6f0e9637');
   runApp(ResponsiveSizer(builder: (context, orientation, screenType) {
     return MultiBlocProvider(
       providers: [
@@ -95,26 +98,49 @@ void main() async {
       //main
       child: getx.GetMaterialApp(
         home: BlocBuilder<SplashBloc, SplashState>(builder: (context, state) {
-          if (kIsWeb) {
-            context.read<MyProfileBloc>().add(LoadMyProfileEvent());
-            context.read<ReceivedMessageBloc>().add(ReceivedMessageLoadEvent());
-            context.read<SentMessageBloc>().add(SentMessageLoadEvent());
-            context
-                .read<DailyFourIntroduceBloc>()
-                .add(LoadDailyFourIntroduceEvent());
-            return Test();
-          }
           print(state);
           if (state is LoadedBlocState) {
-            // //인증 후 데이터 요청
-            context.read<MyProfileBloc>().add(LoadMyProfileEvent());
-            context.read<ReceivedMessageBloc>().add(ReceivedMessageLoadEvent());
-            context.read<SentMessageBloc>().add(SentMessageLoadEvent());
-            context
-                .read<DailyFourIntroduceBloc>()
-                .add(LoadDailyFourIntroduceEvent());
-            context.read<PastMatchBloc>().add(LoadPastMatchEvent());
-            return Test();
+            return BlocBuilder<RegisterBloc, RegisterState>(
+                builder: (context, registerstate) {
+              if (registerstate is RenewRegisterState) {
+                log("로그인 main 6. RegisterStatusEvent 완료");
+                return BlocBuilder<MyProfileBloc, MyProfileState>(
+                    builder: (context, myprofilestate) {
+                  if (myprofilestate is LoadedMyProfileState) {
+                    print("로그인 main final. LoadMyProfileEvent 완료");
+                    context
+                        .read<ReceivedMessageBloc>()
+                        .add(ReceivedMessageLoadEvent());
+                    context.read<SentMessageBloc>().add(SentMessageLoadEvent());
+                    context
+                        .read<DailyFourIntroduceBloc>()
+                        .add(LoadDailyFourIntroduceEvent());
+                    context.read<PastMatchBloc>().add(LoadPastMatchEvent());
+                  }
+                  LoginRoute loginRoute = new LoginRoute();
+                  return loginRoute.getLoginRoute()[registerstate.page]!();
+                });
+              } else if (registerstate is ErrorRegisterState) {
+                return LoginMain();
+              } else {
+                log("로그인 main. RegisterState 기다리는 중");
+                return BlocListener<RegisterBloc, RegisterState>(
+                    listener: (context, state) {
+                      if (!(state is RenewRegisterState ||
+                          state is ErrorRegisterState)) {
+                        showDialog(
+                          barrierDismissible: false,
+                          barrierColor: Colors.black54,
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Loading();
+                          },
+                        );
+                      }
+                    },
+                    child: LoginMain());
+              }
+            });
           } else {
             return Splash();
           }
@@ -133,6 +159,17 @@ void main() async {
           getx.GetPage(
               name: "/kakaoLogin",
               page: () => KakaoLoginWebView(),
+              transition: getx.Transition.noTransition),
+          getx.GetPage(
+              page: () => Builder(
+                    builder: (context) {
+                      final myProfileBloc = context.read<MyProfileBloc>();
+                      return myProfileBloc.state.repository!.contacts.isEmpty
+                          ? RegistrationPhoneNumberPage2()
+                          : RegistrationPhoneNumberPage3();
+                    },
+                  ),
+              name: "/registerPhone",
               transition: getx.Transition.noTransition)
         ],
       ),

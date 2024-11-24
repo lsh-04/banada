@@ -1,7 +1,11 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:side_project/controller/ApiController.dart';
+import 'package:side_project/model/Nested/Contacts.dart';
 import 'package:side_project/model/ProfileModel.dart';
 import 'package:side_project/viewModel/bloc/event/MyProfileEvent.dart';
 
@@ -9,46 +13,38 @@ import 'package:side_project/viewModel/bloc/event/MyProfileEvent.dart';
 class MyProfileRepository extends Equatable {
   late ApiController apiController;
   late ProfileModel data;
-  late bool phone_number;
+  final List<Contacts> contacts = new List.empty(growable: true);
 
   MyProfileRepository() {}
 
-  MyProfileRepository._(
-      {required ProfileModel data, required bool phone_number}) {
+  MyProfileRepository._({required ProfileModel data}) {
     this.data = data;
-    this.phone_number = phone_number;
   }
 
   //factory
-  factory MyProfileRepository.of(
-          {required ProfileModel data, required bool phone_number}) =>
-      MyProfileRepository._(data: data, phone_number: phone_number);
+  factory MyProfileRepository.of({required ProfileModel data}) =>
+      MyProfileRepository._(data: data);
 
   Future<void> getData() async {
-    if (kIsWeb) {
-      data = new ProfileModel.demoData();
-      phone_number = false;
-      return;
-    }
     apiController = new ApiController<LoadMyProfileEvent>();
     try {
-      final response = await apiController.apiCategorize();
+      Response<dynamic> response = await apiController.apiCategorize();
       data = ProfileModel.fromJson(response.data);
-      phone_number = false;
-      /**
-          //폰 등록 여부
-          final registrationPhoneNumber = await apiController.apiCategorize();
-          if (registrationPhoneNumber.statusCode != 200) {
-          emit(LoadedMyProfileState(
-          data: ProfileModel.fromJson(data.data), phone_number: false));
-          } else {
-          emit(LoadedMyProfileState(
-          data: ProfileModel.fromJson(data.data), phone_number: true));
+      try {
+        apiController = new ApiController<LoadContactsEvent>();
+        response = await apiController.apiCategorize();
+        log(response.toString());
+        log("MyProfileRepository-> getData -> responseData: " +
+            response.data.toString());
+        if (response.statusCode == 200) {
+          for (var a in response.data) {
+            contacts.add(Contacts.fromJson(a));
           }
-          } catch (e) {
-          print(e);
-          emit(ErrorMyProfileState());
-       */
+        }
+      } catch (e) {
+        log(e.toString());
+        throw Exception("MyProfileRepository -> getData -> apiCategorize");
+      }
     } catch (e) {
       print(e);
       throw Exception("오류 발생");
@@ -57,5 +53,5 @@ class MyProfileRepository extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [data, phone_number];
+  List<Object?> get props => [data, contacts];
 }

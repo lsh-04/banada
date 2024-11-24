@@ -6,7 +6,7 @@ class FourIntroduceModel extends Equatable {
   final int id;
   final String? nickname;
   final int? age;
-  final int height;
+  final int? height;
   final String? main_image;
 
   const FourIntroduceModel(

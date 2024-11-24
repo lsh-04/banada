@@ -2,10 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:side_project/core/dump/Image.dart';
+import 'package:get/get.dart' as getx;
 import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:side_project/view/etc/Preparing.dart';
 import 'package:side_project/view/loading/Loading.dart';
+import 'package:side_project/view/profile/ProfileDialog.dart';
+import 'package:side_project/view/profile/ProfileEdit.dart';
+import 'package:side_project/view/profile/ProfileQuitDialog.dart';
+import 'package:side_project/view/profile/ProfileTOS.dart';
+import 'package:side_project/view/profile/SimulationResult.dart';
 import 'package:side_project/viewModel/bloc/MyProfileBloc.dart';
 import 'package:side_project/viewModel/bloc/state/MyProfileState.dart';
 import 'package:side_project/viewModel/cubit/ImageCubit.dart';
@@ -158,6 +164,8 @@ class _ProfileMainState extends State<ProfileMain> {
                   GestureDetector(
                       onTap: () {
                         //프로필 수정 함수
+                        getx.Get.to(() => ProfileEdit(),
+                            transition: getx.Transition.noTransition);
                       },
                       child: Component(null, 0, '프로필 수정', 31, 4.6, 16.2.sp)),
                   SizedBox(height: 3.4.h),
@@ -168,6 +176,8 @@ class _ProfileMainState extends State<ProfileMain> {
                         GestureDetector(
                           onTap: () {
                             //연애 시뮬레이션 결과 함수
+                            getx.Get.to(() => SimulationResult(),
+                                transition: getx.Transition.noTransition);
                           },
                           child: Container(
                             width: double.infinity,
@@ -210,6 +220,7 @@ class _ProfileMainState extends State<ProfileMain> {
                         GestureDetector(
                           onTap: () {
                             //지인 차단하기 함수
+                            showPrepareDialog(context);
                           },
                           child: _component('지인 차단하기'),
                         ),
@@ -217,12 +228,14 @@ class _ProfileMainState extends State<ProfileMain> {
                         GestureDetector(
                             onTap: () {
                               //차단 관리 함수
+                              showPrepareDialog(context);
                             },
                             child: _component('차단 관리')),
                         Divider(height: 0.1),
                         GestureDetector(
                           onTap: () {
                             //알림 설정 함수
+                            showPrepareDialog(context);
                           },
                           child: _component('알림 설정'),
                         ),
@@ -230,12 +243,15 @@ class _ProfileMainState extends State<ProfileMain> {
                         GestureDetector(
                             onTap: () {
                               //고객센터 함수
+                              showPrepareDialog(context);
                             },
                             child: _component('고객센터')),
                         Divider(height: 0.1),
                         GestureDetector(
                           onTap: () {
                             //이용약관 함수
+                            getx.Get.to(() => ProfileTOS(),
+                                transition: getx.Transition.noTransition);
                           },
                           child: Container(
                             width: double.infinity,
@@ -337,6 +353,7 @@ class _ProfileMainState extends State<ProfileMain> {
                         GestureDetector(
                             onTap: () {
                               //로그아웃 함수
+                              showProfileDialog(context);
                             },
                             child: component2('로그아웃')),
 
@@ -344,7 +361,8 @@ class _ProfileMainState extends State<ProfileMain> {
                         //탈퇴하기
                         GestureDetector(
                             onTap: () {
-                              //로그아웃 함수
+                              //탈퇴하기 함수
+                              showQuitDialog(context);
                             },
                             child: component2('탈퇴하기')),
                         SizedBox(height: 2.2.h),

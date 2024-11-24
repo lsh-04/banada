@@ -6,5 +6,7 @@ enum PageList {
   LoginPage3_ProfileWrite2,
   LoginPage4_Image,
   SimulationMain,
-  LoginPageLast
+  SimulationPage,
+  LoginPageLast,
+  Main
 }

@@ -16,7 +16,9 @@ class LoginPageLast extends StatelessWidget {
         preferredSize: Size.fromHeight(5.h),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 6.8.w, vertical: 1.1.h),
-          child: PriviousAppbar(),
+          child: PriviousAppbar(
+            hideBack: true,
+          ),
         ),
       ),
       body: Padding(

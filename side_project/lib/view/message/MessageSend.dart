@@ -3,7 +3,8 @@ import 'package:side_project/view/MainPage.dart';
 import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
-import 'package:side_project/view/message/MessageProfile.dart';
+import 'package:side_project/viewModel/bloc/OtherProfilesBloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MessageSend extends StatelessWidget {
   const MessageSend({super.key});
@@ -30,7 +31,7 @@ class MessageSend extends StatelessWidget {
               height: 10.h,
             ),
             Text(
-              '마카롱님에게\n메시지를 보냈어요.',
+              '${context.read<OtherProfilesBloc>().state.repository!.data.nickname}님에게\n메시지를 보냈어요.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF171B1C),

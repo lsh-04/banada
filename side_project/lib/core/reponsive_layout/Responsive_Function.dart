@@ -63,15 +63,21 @@ Widget Component(String? image, double imageweight, String text, double width,
 class PriviousAppbar extends StatelessWidget {
   final double? fontsize;
   final FontWeight? fontWeight;
+  final Color? color;
   final String? text;
   final bool? hideBack;
   const PriviousAppbar(
-      {super.key, this.text, this.fontWeight, this.fontsize, this.hideBack});
+      {super.key,
+      this.text,
+      this.fontWeight,
+      this.fontsize,
+      this.hideBack,
+      this.color});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: color ?? Colors.white,
       body: Stack(
         children: [
           if (hideBack != true) ...[
@@ -172,20 +178,20 @@ Widget likeAbleComponent2(String url, String text, String subtitle) {
           height: 1.2,
         ),
       ),
-      SizedBox(
-        height: 0.4.h,
-      ),
-      Text(
-        subtitle,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Color(0xFF5A6166),
-          fontSize: 15.2.sp,
-          fontFamily: 'Pretendard',
-          fontWeight: FontWeight.w400,
-          height: 1.2,
-        ),
-      ),
+      // SizedBox(
+      //   height: 0.4.h,
+      // ),
+      // Text(
+      //   subtitle,
+      //   textAlign: TextAlign.center,
+      //   style: TextStyle(
+      //     color: Color(0xFF5A6166),
+      //     fontSize: 15.2.sp,
+      //     fontFamily: 'Pretendard',
+      //     fontWeight: FontWeight.w400,
+      //     height: 1.2,
+      //   ),
+      // ),
       SizedBox(
         height: 3.4.h,
       ),
@@ -194,7 +200,8 @@ Widget likeAbleComponent2(String url, String text, String subtitle) {
 }
 
 //연락처 등록 폼
-Widget form(String text, int index, List<TextEditingController> _controller) {
+Widget form(String text, int index, List<TextEditingController> _controller,
+    bool readOnly) {
   return Container(
     width: double.infinity,
     child: Row(
@@ -214,6 +221,7 @@ Widget form(String text, int index, List<TextEditingController> _controller) {
         ),
         Expanded(
           child: TextField(
+            readOnly: readOnly,
             cursorColor: Colors.black,
             controller: _controller[index],
             textAlign: TextAlign.start,

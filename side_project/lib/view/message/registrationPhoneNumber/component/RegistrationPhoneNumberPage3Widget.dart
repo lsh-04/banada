@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
+import 'package:side_project/model/Nested/Contacts.dart';
 import 'package:side_project/view/message/MessageSend.dart';
 import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +38,24 @@ class _RegistrationPhoneNumberPage3WidgetState
           _isinpt[a] = _controller[a].text.isNotEmpty;
         });
       });
+    }
+
+    List<Contacts> lists =
+        context.read<MyProfileBloc>().state.repository!.contacts;
+
+    if (lists.isNotEmpty) {
+      _controller[0] = TextEditingController(text: lists[0].phone);
+      for (var a in lists[0].snsinfos) {
+        log(a.toString());
+        if (a.service == "kakao") {
+          _controller[1] = TextEditingController(text: a.username);
+        } else if (a.service == "instagram") {
+          _controller[2] = TextEditingController(text: a.username);
+        }
+      }
+      for (int a = 0; a < 3; a++) {
+        _isinpt[a] = true;
+      }
     }
   }
 
@@ -109,15 +130,15 @@ class _RegistrationPhoneNumberPage3WidgetState
         SizedBox(
           height: 4.h,
         ),
-        form('전화번호', 0, _controller),
+        form('전화번호', 0, _controller, true),
         SizedBox(
           height: 2.7.h,
         ),
-        form('카카오톡', 1, _controller),
+        form('카카오톡', 1, _controller, true),
         SizedBox(
           height: 2.7.h,
         ),
-        form('인스타ID', 2, _controller),
+        form('인스타ID', 2, _controller, true),
         SizedBox(
           height: 7.5.h,
         ),
@@ -145,7 +166,7 @@ class _RegistrationPhoneNumberPage3WidgetState
                   sentDto: MessageSentDto.of(
                       context.read<MyProfileBloc>().state.repository!.data.id!,
                       _id,
-                      1,
+                      context.read<MessageProfileCubit>().state.type ?? 1,
                       _controller[0].text)));
 
               getx.Get.off(() => MessageSend(),

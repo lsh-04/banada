@@ -49,7 +49,6 @@ dependencies:
   permission_handler:
   path_provider:
   flutter_secure_storage:
-  kakao_flutter_sdk:
   flutter_web_frame:
   webview_flutter:
   mime:
@@ -80,6 +79,7 @@ dev_dependencies:
   kakao_flutter_sdk:
   flutter_web_frame:
   webview_flutter:
+  flutter_markdown:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -105,6 +105,7 @@ flutter:
   assets:
     - assets/image/
     - assets/txt/
+    - assets/tos/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

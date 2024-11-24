@@ -15,7 +15,7 @@ class RegistrationPhoneNumberPage1 extends StatefulWidget {
 
 class _RegistrationPhoneNumberPage1State
     extends State<RegistrationPhoneNumberPage1> {
-  TextEditingController controller = new TextEditingController(text: '');
+  TextEditingController controller = new TextEditingController(text: "");
   bool _isinpt = false;
 
   @override

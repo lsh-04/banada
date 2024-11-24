@@ -50,7 +50,7 @@ class DailyFourIntroduce extends StatelessWidget {
                           ),
                         )
                       : CustomGridItem(
-                          image: null,
+                          image: state.repository!.datas[a].main_image,
                           text: items[a]["text"]!,
                         )
               ]);

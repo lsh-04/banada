@@ -7,6 +7,8 @@ import 'package:side_project/core/reponsive_layout/Responsive_Function.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart' as getx;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:side_project/viewModel/bloc/MyProfileBloc.dart';
+import 'package:side_project/viewModel/bloc/state/MyProfileState.dart';
 import 'package:side_project/viewModel/cubit/IntroduceCubit.dart';
 
 class IntroducePage extends StatelessWidget {
@@ -37,17 +39,22 @@ class IntroducePage extends StatelessWidget {
                   SizedBox(
                     height: 0.8.h,
                   ),
-                  Text(
-                    '@@님에 대해 소개해주세요.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFF171B1C),
-                      fontSize: 19.5.sp,
-                      fontFamily: 'Pretendard',
-                      fontWeight: FontWeight.w700,
-                      height: 1.2,
-                      letterSpacing: -0.46,
-                    ),
+                  BlocSelector<MyProfileBloc, MyProfileState, String>(
+                    selector: (state) => state.repository!.data.nickname!,
+                    builder: (context, state) {
+                      return Text(
+                        '${state ?? "error"}님에 대해 소개해주세요.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFF171B1C),
+                          fontSize: 19.5.sp,
+                          fontFamily: 'Pretendard',
+                          fontWeight: FontWeight.w700,
+                          height: 1.2,
+                          letterSpacing: -0.46,
+                        ),
+                      );
+                    },
                   ),
                   SizedBox(
                     height: 1.3.h,
